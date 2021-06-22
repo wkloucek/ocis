@@ -1,23 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" id="graph" width="1961" height="911"><script type="application/json"><![CDATA[{
+<svg xmlns="http://www.w3.org/2000/svg" id="graph" width="1961" height="927"><script type="application/json"><![CDATA[{
   "name": "LiveDeployment",
   "description": "An example live deployment scenario for the oCIS System.",
   "version": "v0.0",
   "elements": [
     {
       "id": "10a7uir",
-      "tags": "Element,Container"
+      "tags": "Element,Container",
+      "technology": "golang, go-micro"
     },
     {
       "id": "1sgj6ky",
-      "tags": "Element,Container,Web Browser"
+      "tags": "Element,Container,Web Browser",
+      "technology": "JavaScript and Angular"
     },
     {
       "id": "6o7yyt",
-      "tags": "Element,Container"
+      "tags": "Element,Container",
+      "technology": "golang and vue"
     },
     {
       "id": "9ydhyr",
-      "tags": "Element,Container,Mobile App"
+      "tags": "Element,Container,Mobile App",
+      "technology": "kotlin"
     }
   ],
   "layout": {
