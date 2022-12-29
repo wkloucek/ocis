@@ -61,6 +61,8 @@ Collaborative editing is supported by the [WOPI application gateway](https://git
 
 Users are authenticated via [OpenID Connect](https://openid.net/connect/) using either an external IdP like [Keycloak](https://www.keycloak.org/) or the embedded [LibreGraph Connect](https://github.com/libregraph/lico) identity provider.
 
+Test
+
 ### Installation
 
 With focus on easy install and operation, Infinite Scale is delivered as single binary or container that allows scaling from a Raspberry Pi to a Kubernetes cluster by changing the configuration and starting multiple services as needed. The multiservice architecture allows tailoring the functionality to your needs and reusing services that may already be in place like when using Keycloak. See the details below for various installation options.
