@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @S49405248
 Feature: upload resources using TUS protocol
   As a user
   I want to be able to upload files
@@ -12,6 +12,7 @@ Feature: upload resources using TUS protocol
     And using spaces DAV path
 
 
+  @Td6423c8e
   Scenario: upload a file within the set quota to a project space
     Given user "Alice" has created a space "Project Jupiter" of type "project" with quota "10000"
     When user "Alice" uploads a file with content "uploaded content" to "/upload.txt" via TUS inside of the space "Project Jupiter" using the WebDAV API
@@ -19,6 +20,7 @@ Feature: upload resources using TUS protocol
       | upload.txt |
 
 
+  @T7d8616aa
   Scenario: upload a file bigger than the set quota to a project space
     Given user "Alice" has created a space "Project Jupiter" of type "project" with quota "10"
     When user "Alice" creates a new TUS resource for the space "Project Jupiter" with content "file content is 24 bytes" using the WebDAV API with these headers:

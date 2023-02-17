@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @S9d1525ae
 Feature: Tag
   The user can add a tag to resources for sorting and quick search
 
@@ -17,6 +17,7 @@ Feature: Tag
     And user "Alice" has uploaded a file inside space "use-tag" with content "some content" to "folderMain/insideTheFolder.txt"
 
 
+  @T7ed2251f
   Scenario: Alice creates tags for resources in the project space
     Given user "Alice" has shared a space "use-tag" to user "Brian" with role "viewer"
     When user "Alice" creates the following tags for folder "folderMain" of space "use-tag":
@@ -50,6 +51,7 @@ Feature: Tag
       | fileTag                        |
 
 
+  @Tecfe57f2
   Scenario: Alice creates tags for resources in the personal space
     Given user "Alice" has created a folder "folderMain" in space "Alice Hansen"
     And user "Alice" has uploaded a file inside space "Alice Hansen" with content "some content" to "file.txt"
@@ -80,6 +82,7 @@ Feature: Tag
       | tag with symbol @^$#^%$@%!_+) |
 
 
+  @T6d9cf5ea
   Scenario Outline: Member of the space tries to create tag
     Given user "Alice" has shared a space "use-tag" to user "Brian" with role "<role>"
     When user "Brian" creates the following tags for folder "folderMain/insideTheFolder.txt" of space "use-tag":
@@ -98,6 +101,7 @@ Feature: Tag
       | manager | 200  | should      |
 
 
+  @T5347c869
   Scenario: The recipient has a created tags if share is accepted
     Given user "Alice" has created the following tags for folder "folderMain" of the space "use-tag":
       | folderTag |
@@ -119,6 +123,7 @@ Feature: Tag
       | marketing |
 
 
+  @Te51823df
   Scenario Outline: The recipient of the shared resource tries to create a tag
     Given user "Alice" has created a share inside of space "use-tag" with settings:
       | path      | folderMain |
@@ -144,6 +149,7 @@ Feature: Tag
       | manager | folder   | folderMain                     | 200  | should      |
 
 
+  @T9dc6cf9c
   Scenario Outline: The recipient of the shared resource tries to remove a tag
     Given user "Alice" has created a share inside of space "use-tag" with settings:
       | path      | folderMain |
@@ -172,6 +178,7 @@ Feature: Tag
       | manager | folder   | folderMain                     | 200  | should not  |
 
 
+  @T66b9dfac
   Scenario: User removes folder tags
     Given user "Alice" has created the following tags for folder "folderMain" of the space "use-tag":
       | folderTag   |
@@ -187,6 +194,7 @@ Feature: Tag
       | oc:tags | development |
 
 
+  @T3e4c665f
   Scenario: User lists tags after deleting some folder tags
     Given user "Alice" has created the following tags for folder "folderMain" of the space "use-tag":
       | folderTag   |
@@ -205,6 +213,7 @@ Feature: Tag
       | marketing |
 
 
+  @Tf68874c4
   Scenario: User lists the tags after deleting a folder
     Given user "Alice" has created the following tags for folder "folderMain" of the space "use-tag":
       | folderTag |
@@ -218,6 +227,7 @@ Feature: Tag
       | marketing |
 
 
+  @T9548aec4
   Scenario: User lists the tags after deleting a space
     Given user "Alice" has created the following tags for folder "folderMain" of the space "use-tag":
       | folderTag |
@@ -237,6 +247,7 @@ Feature: Tag
       | marketing |
 
 
+  @Teaf85901
   Scenario: User lists the tags after restoring a deleted folder
     Given user "Alice" has created the following tags for folder "folderMain" of the space "use-tag":
       | folderTag |

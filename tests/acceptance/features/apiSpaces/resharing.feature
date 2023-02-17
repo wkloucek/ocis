@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @S054058a1
 Feature: Resharing
   It is possible to reshare files
 
@@ -24,6 +24,7 @@ Feature: Resharing
     And user "Damian" has accepted share "/folder" offered by user "Carol"
 
 
+  @T3faa2125
   Scenario Outline: You should only be able to see direct outgoing shares not all the chain:
     Given user "Brian" has shared folder "Shares/folder" with user "Fred" with permissions "17"
     And user "Fred" has accepted share "/folder" offered by user "Brian"
@@ -43,6 +44,7 @@ Feature: Resharing
       | Fred   | 0                | should not be | should not be | should not be |
 
 
+  @T391a2782
   Scenario: Owners can see all the chain:
     When user "Alice" gets all the shares inside the folder "folder" using the sharing API
     Then the OCS status code should be "100"
@@ -53,12 +55,14 @@ Feature: Resharing
     And user "Damian" should be included in the response
 
 
+  @T4fb96d89
   Scenario: You can't share with more permissions than you have
     When user "Damian" shares folder "Shares/folder" with user "Ember" with permissions "31" using the sharing API
     Then the OCS status code should be "404"
     And the OCS status message should be "Cannot set the requested share permissions"
 
 
+  @Tc3685a83
   Scenario Outline: Editing reshares
     Given user "Carol" has shared folder "Shares/folder" with user "Fred" with permissions "17"
     And user "Fred" has accepted share "/folder" offered by user "Carol"
@@ -73,6 +77,7 @@ Feature: Resharing
       | Carol | 100  | should be     |
 
 
+  @T43893a30
   Scenario Outline: Deleting reshares
     Given user "Carol" has shared folder "Shares/folder" with user "Gina" with permissions "17"
     And user "Gina" has accepted share "/folder" offered by user "Carol"
@@ -87,6 +92,7 @@ Feature: Resharing
       | Carol | 100  | should not exist |
 
 
+  @T52f5a1a9
   Scenario Outline: Resharing with different permissions
     When user "<user>" shares folder "Shares/folder" with user "Ember" with permissions "<permissions>" using the sharing API
     Then the OCS status code should be "<code>"
@@ -99,6 +105,7 @@ Feature: Resharing
       | Damian | 31          | 404  |
 
 
+  @T96e016c6
   Scenario Outline: Resharing files with different permissions
     Given user "Alice" has uploaded file with content "Random data" to "/file.txt"
     And user "Alice" has shared file "/file.txt" with user "Brian" with permissions "<shareepermissions>"
@@ -112,6 +119,7 @@ Feature: Resharing
       | 19                | 19                 | 100  |
 
 
+  @Ta839dd08
   Scenario Outline: Resharing with group with different permissions
     Given group "security department" has been created
     And the administrator has added a user "Ember" to the group "security department" using GraphApi

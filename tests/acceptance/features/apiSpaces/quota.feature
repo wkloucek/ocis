@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @S790c6fce
 Feature: State of the quota
   As a user
   I want to be able to see the state of the quota and and not let the quota overrun:
@@ -17,6 +17,7 @@ Feature: State of the quota
     And using spaces DAV path
 
 
+  @T32cb93bc
   Scenario Outline: Quota information is returned in the list of spaces returned via the Graph API
     Given user "Alice" has created a space "<spaceName>" of type "project" with quota "<total>"
     When user "Alice" uploads a file inside space "<spaceName>" with content "<fileContent>" to "test.txt" using the WebDAV API
@@ -38,12 +39,14 @@ Feature: State of the quota
       | Quota100% | 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 1234567890 | exceeded | 100   | 0         | 100  |
 
 
+  @T964e00ea
   Scenario: A file cannot be uploaded if there is insufficient quota
     Given user "Alice" has created a space "Project Alfa" of type "project" with quota "10"
     When user "Alice" uploads a file inside space "Project Alfa" with content "More than 10 bytes" to "test.txt" using the WebDAV API
     Then the HTTP status code should be "507"
 
 
+  @Tae7775a7
   Scenario: A folder can be created even if there is insufficient quota for file content
     Given user "Alice" has created a space "Project Beta" of type "project" with quota "7"
     And user "Alice" has uploaded a file inside space "Project Beta" with content "7 bytes" to "test.txt"
@@ -53,6 +56,7 @@ Feature: State of the quota
       | NewFolder |
 
 
+  @T3f37df79
   Scenario: A file can be overwritten if there is enough quota
     Given user "Alice" has created a space "Project Gamma" of type "project" with quota "10"
     And user "Alice" has uploaded a file inside space "Project Gamma" with content "7 bytes" to "test.txt"
@@ -60,6 +64,7 @@ Feature: State of the quota
     Then the HTTP status code should be "204"
 
 
+  @T5c900dc8
   Scenario: A file cannot be overwritten if there is insufficient quota
     When user "Alice" has created a space "Project Delta" of type "project" with quota "10"
     And user "Alice" has uploaded a file inside space "Project Delta" with content "7 bytes" to "test.txt"
@@ -67,6 +72,7 @@ Feature: State of the quota
     Then the HTTP status code should be "507"
 
 
+  @Tc5dd2c2c
   Scenario Outline: Check the relative amount of quota of personal space
     Given user "Admin" has changed the quota of the personal space of "Alice Hansen" space to "10000"
     And user "Alice" has uploaded file "<file_upload>" to "/demo.txt"

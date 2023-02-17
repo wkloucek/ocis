@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @Sc68e8f28
 Feature: Download file in project space
     As a user with different role, I want to be able to download files
 
@@ -19,6 +19,7 @@ Feature: Download file in project space
         And user "Alice" has shared a space "download file" to user "Bob" with role "viewer"
 
 
+    @T3e199bac
     Scenario Outline: An user downloads a file in the project space
         When user "<user>" downloads the file "file.txt" of the space "download file" using the WebDAV API
         Then the HTTP status code should be "200"
@@ -32,6 +33,7 @@ Feature: Download file in project space
             | Bob   |
 
 
+    @T58e51e66
     Scenario Outline: An user downloads an old version of the file in the project space
         Given user "Alice" has uploaded a file inside space "download file" with content "new content" to "file.txt"
         And user "Alice" has uploaded a file inside space "download file" with content "newest content" to "file.txt"

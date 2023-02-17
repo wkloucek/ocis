@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @Sae81451b
 Feature: Upload files into a space
   As an user
   I want to be able to create folders and files in the space
@@ -17,6 +17,7 @@ Feature: Upload files into a space
     And using spaces DAV path
 
 
+  @Te8ce1fa8
   Scenario Outline: An user creates a folder in the Space via the Graph API
     And user "Alice" has shared a space "Project Ceres" to user "Brian" with role "<role>"
     When user "Brian" creates a folder "mainFolder" in space "Project Ceres" using the WebDav Api
@@ -30,6 +31,7 @@ Feature: Upload files into a space
       | viewer  | 403  | should not  |
 
 
+  @T5456587e
   Scenario Outline: An user uploads a file in shared Space via the Graph API
     And user "Alice" has shared a space "Project Ceres" to user "Brian" with role "<role>"
     When user "Brian" uploads a file inside space "Project Ceres" with content "Test" to "test.txt" using the WebDAV API
@@ -47,6 +49,7 @@ Feature: Upload files into a space
       | viewer  | 403  | should not  | 0         |
 
 
+  @T07a78bb5
   Scenario: An user can create subfolders in a Space via the Graph API
     When user "Alice" creates a subfolder "mainFolder/subFolder1/subFolder2" in space "Project Ceres" using the WebDav Api
     Then the HTTP status code should be "201"
@@ -56,6 +59,7 @@ Feature: Upload files into a space
       | subFolder2 |
 
 
+  @T50127ab7
   Scenario: An user can create a folder and upload a file to a Space
     When user "Alice" creates a folder "NewFolder" in space "Project Ceres" using the WebDav Api
     Then the HTTP status code should be "201"
@@ -66,6 +70,7 @@ Feature: Upload files into a space
       | test.txt  |
 
 
+  @Tf636f03f
   Scenario: An user cannot create a folder or a file in a Space if they do not have permission
     When user "Bob" creates a folder "forAlice" in space "Project Ceres" owned by the user "Alice" using the WebDav Api
     Then the HTTP status code should be "404"

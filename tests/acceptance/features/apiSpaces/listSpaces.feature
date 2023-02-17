@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @S183cbae0
 Feature: List and create spaces
   As a user
   I want to be able to work with personal and project spaces
@@ -11,6 +11,7 @@ Feature: List and create spaces
     And using spaces DAV path
 
 
+  @T8ab29e79
   Scenario: An ordinary user can request information about their Space via the Graph API
     When user "Alice" lists all available spaces via the GraphApi
     Then the HTTP status code should be "200"
@@ -27,6 +28,7 @@ Feature: List and create spaces
       | webUrl            | %base_url%/f/%space_id%          |
 
 
+  @T1d375378
   Scenario: An ordinary user can request information about their Space via the Graph API using a filter
     Given user "Brian" has been created with default attributes and without skeleton files
     And user "Brian" has created folder "folder"
@@ -51,6 +53,7 @@ Feature: List and create spaces
     And the json responded should only contain spaces of type "personal"
 
 
+  @T0d8cd2c2
   Scenario: An ordinary user will not see any space when using a filter for project
     Given the administrator has given "Alice" the role "Space Admin" using the settings api
     And user "Alice" has created a space "my project" of type "project" with quota "20"
@@ -64,17 +67,20 @@ Feature: List and create spaces
     And the json responded should not contain a space with name "Alice Hansen"
 
 
+  @Td63af5ef
   Scenario: An ordinary user can access their Space via the webDav API
     When user "Alice" lists all available spaces via the GraphApi
     And user "Alice" lists the content of the space with the name "Alice Hansen" using the WebDav Api
     Then the HTTP status code should be "207"
 
 
+  @T15d8c43a
   Scenario: An ordinary user cannot create a Space via Graph API
     When user "Alice" creates a space "Project Mars" of type "project" with the default quota using the GraphApi
     Then the HTTP status code should be "401"
 
 
+  @T9316aba3
   Scenario: An admin user can create a Space via the Graph API with default quota
     Given the administrator has given "Alice" the role "Admin" using the settings api
     When user "Alice" creates a space "Project Mars" of type "project" with the default quota using the GraphApi
@@ -89,6 +95,7 @@ Feature: List and create spaces
       | webUrl           | %base_url%/f/%space_id%          |
 
 
+  @T5bd4654f
   Scenario: An admin user can create a Space via the Graph API with certain quota
     Given the administrator has given "Alice" the role "Admin" using the settings api
     When user "Alice" creates a space "Project Venus" of type "project" with quota "2000" using the GraphApi
@@ -102,6 +109,7 @@ Feature: List and create spaces
       | webUrl           | %base_url%/f/%space_id%          |
 
 
+  @T84220494
   Scenario: A user can list his personal space via multiple endpoints
     When user "Alice" lists all available spaces via the GraphApi with query "$filter=driveType eq 'personal'"
     Then the json responded should contain a space "Alice Hansen" owned by "Alice" with these key and value pairs:
@@ -120,6 +128,7 @@ Feature: List and create spaces
       | webUrl           | %base_url%/f/%space_id%          |
 
 
+  @T267d7d58
   Scenario: A user can list his created spaces via multiple endpoints
     Given the administrator has given "Alice" the role "Admin" using the settings api
     When user "Alice" creates a space "Project Venus" of type "project" with quota "2000" using the GraphApi

@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @S1efc33e3
 Feature: Change data of space
   As a user with space admin rights
   I want to be able to change the data of a created space (increase the quota, change name, etc.)
@@ -19,6 +19,7 @@ Feature: Change data of space
     And using spaces DAV path
 
 
+  @T050cbe4b
   Scenario Outline: Only space admin user can change the name of a Space via the Graph API
     When user "<user>" changes the name of the "Project Jupiter" space to "Project Death Star"
     Then the HTTP status code should be "<code>"
@@ -33,6 +34,7 @@ Feature: Change data of space
       | Bob   | 403  | Project Jupiter    |
 
 
+  @T3f64d7cb
   Scenario: Only space admin user can change the description(subtitle) of a Space via the Graph API
     When user "Alice" changes the description of the "Project Jupiter" space to "The Death Star is a fictional mobile space station"
     Then the HTTP status code should be "200"
@@ -43,6 +45,7 @@ Feature: Change data of space
       | description | The Death Star is a fictional mobile space station |
 
 
+  @Tb49e90f2
   Scenario Outline: Viewer and editor cannot change the description(subtitle) of a Space via the Graph API
     When user "<user>" changes the description of the "Project Jupiter" space to "The Death Star is a fictional mobile space station"
     Then the HTTP status code should be "<code>"
@@ -52,6 +55,7 @@ Feature: Change data of space
       | Bob   | 403  |
 
 
+  @T790060d1
   Scenario Outline: An user tries to increase the quota of a Space via the Graph API
     When user "<user>" changes the quota of the "Project Jupiter" space to "100"
     Then the HTTP status code should be "<code>"
@@ -66,6 +70,7 @@ Feature: Change data of space
       | Bob   | 401  | 20                 |
 
 
+  @Tcf8e8faf
   Scenario Outline: An space admin user set no restriction quota of a Space via the Graph API
     When user "Alice" changes the quota of the "Project Jupiter" space to "<quotaValue>"
     Then the HTTP status code should be "200"
@@ -82,6 +87,7 @@ Feature: Change data of space
       | -1         |
 
 
+  @T26bfa136
   Scenario: An user space admin set readme file as description of the space via the Graph API
     Given user "Alice" has created a folder ".space" in space "Project Jupiter"
     And user "Alice" has uploaded a file inside space "Project Jupiter" with content "space description" to ".space/readme.md"
@@ -101,6 +107,7 @@ Feature: Change data of space
     And for user "Alice" the content of the file ".space/readme.md" of the space "Project Jupiter" should be "space description"
 
 
+  @T8c8d2429
   Scenario Outline: An user member of the space changes readme file
     Given user "Alice" has created a folder ".space" in space "Project Jupiter"
     And user "Alice" has uploaded a file inside space "Project Jupiter" with content "space description" to ".space/readme.md"
@@ -125,6 +132,7 @@ Feature: Change data of space
       | Bob   | 403  | 17   | space description |
 
 
+  @Tb53766b7
   Scenario Outline: An user space admin and editor set image file as space image of the space via the Graph API
     Given user "Alice" has created a folder ".space" in space "Project Jupiter"
     And user "<user>" has uploaded a file inside space "Project Jupiter" with content "" to ".space/<fileName>"
@@ -148,6 +156,7 @@ Feature: Change data of space
       | Alice | spaceImage.gif  | spaceImage.gif  | image/gif  |
 
 
+  @T05133359
   Scenario: An user viewer cannot set image file as space image of the space via the Graph API
     Given user "Alice" has created a folder ".space" in space "Project Jupiter"
     And user "Alice" has uploaded a file inside space "Project Jupiter" with content "" to ".space/someImageFile.jpg"
@@ -155,6 +164,7 @@ Feature: Change data of space
     Then the HTTP status code should be "403"
 
 
+  @T6e7e9f62
   Scenario Outline: An user set new readme file as description of the space via the Graph API
     Given user "Alice" has created a folder ".space" in space "Project Jupiter"
     And user "Alice" has uploaded a file inside space "Project Jupiter" with content "space description" to ".space/readme.md"
@@ -178,6 +188,7 @@ Feature: Change data of space
       | Bob   | 403  | 17           | space description |
 
 
+  @T7f4e4861
   Scenario Outline: An user set new image file as space image of the space via the Graph API
     Given user "Alice" has created a folder ".space" in space "Project Jupiter"
     And user "Alice" has uploaded a file inside space "Project Jupiter" with content "" to ".space/spaceImage.jpeg"
@@ -200,6 +211,7 @@ Feature: Change data of space
       | Brian |
 
 
+  @T5cf15627
   Scenario Outline: An admin user set own quota of a personal space via the Graph API
     When user "Admin" changes the quota of the "Admin" space to "<quotaValue>"
     Then the HTTP status code should be "200"
@@ -213,6 +225,7 @@ Feature: Change data of space
       | -1         | between "201" and "204" |
 
 
+  @Tf14343ec
   Scenario Outline: An admin user set an user personal space quota of via the Graph API
     When user "Admin" changes the quota of the "Brian Murphy" space to "<quotaValue>"
     Then the HTTP status code should be "200"
@@ -230,6 +243,7 @@ Feature: Change data of space
       | -1         | between "201" and "204" | 0     | 26   |
 
 
+  @T0e0e3b82
   Scenario: user sends invalid space uuid via the Graph API
     When user "Admin" tries to change the name of the "non-existing" space to "new name"
     Then the HTTP status code should be "404"
@@ -239,6 +253,7 @@ Feature: Change data of space
     Then the HTTP status code should be "404"
 
 
+  @Tc98064f0
   Scenario: user sends PATCH request to other user's space that they don't have access to
     Given these users have been created with default attributes and without skeleton files:
       | username |

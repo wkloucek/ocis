@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @S2eeacb65
 Feature: Disabling and deleting space
   As a manager of space
   I want to be able to disable the space first, then delete it.
@@ -19,6 +19,7 @@ Feature: Disabling and deleting space
     And user "Alice" has shared a space "Project Moon" to user "Bob" with role "viewer"
 
 
+  @T81c54f63
   Scenario Outline: A space admin user can disable a Space via the Graph API
     When user "Alice" disables a space "Project Moon"
     Then the HTTP status code should be "204"
@@ -33,6 +34,7 @@ Feature: Disabling and deleting space
       | Bob   |
 
 
+  @T3fd3b570
   Scenario Outline: An user without space admin role cannot disable a Space via the Graph API
     When user "<user>" disables a space "Project Moon"
     Then the HTTP status code should be "403"
@@ -45,6 +47,7 @@ Feature: Disabling and deleting space
       | Bob   |
 
 
+  @Tf3118096
   Scenario: A space manager can delete a disabled Space via the webDav API
     Given user "Alice" has disabled a space "Project Moon"
     When user "Alice" deletes a space "Project Moon"
@@ -52,6 +55,7 @@ Feature: Disabling and deleting space
     And the user "Alice" should not have a space called "Project Moon"
 
 
+  @T2e1d090d
   Scenario: An space manager can disable and delete Space in which files and folders exist via the webDav API
     Given user "Alice" has uploaded a file inside space "Project Moon" with content "test" to "test.txt"
     And user "Alice" has created a folder "MainFolder" in space "Project Moon"
@@ -62,6 +66,7 @@ Feature: Disabling and deleting space
     And the user "Alice" should not have a space called "Project Moon"
 
 
+  @T9e5de838
   Scenario: An space manager cannot delete a space via the webDav API without first disabling it
     When user "Alice" deletes a space "Project Moon"
     Then the HTTP status code should be "400"

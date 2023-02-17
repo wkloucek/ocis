@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @S3b281372
 Feature: Preview file in project space
   As a user, I want to be able to download different files for the preview
 
@@ -14,6 +14,7 @@ Feature: Preview file in project space
     And using spaces DAV path
 
 
+  @T60df95d0
   Scenario Outline: An user can preview created txt files in the project space
     Given user "Alice" has uploaded a file inside space "previews of the files" with content "test" to "<entity>"
     When user "Alice" downloads the preview of "<entity>" of the space "previews of the files" with width "<width>" and height "<height>" using the WebDAV API
@@ -24,6 +25,7 @@ Feature: Preview file in project space
       | /name with spaces.txt | 1200  | 1200   |
 
 
+  @Te1f84981
   Scenario Outline: An user can preview image files in the project space
     Given using spaces DAV path
     And user "Alice" has uploaded a file from "<source>" to "<destination>" via TUS inside of the space "previews of the files" using the WebDAV API
