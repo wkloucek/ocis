@@ -1,4 +1,4 @@
-@api
+@api @S52dc3626
 Feature: create files and folder
   As a user
   I want to be able to create files and folders
@@ -8,7 +8,7 @@ Feature: create files and folder
     Given using OCS API version "1"
     And user "Alice" has been created with default attributes and without skeleton files
 
-  @issue-ocis-reva-269
+  @issue-ocis-reva-269 @T93722184
   Scenario Outline: create a folder
     Given using <dav_version> DAV path
     When user "Alice" creates folder "<folder_name>" using the WebDAV API
@@ -45,7 +45,7 @@ Feature: create files and folder
       | spaces      | /😀 🤖          |
       | spaces      | /new&folder     |
 
-  @smokeTest
+  @smokeTest @Tfb51f97f
   Scenario Outline: Creating a folder
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/test_folder"
@@ -65,6 +65,7 @@ Feature: create files and folder
       | spaces      |
 
 
+  @T4c3f746a
   Scenario Outline: Creating a folder with special chars
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/test_folder:5"
@@ -83,7 +84,7 @@ Feature: create files and folder
       | dav_version |
       | spaces      |
 
-  @issue-ocis-reva-15
+  @issue-ocis-reva-15 @Td59a21ae
   Scenario Outline: Creating a directory which contains .part should not be possible
     Given using <dav_version> DAV path
     When user "Alice" creates folder "/folder.with.ext.part" using the WebDAV API
@@ -103,7 +104,7 @@ Feature: create files and folder
       | dav_version |
       | spaces      |
 
-  @issue-ocis-reva-168
+  @issue-ocis-reva-168 @Tcb940b4b
   Scenario Outline: try to create a folder that already exists
     Given using <dav_version> DAV path
     And user "Alice" has created folder "my-data"
@@ -122,7 +123,7 @@ Feature: create files and folder
       | dav_version |
       | spaces      |
 
-  @issue-ocis-reva-168
+  @issue-ocis-reva-168 @Tc8aab3f1
   Scenario Outline: try to create a folder with a name of an existing file
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "uploaded data" to "/my-data.txt"
@@ -142,6 +143,7 @@ Feature: create files and folder
       | spaces      |
 
 
+  @T4e109344
   Scenario Outline: Create a file
     Given using <dav_version> DAV path
     When user "Alice" uploads file with content "some text" to "<file_name>" using the WebDAV API

@@ -1,4 +1,4 @@
-@api @files_sharing-app-required
+@api @files_sharing-app-required @S39c7828a
 Feature: get the pending shares filtered by type (user, group etc)
   As a user
   I want to be able to know the pending shares that I have received of a particular type (user, group etc)
@@ -33,6 +33,7 @@ Feature: get the pending shares filtered by type (user, group etc)
       | permissions | read                       |
 
 
+  @Td6627fa3
   Scenario Outline: getting pending shares received from users
     Given using OCS API version "<ocs_api_version>"
     When user "Brian" gets the pending user shares shared with him using the sharing API
@@ -46,6 +47,7 @@ Feature: get the pending shares filtered by type (user, group etc)
       | 2               | 200             |
 
 
+  @Tdc3a9cba
   Scenario Outline: getting pending shares received from groups
     Given using OCS API version "<ocs_api_version>"
     When user "Brian" gets the pending group shares shared with him using the sharing API

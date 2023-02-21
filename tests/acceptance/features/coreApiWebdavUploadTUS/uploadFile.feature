@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @S7d86af32
 Feature: upload file
   As a user
   I want to be able to upload files
@@ -8,6 +8,7 @@ Feature: upload file
     Given user "Alice" has been created with default attributes and without skeleton files
 
 
+  @Tbf17d072
   Scenario Outline: upload a file and check download content
     Given using <dav_version> DAV path
     When user "Alice" uploads file with content "uploaded content" to "<file_name>" using the TUS protocol on the WebDAV API
@@ -41,6 +42,7 @@ Feature: upload file
       | spaces      | /# %ab ab?=ed     |
 
 
+  @T1478c43d
   Scenario Outline: upload a file into a folder and check download content
     Given using <dav_version> DAV path
     And user "Alice" has created folder "<folder_name>"
@@ -75,6 +77,7 @@ Feature: upload file
       | spaces      | /?fi=le&%#2 . txt                | # %ab ab?=ed                  |
 
 
+  @Te6a99492
   Scenario Outline: Upload chunked file with TUS
     Given using <dav_version> DAV path
     When user "Alice" uploads file with content "uploaded content" in 3 chunks to "/myChunkedFile.txt" using the TUS protocol on the WebDAV API
@@ -90,6 +93,7 @@ Feature: upload file
       | spaces      |
 
 
+  @T1442e271
   Scenario Outline: Upload 1 byte chunks with TUS
     Given using <dav_version> DAV path
     When user "Alice" uploads file with content "0123456789" in 10 chunks to "/myChunkedFile.txt" using the TUS protocol on the WebDAV API
@@ -105,6 +109,7 @@ Feature: upload file
       | spaces      |
 
 
+  @T3f3b5b55
   Scenario Outline: Upload to overwriting a file
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "original content" to "textfile.txt"
@@ -121,6 +126,7 @@ Feature: upload file
       | spaces      |
 
 
+  @T6bfb371c
   Scenario Outline: upload a file and no version is available
     Given using <dav_version> DAV path
     When user "Alice" uploads file with content "uploaded content" to "/upload.txt" using the TUS protocol on the WebDAV API
@@ -136,6 +142,7 @@ Feature: upload file
       | spaces      |
 
 
+  @Tbb6c3b9d
   Scenario Outline: upload a file twice and versions are available
     Given using <dav_version> DAV path
     When user "Alice" uploads file with content "uploaded content" to "/upload.txt" using the TUS protocol on the WebDAV API
@@ -153,6 +160,7 @@ Feature: upload file
       | spaces      |
 
 
+  @Tc0bde6e3
   Scenario Outline: upload a file in chunks with TUS and no version is available
     Given using <dav_version> DAV path
     When user "Alice" uploads file with content "0123456789" in 10 chunks to "/myChunkedFile.txt" using the TUS protocol on the WebDAV API
@@ -163,6 +171,7 @@ Feature: upload file
       | new         |
 
 
+  @T40fec2a6
   Scenario Outline: upload a twice file in chunks with TUS and versions are available
     Given using <dav_version> DAV path
     When user "Alice" uploads file with content "0123456789" in 10 chunks to "/myChunkedFile.txt" using the TUS protocol on the WebDAV API
@@ -180,6 +189,7 @@ Feature: upload file
       | spaces      |
 
 
+  @T18e7aeab
   Scenario Outline: upload a file with invalid-name
     Given using <dav_version> DAV path
     When user "Alice" creates a new TUS resource on the WebDAV API with these headers:

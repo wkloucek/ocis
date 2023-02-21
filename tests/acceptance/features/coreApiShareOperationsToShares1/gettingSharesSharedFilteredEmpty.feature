@@ -1,4 +1,4 @@
-@api @files_sharing-app-required
+@api @files_sharing-app-required @S5cabadaa
 Feature: get shares filtered by type (user, group etc)
   As a user
   I want to be able to know the shares that I have made of a particular type (user, group etc)
@@ -19,6 +19,7 @@ Feature: get shares filtered by type (user, group etc)
     And user "Alice" has uploaded file with content "file to share with public" to "/fileToShareWithPublic.txt"
 
 
+  @T9381fa62
   Scenario Outline: getting shares shared to users when there are none
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has shared folder "/folderToShareWithGroup" with group "grp1"
@@ -41,6 +42,7 @@ Feature: get shares filtered by type (user, group etc)
       | 2               | 200             |
 
 
+  @Teeadfe0b
   Scenario Outline: getting shares shared to groups when there are none
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has shared folder "/folderToShareWithUser" with user "Brian"
@@ -63,6 +65,7 @@ Feature: get shares filtered by type (user, group etc)
       | 2               | 200             |
 
 
+  @Ta8cb7a62
   Scenario Outline: getting shares shared to public links when there are none
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has shared folder "/folderToShareWithUser" with user "Brian"

@@ -1,4 +1,4 @@
-@api
+@api @S62f45c96
 Feature: propagation of etags when creating folders
 
   Background:
@@ -6,7 +6,7 @@ Feature: propagation of etags when creating folders
     And the administrator has set the default folder for received shares to "Shares"
     And parameter "shareapi_auto_accept_share" of app "core" has been set to "no"
 
-  @issue-product-280
+  @issue-product-280 @T8d046086
   Scenario Outline: creating a folder inside a folder changes its etag
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/folder"
@@ -29,6 +29,7 @@ Feature: propagation of etags when creating folders
       | spaces      |
 
 
+  @T2539ab3b
   Scenario Outline: creating an invalid folder inside a folder should not change any etags
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/folder"
@@ -53,7 +54,7 @@ Feature: propagation of etags when creating folders
       | dav_version |
       | spaces      |
 
-  @issue-product-280
+  @issue-product-280 @Ta152bb1f
   Scenario Outline: as share receiver creating a folder inside a folder received as a share changes its etag for all collaborators
     Given user "Brian" has been created with default attributes and without skeleton files
     And using <dav_version> DAV path
@@ -79,7 +80,7 @@ Feature: propagation of etags when creating folders
       | old         |
       | new         |
 
-  @issue-product-280
+  @issue-product-280 @T3f37282e
   Scenario Outline: as a sharer creating a folder inside a shared folder changes etag for all collaborators
     Given user "Brian" has been created with default attributes and without skeleton files
     And using <dav_version> DAV path
@@ -105,7 +106,7 @@ Feature: propagation of etags when creating folders
       | old         |
       | new         |
 
-  @issue-product-280
+  @issue-product-280 @T8cb0b543
   Scenario Outline: creating a folder in a publicly shared folder changes its etag for the sharer
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/folder"

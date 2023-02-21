@@ -1,4 +1,4 @@
-@api @skipOnOcV10 @S69b4af93
+@api @skipOnOcV10 @S5b26feca
 Feature: Remove files, folder
   As a user
   I want to be able to remove files, folders
@@ -20,7 +20,8 @@ Feature: Remove files, folder
     And user "Alice" has uploaded a file inside space "delete objects" with content "some content" to "text.txt"
 
 
-  @T2bae7f34
+
+  @Tffe35e5c
   Scenario Outline: An user deletes a folder with some subfolders in a Space via the webDav API
     Given user "Alice" has shared a space "delete objects" to user "Brian" with role "<role>"
     When user "<user>" removes the folder "folderForDeleting" from space "delete objects"
@@ -36,7 +37,8 @@ Feature: Remove files, folder
       | Brian | viewer  | 403  | should               | should not           |
 
 
-  @Tfac26a6b
+
+  @T646e09ee
   Scenario Outline: An user deletes a subfolder in a Space via the webDav API
     Given user "Alice" has shared a space "delete objects" to user "Brian" with role "<role>"
     When user "<user>" removes the folder "folderForDeleting/sub1" from space "delete objects"
@@ -54,7 +56,8 @@ Feature: Remove files, folder
       | Brian | viewer  | 403  | should               | should not           |
 
 
-  @T6f38aa1f
+
+  @T98ff59ca
   Scenario Outline: An user deletes a file in a Space via the webDav API
     Given user "Alice" has shared a space "delete objects" to user "Brian" with role "<role>"
     When user "<user>" removes the file "text.txt" from space "delete objects"
@@ -74,7 +77,8 @@ Feature: Remove files, folder
       | Brian | viewer  | 403  | should               | should not           | 12         |
 
 
-  @T3fedbba5
+
+  @T0e68f48d
   Scenario: An user is unable to delete a Space via the webDav API
     When user "Alice" removes the folder "" from space "delete objects"
     Then the HTTP status code should be "405"

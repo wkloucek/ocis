@@ -1,4 +1,4 @@
-@api @issue-ocis-reva-101 @skipOnGraph
+@api @issue-ocis-reva-101 @skipOnGraph @S2cc7982e
 Feature: get quota
   As a user
   I want to be able to find out my available storage quota
@@ -9,6 +9,7 @@ Feature: get quota
     And user "Alice" has been created with default attributes and small skeleton files
 
 
+  @T68235476
   Scenario Outline: Retrieving folder quota when no quota is set
     Given using <dav_version> DAV path
     When the administrator gives unlimited quota to user "Alice" using the provisioning API
@@ -24,7 +25,7 @@ Feature: get quota
       | dav_version |
       | spaces      |
 
-  @smokeTest
+  @smokeTest @Tfa4c639b
   Scenario Outline: Retrieving folder quota when quota is set
     Given using <dav_version> DAV path
     When the administrator sets the quota of user "Alice" to "10 MB" using the provisioning API
@@ -40,7 +41,7 @@ Feature: get quota
       | dav_version |
       | spaces      |
 
-  @files_sharing-app-required
+  @files_sharing-app-required @T13d0aef2
   Scenario Outline: Retrieving folder quota of shared folder with quota when no quota is set for recipient
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and small skeleton files
@@ -68,6 +69,7 @@ Feature: get quota
       | spaces      |
 
 
+  @T7720713a
   Scenario Outline: Retrieving folder quota when quota is set and a file was uploaded
     Given using <dav_version> DAV path
     And the quota of user "Alice" has been set to "1 KB"
@@ -87,7 +89,7 @@ Feature: get quota
       | dav_version |
       | spaces      |
 
-  @files_sharing-app-required
+  @files_sharing-app-required @Ta3a1c4d9
   Scenario Outline: Retrieving folder quota when quota is set and a file was received
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and small skeleton files

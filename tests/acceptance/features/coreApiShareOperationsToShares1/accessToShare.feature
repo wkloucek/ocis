@@ -1,4 +1,4 @@
-@api @files_sharing-app-required
+@api @files_sharing-app-required @S60283531
 Feature: sharing
 
   Background:
@@ -10,7 +10,7 @@ Feature: sharing
       | Brian    |
     And user "Alice" has uploaded file with content "some data" to "/textfile0.txt"
 
-  @smokeTest
+  @smokeTest @T3a803585
   Scenario Outline: Sharee can see the share
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has shared file "textfile0.txt" with user "Brian"
@@ -24,7 +24,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @smokeTest
+  @smokeTest @T1711f8eb
   Scenario Outline: Sharee can see the filtered share
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file with content "some data" to "/textfile1.txt"
@@ -41,7 +41,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @smokeTest @issue-ocis-reva-260
+  @smokeTest @issue-ocis-reva-260 @T27897846
   Scenario Outline: Sharee can't see the share that is filtered out
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file with content "some data" to "/textfile1.txt"
@@ -58,7 +58,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @smokeTest @issue-ocis-reva-34 @issue-ocis-reva-194
+  @smokeTest @issue-ocis-reva-34 @issue-ocis-reva-194 @Tbd07d820
   Scenario Outline: Sharee can see the group share
     Given using OCS API version "<ocs_api_version>"
     And group "grp1" has been created

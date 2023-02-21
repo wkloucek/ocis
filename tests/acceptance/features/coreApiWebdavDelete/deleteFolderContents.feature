@@ -1,4 +1,4 @@
-@api
+@api @S28baec78
 Feature: delete folder contents
   As a user
   I want to be able to delete all files and folders in a folder
@@ -8,6 +8,7 @@ Feature: delete folder contents
     Given user "Alice" has been created with default attributes and without skeleton files
 
 
+  @Tb99dd0b1
   Scenario Outline: Removing everything of a folder
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/PARENT/"

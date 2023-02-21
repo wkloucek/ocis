@@ -1,4 +1,4 @@
-@api @files_sharing-app-required @issue-ocis-reva-1328 @issues-ocis-1289
+@api @files_sharing-app-required @issue-ocis-reva-1328 @issues-ocis-1289 @S4513c295
 Feature: sharing
 
   Background:
@@ -12,7 +12,7 @@ Feature: sharing
     And group "grp1" has been created
     And user "Brian" has been added to group "grp1"
 
-  @smokeTest
+  @smokeTest @Te378660d
   Scenario: Merging shares for recipient when shared from outside with group and member
     Given user "Alice" has created folder "/merge-test-outside"
     When user "Alice" shares folder "/merge-test-outside" with group "grp1" using the sharing API
@@ -24,6 +24,7 @@ Feature: sharing
     And as "Brian" folder "/Shares/merge-test-outside (2)" should not exist
 
 
+  @T14aa4aba
   Scenario: Merging shares for recipient when shared from outside with group and member with different permissions
     Given user "Alice" has created folder "/merge-test-outside-perms"
     When user "Alice" shares folder "/merge-test-outside-perms" with group "grp1" with permissions "read" using the sharing API
@@ -35,6 +36,7 @@ Feature: sharing
     And as "Brian" folder "/Shares/merge-test-outside-perms (2)" should not exist
 
 
+  @T02012ec6
   Scenario: Merging shares for recipient when shared from outside with two groups
     Given group "grp2" has been created
     And user "Brian" has been added to group "grp2"
@@ -48,6 +50,7 @@ Feature: sharing
     And as "Brian" folder "/Shares/merge-test-outside-twogroups (2)" should not exist
 
 
+  @T8eb2467b
   Scenario: Merging shares for recipient when shared from outside with two groups with different permissions
     Given group "grp2" has been created
     And user "Brian" has been added to group "grp2"
@@ -61,6 +64,7 @@ Feature: sharing
     And as "Brian" folder "/Shares/merge-test-outside-twogroups-perms (2)" should not exist
 
 
+  @T5611f732
   Scenario: Merging shares for recipient when shared from outside with two groups and member
     Given group "grp2" has been created
     And user "Brian" has been added to group "grp2"
@@ -75,6 +79,7 @@ Feature: sharing
     And as "Brian" folder "/Shares/merge-test-outside-twogroups-member-perms (2)" should not exist
 
 
+  @T96661a8e
   Scenario: Merging shares for recipient when shared from inside with group
     Given user "Brian" has created folder "/merge-test-inside-group"
     When user "Brian" shares folder "/merge-test-inside-group" with group "grp1" using the sharing API
@@ -84,6 +89,7 @@ Feature: sharing
     And as "Brian" folder "/Shares/merge-test-inside-group" should not exist
 
 
+  @T41389460
   Scenario: Merging shares for recipient when shared from inside with two groups
     Given group "grp2" has been created
     And user "Brian" has been added to group "grp2"
@@ -97,6 +103,7 @@ Feature: sharing
     And as "Brian" folder "/Shares/merge-test-inside-twogroups (2)" should not exist
 
 
+  @T842bf22c
   Scenario Outline: Merging shares for recipient when shared from inside with group with less permissions
     Given group "grp2" has been created
     And user "Brian" has been added to group "grp2"
@@ -118,6 +125,7 @@ Feature: sharing
       | RDNVCK                | RMDNVCK               |
 
 
+  @Td5917c95
   Scenario: Merging shares for recipient when shared from outside with group then user and recipient renames in between
     Given user "Alice" has created folder "/merge-test-outside-groups-renamebeforesecondshare"
     # Section 1: Brian receives and accepts the group share from Alice and moves and renames it out of the "Shares" folder
@@ -138,6 +146,7 @@ Feature: sharing
     But as "Brian" folder "/merge-test-outside-groups-renamebeforesecondshare-renamed" should not exist
 
 
+  @T04cd7c17
   Scenario: Merging shares for recipient when shared from outside with user then group and recipient renames in between
     Given user "Alice" has created folder "/merge-test-outside-groups-renamebeforesecondshare"
     # Section 1: Brian receives and accepts the user share from Alice and moves and renames it out of the "Shares" folder

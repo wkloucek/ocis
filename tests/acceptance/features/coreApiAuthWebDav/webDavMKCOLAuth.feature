@@ -1,4 +1,4 @@
-@api
+@api @S8faec11a
 Feature: create folder using MKCOL
 
   Background:
@@ -8,7 +8,7 @@ Feature: create folder using MKCOL
     And user "Alice" has created folder "/FOLDER"
     And user "Alice" has uploaded file with content "some data" to "/PARENT/parent.txt"
 
-  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112
+  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @T9870aa5f
   Scenario: send MKCOL requests to webDav endpoints as normal user with wrong password
     When user "Alice" requests these endpoints with "MKCOL" including body "doesnotmatter" using password "invalid" about user "Alice"
       | endpoint                                           |
@@ -19,7 +19,7 @@ Feature: create folder using MKCOL
       | /remote.php/dav/files/%username%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "401"
 
-  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @skipOnOcV10 @personalSpace
+  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @skipOnOcV10 @personalSpace @Tffb0cc85
   Scenario: send MKCOL requests to webDav endpoints as normal user with wrong password using the spaces WebDAV API
     When user "Alice" requests these endpoints with "MKCOL" including body "doesnotmatter" using password "invalid" about user "Alice"
       | endpoint                                           |
@@ -28,7 +28,7 @@ Feature: create folder using MKCOL
       | /remote.php/dav/spaces/%spaceid%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "401"
 
-  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112
+  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @T3878c3a5
   Scenario: send MKCOL requests to webDav endpoints as normal user with no password
     When user "Alice" requests these endpoints with "MKCOL" including body "doesnotmatter" using password "" about user "Alice"
       | endpoint                                           |
@@ -39,7 +39,7 @@ Feature: create folder using MKCOL
       | /remote.php/dav/files/%username%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "401"
 
-  @smokeTest @skipOnOcV10 @personalSpace @skipOnBruteForceProtection @issue-brute_force_protection-112
+  @smokeTest @skipOnOcV10 @personalSpace @skipOnBruteForceProtection @issue-brute_force_protection-112 @T1f5f7758
   Scenario: send MKCOL requests to webDav endpoints as normal user with no password using the spaces WebDAV API
     When user "Alice" requests these endpoints with "MKCOL" including body "doesnotmatter" using password "" about user "Alice"
       | endpoint                                           |
@@ -48,7 +48,7 @@ Feature: create folder using MKCOL
       | /remote.php/dav/spaces/%spaceid%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "401"
 
-  @skipOnOcV10 @issue-ocis-5049 @issue-ocis-reva-9 @issue-ocis-reva-197
+  @skipOnOcV10 @issue-ocis-5049 @issue-ocis-reva-9 @issue-ocis-reva-197 @T96ad9aa5
   Scenario: send MKCOL requests to another user's webDav endpoints as normal user
     Given user "Brian" has been created with default attributes and without skeleton files
     When user "Brian" requests these endpoints with "MKCOL" including body "" about user "Alice"
@@ -59,7 +59,7 @@ Feature: create folder using MKCOL
       | /remote.php/dav/files/%username%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "404"
 
-  @skipOnOcV10 @issue-ocis-5049 @issue-ocis-reva-9 @issue-ocis-reva-197
+  @skipOnOcV10 @issue-ocis-5049 @issue-ocis-reva-9 @issue-ocis-reva-197 @T8ede9cd7
   Scenario: send MKCOL requests to non-existent user's webDav endpoints as normal user
     Given user "Brian" has been created with default attributes and without skeleton files
     When user "Brian" requests these endpoints with "MKCOL" including body "" about user "non-existent-user"
@@ -70,7 +70,7 @@ Feature: create folder using MKCOL
       | /remote.php/dav/files/non-existent-user/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "404"
 
-  @skipOnOcV10 @personalSpace @issue-ocis-reva-9 @issue-ocis-reva-197
+  @skipOnOcV10 @personalSpace @issue-ocis-reva-9 @issue-ocis-reva-197 @Td2c3dc92
   Scenario: send MKCOL requests to another user's webDav endpoints as normal user using the spaces WebDAV API
     Given user "Brian" has been created with default attributes and without skeleton files
     When user "Brian" requests these endpoints with "MKCOL" including body "" about user "Alice"
@@ -81,7 +81,7 @@ Feature: create folder using MKCOL
       | /remote.php/dav/spaces/%spaceid%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "404"
 
-  @skipOnOcV10 @issue-ocis-5049 @personalSpace @issue-ocis-reva-9 @issue-ocis-reva-197
+  @skipOnOcV10 @issue-ocis-5049 @personalSpace @issue-ocis-reva-9 @issue-ocis-reva-197 @T97c2c789
   Scenario: send MKCOL requests to non-existent user's webDav endpoints as normal user using the spaces WebDAV API
     Given user "Brian" has been created with default attributes and without skeleton files
     When user "Brian" requests these endpoints with "MKCOL" including body "" about user "non-existent-user"
@@ -93,6 +93,7 @@ Feature: create folder using MKCOL
     Then the HTTP status code of responses on all endpoints should be "404"
 
 
+  @T5ef64545
   Scenario: send MKCOL requests to webDav endpoints using invalid username but correct password
     When user "usero" requests these endpoints with "MKCOL" including body "doesnotmatter" using the password of user "Alice"
       | endpoint                                           |
@@ -103,7 +104,7 @@ Feature: create folder using MKCOL
       | /remote.php/dav/files/%username%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "401"
 
-  @skipOnOcV10 @personalSpace
+  @skipOnOcV10 @personalSpace @T9ece5f0a
   Scenario: send MKCOL requests to webDav endpoints using invalid username but correct password using the spaces WebDAV API
     When user "usero" requests these endpoints with "MKCOL" including body "doesnotmatter" using the password of user "Alice"
       | endpoint                                           |
@@ -113,6 +114,7 @@ Feature: create folder using MKCOL
     Then the HTTP status code of responses on all endpoints should be "401"
 
 
+  @Td1d8e49c
   Scenario: send MKCOL requests to webDav endpoints using valid password and username of different user
     Given user "Brian" has been created with default attributes and without skeleton files
     When user "Brian" requests these endpoints with "MKCOL" including body "doesnotmatter" using the password of user "Alice"
@@ -124,7 +126,7 @@ Feature: create folder using MKCOL
       | /remote.php/dav/files/%username%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "401"
 
-  @skipOnOcV10 @personalSpace
+  @skipOnOcV10 @personalSpace @T98ce6ccd
   Scenario: send MKCOL requests to webDav endpoints using valid password and username of different user using the spaces WebDAV API
     Given user "Brian" has been created with default attributes and without skeleton files
     When user "Brian" requests these endpoints with "MKCOL" including body "doesnotmatter" using the password of user "Alice"
@@ -134,7 +136,7 @@ Feature: create folder using MKCOL
       | /remote.php/dav/spaces/%spaceid%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "401"
 
-  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112
+  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @T80fdd12b
   Scenario: send MKCOL requests to webDav endpoints without any authentication
     When a user requests these endpoints with "MKCOL" with body "doesnotmatter" and no authentication about user "Alice"
       | endpoint                                           |
@@ -145,7 +147,7 @@ Feature: create folder using MKCOL
       | /remote.php/dav/files/%username%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "401"
 
-  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @skipOnOcV10 @personalSpace
+  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @skipOnOcV10 @personalSpace @Tba417e80
   Scenario: send MKCOL requests to webDav endpoints without any authentication using the spaces WebDAV API
     When a user requests these endpoints with "MKCOL" with body "doesnotmatter" and no authentication about user "Alice"
       | endpoint                                           |

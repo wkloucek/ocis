@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @Sbc02ffed
 Feature: move (rename) file
   As a user
   I want to be able to move and rename files
@@ -12,6 +12,7 @@ Feature: move (rename) file
     And using spaces DAV path
 
 
+  @T19923119
   Scenario Outline: Moving a file within same space project with role manager and editor
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created a space "Project" with the default quota using the GraphApi
@@ -30,6 +31,7 @@ Feature: move (rename) file
       | editor  |
 
 
+  @Tb528d2f9
   Scenario: Moving a file within same space project with role viewer
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created a space "Project" with the default quota using the GraphApi
@@ -44,6 +46,7 @@ Feature: move (rename) file
       | insideSpace.txt |
 
 
+  @T2b16c546
   Scenario Outline: User moves a file from a space project with different a role to a space project with different role
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created a space "Project1" with the default quota using the GraphApi
@@ -70,6 +73,7 @@ Feature: move (rename) file
       | viewer    | viewer  | 403               |
 
 
+  @T802e343c
   Scenario Outline: User moves a file from a space project with different role to a space personal
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created a space "Project" with the default quota using the GraphApi
@@ -88,6 +92,7 @@ Feature: move (rename) file
       | viewer  | 403               |
 
 
+  @T156c2739
   Scenario Outline: User moves a file from space project with different role to space Shares with different role (permission)
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created a space "Project" with the default quota using the GraphApi
@@ -112,6 +117,7 @@ Feature: move (rename) file
       | viewer  | 17          |
 
 
+  @Tae67f69f
   Scenario Outline: User moves a file from space personal to space project with different role
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created a space "Project" with the default quota using the GraphApi
@@ -130,6 +136,7 @@ Feature: move (rename) file
       | viewer  | 403               |
 
 
+  @Tf5985656
   Scenario Outline: User moves a file from space personal to space Shares with different role (permission)
     Given user "Brian" has created folder "/testshare"
     And user "Brian" has shared folder "/testshare" with user "Alice" with permissions "<permissions>"
@@ -148,6 +155,7 @@ Feature: move (rename) file
       | 1           |
 
 
+  @T2cef18c9
   Scenario Outline: User moves a file from space Shares with different role (permissions) to space personal
     Given user "Brian" has created folder "/testshare"
     And user "Brian" has uploaded file with content "testshare content" to "/testshare/testshare.txt"
@@ -166,6 +174,7 @@ Feature: move (rename) file
       | 1           |
 
 
+  @Tcb59bada
   Scenario Outline: User moves a file from space Shares with different role (permissions) to space project with different role
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created a space "Project" with the default quota using the GraphApi
@@ -190,6 +199,7 @@ Feature: move (rename) file
       | viewer  | 17          |
 
 
+  @Ta767ff4e
   Scenario: User moves a file from space Shares with role editor to space Shares with role editor
     Given user "Brian" has created folder "/testshare1"
     And user "Brian" has created folder "/testshare2"
@@ -208,6 +218,7 @@ Feature: move (rename) file
       | /testshare2/testshare1.txt |
 
 
+  @T327faa92
   Scenario: User moves a file from space Shares with role editor to space Shares with role viewer
     Given user "Brian" has created folder "/testshare1"
     And user "Brian" has created folder "/testshare2"
@@ -224,6 +235,7 @@ Feature: move (rename) file
       | /testshare2/testshare1.txt |
 
 
+  @T56515eaa
   Scenario: User moves a file from space Shares with role viewer to space Shares with role editor
     Given user "Brian" has created folder "/testshare1"
     And user "Brian" has created folder "/testshare2"
@@ -240,6 +252,7 @@ Feature: move (rename) file
       | /testshare2/testshare1.txt |
 
 
+  @T797d19c0
   Scenario: Checking file id after a move between received shares
     Given user "Alice" has created the following folders
       | path     |
@@ -264,6 +277,7 @@ Feature: move (rename) file
     And user "Brian" folder "/folderB/ONE" of the space "Shares" should have the previously stored id
 
 
+  @T380b1d8d
   Scenario: Moving a file out of a shared folder as a sharer
     Given user "Brian" has created folder "/testshare"
     And user "Brian" has uploaded file with content "test data" to "/testshare/testfile.txt"
@@ -282,6 +296,7 @@ Feature: move (rename) file
       | /testshare/testfile.txt |
 
 
+  @Taeb67fab
   Scenario: Moving a folder out of a shared folder as a sharer
     Given user "Brian" has created the following folders
       | path                     |
@@ -303,6 +318,7 @@ Feature: move (rename) file
       | /testshare/testsubfolder |
 
 
+  @T81813909
   Scenario: Overwriting a file while moving
     Given user "Brian" has created folder "/folder"
     And user "Brian" has uploaded file with content "old content version 1" to "/folder/testfile.txt"

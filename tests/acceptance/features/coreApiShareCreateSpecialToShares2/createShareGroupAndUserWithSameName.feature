@@ -1,4 +1,4 @@
-@api @files_sharing-app-required
+@api @files_sharing-app-required @S9a172a26
 Feature: sharing works when a username and group name are the same
 
   Background:
@@ -6,7 +6,7 @@ Feature: sharing works when a username and group name are the same
     And auto-accept shares has been disabled
     And user "Alice" has been created with default attributes and without skeleton files
 
-  @skipOnLDAP
+  @skipOnLDAP @Tb5bb0ca3
   Scenario: creating a new share with user and a group having same name
     Given these users have been created without skeleton files:
       | username |
@@ -28,7 +28,7 @@ Feature: sharing works when a username and group name are the same
     And the content of file "/Shares/randomfile.txt" for user "Brian" should be "Random data"
     And the content of file "/Shares/randomfile.txt" for user "Carol" should be "Random data"
 
-  @skipOnLDAP
+  @skipOnLDAP @Ta61ce877
   Scenario: creating a new share with group and a user having same name
     Given these users have been created without skeleton files:
       | username |
@@ -50,7 +50,7 @@ Feature: sharing works when a username and group name are the same
     And the content of file "/Shares/randomfile.txt" for user "Brian" should be "Random data"
     And the content of file "/Shares/randomfile.txt" for user "Carol" should be "Random data"
 
-  @skipOnLDAP
+  @skipOnLDAP @T243744b2
   Scenario: creating a new share with user and a group having same name but different case
     Given these users have been created without skeleton files:
       | username |
@@ -72,7 +72,7 @@ Feature: sharing works when a username and group name are the same
     And the content of file "/Shares/randomfile.txt" for user "Brian" should be "Random data"
     And the content of file "/Shares/randomfile.txt" for user "Carol" should be "Random data"
 
-  @skipOnLDAP
+  @skipOnLDAP @T75e3de3b
   Scenario: creating a new share with group and a user having same name but different case
     Given these users have been created without skeleton files:
       | username |

@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @Sd671bff3
 Feature: get users
   As an admin
   I want to be able to retrieve user information
@@ -12,6 +12,7 @@ Feature: get users
     And the administrator has given "Alice" the role "Admin" using the settings api
 
 
+  @Tacfb0b38
   Scenario: admin user gets the information of a user
     When user "Alice" gets information of user "Brian" using Graph API
     Then the HTTP status code should be "200"
@@ -20,12 +21,14 @@ Feature: get users
       | Brian Murphy | %uuid_v4% | brian@example.org | Brian                    |
 
 
+  @T53a85074
   Scenario: non-admin user tries to get the information of a user
     When user "Brian" tries to get information of user "Alice" using Graph API
     Then the HTTP status code should be "401"
     And the last response should be an unauthorized response
 
 
+  @Tb8b2acd1
   Scenario: admin user gets all users
     When user "Alice" gets all users using the Graph API
     Then the HTTP status code should be "200"
@@ -35,12 +38,14 @@ Feature: get users
       | Brian Murphy | %uuid_v4% | brian@example.org | Brian                    |
 
 
+  @Te85d46d1
   Scenario: non-admin user tries to get all users
     When user "Brian" tries to get all users using the Graph API
     Then the HTTP status code should be "401"
     And the last response should be an unauthorized response
 
 
+  @T61c076e0
   Scenario: admin user gets the drive information of a user
     When the user "Alice" gets user "Brian" along with his drive information using Graph API
     Then the HTTP status code should be "200"
@@ -59,6 +64,7 @@ Feature: get users
       | webUrl            | %base_url%/f/%space_id%          |
 
 
+  @Ta43ac42a
   Scenario: normal user gets his/her own drive information
     When the user "Brian" gets his drive information using Graph API
     Then the HTTP status code should be "200"
@@ -77,6 +83,7 @@ Feature: get users
       | webUrl            | %base_url%/f/%space_id%          |
 
 
+  @T92955e86
   Scenario: admin user gets the group information of a user
     Given group "tea-lover" has been created
     And group "coffee-lover" has been created
@@ -89,6 +96,7 @@ Feature: get users
       | Brian Murphy | %uuid_v4% | brian@example.org | Brian                    | tea-lover, coffee-lover |
 
 
+  @T38c4427e
   Scenario: non-admin user tries to get the group information of a user
     Given user "Carol" has been created with default attributes and without skeleton files
     And group "coffee-lover" has been created
@@ -98,6 +106,7 @@ Feature: get users
     And the last response should be an unauthorized response
 
 
+  @Td61518cb
   Scenario: admin user gets all users of certain groups
     Given user "Carol" has been created with default attributes and without skeleton files
     And group "tea-lover" has been created

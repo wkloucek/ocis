@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @Se6761b19
 Feature:
 
   Background:
@@ -8,7 +8,7 @@ Feature:
       | Alice    |
       | Brian    |
 
-  @issue-4421
+  @issue-4421 @T533cb2df
   Scenario: Move files between shares by different users
     Given user "Carol" has been created with default attributes and without skeleton files
     And user "Alice" has uploaded file with content "some data" to "/textfile0.txt"
@@ -27,6 +27,7 @@ Feature:
       | from_alice.txt |
 
 
+  @Tba02aeb0
   Scenario: overwrite a received file share
     Given user "Alice" has uploaded file with content "old content version 1" to "/textfile1.txt"
     And user "Alice" has uploaded file with content "old content version 2" to "/textfile1.txt"

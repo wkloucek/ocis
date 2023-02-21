@@ -1,4 +1,4 @@
-@api @issue-ocis-reva-14
+@api @issue-ocis-reva-14 @Sa764d911
 Feature: move (rename) folder
   As a user
   I want to be able to move and rename folders
@@ -9,6 +9,7 @@ Feature: move (rename) folder
     And user "Alice" has been created with default attributes and without skeleton files
 
 
+  @Tbe488ada
   Scenario Outline: Renaming a folder to a backslash should return an error
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/testshare"
@@ -27,6 +28,7 @@ Feature: move (rename) folder
       | spaces      |
 
 
+  @T1c0cda79
   Scenario Outline: Renaming a folder beginning with a backslash should return an error
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/testshare"
@@ -45,6 +47,7 @@ Feature: move (rename) folder
       | spaces      |
 
 
+  @T1a76c896
   Scenario Outline: Renaming a folder including a backslash encoded should return an error
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/testshare"
@@ -63,6 +66,7 @@ Feature: move (rename) folder
       | spaces      |
 
 
+  @T48650a3c
   Scenario Outline: Move a folder into an other one
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/testshare"
@@ -84,6 +88,7 @@ Feature: move (rename) folder
       | spaces      |
 
 
+  @T4ad2a7b1
   Scenario Outline: Move a folder into a nonexistent one
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/testshare"
@@ -102,6 +107,7 @@ Feature: move (rename) folder
       | spaces      |
 
 
+  @Ta770aa92
   Scenario Outline: renaming folder with dots in the path
     Given using <dav_version> DAV path
     And user "Alice" has created folder "<folder_name>"
@@ -131,7 +137,7 @@ Feature: move (rename) folder
       | spaces      | /...          |
       | spaces      | /..upload     |
 
-  @issue-ocis-3023
+  @issue-ocis-3023 @T3a00f70b
   Scenario Outline: Moving a folder into a sub-folder of itself
     Given using <dav_version> DAV path
     And user "Alice" has created folder "PARENT"
@@ -152,7 +158,7 @@ Feature: move (rename) folder
       | dav_version |
       | spaces      |
 
-  @files_sharing-app-required @skipOnOcis
+  @files_sharing-app-required @skipOnOcis @T5b72eada
   Scenario Outline: Moving a folder out of a shared folder as the sharee and as the sharer
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -176,7 +182,7 @@ Feature: move (rename) folder
       | new         | Alice |
       | new         | Brian |
 
-  @files_sharing-app-required @skipOnOcis
+  @files_sharing-app-required @skipOnOcis @T7cb579da
   Scenario Outline: Moving a folder into a shared folder as the sharee and as the sharer
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files

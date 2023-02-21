@@ -1,4 +1,4 @@
-@api @issue-ocis-reva-15
+@api @issue-ocis-reva-15 @Scb732ce2
 Feature: users cannot upload a file to a blacklisted name using old chunking
   As an administrator
   I want to be able to prevent users from uploading files to specified file names
@@ -10,6 +10,7 @@ Feature: users cannot upload a file to a blacklisted name using old chunking
     And user "Alice" has been created with default attributes and without skeleton files
 
 
+  @T27ab596f
   Scenario: Upload a file to a banned filename using old chunking
     Given the administrator has updated system config key "blacklisted_files" with value '["blacklisted-file.txt",".htaccess"]' and type "json"
     When user "Alice" uploads file "filesForUpload/textfile.txt" to "blacklisted-file.txt" in 3 chunks using the WebDAV API
@@ -17,6 +18,7 @@ Feature: users cannot upload a file to a blacklisted name using old chunking
     And as "Alice" file "blacklisted-file.txt" should not exist
 
 
+  @T427c949f
   Scenario Outline: upload a file to a filename that matches blacklisted_files_regex using old chunking
     # Note: we have to write JSON for the value, and to get a backslash in the double-quotes we have to escape it
     # The actual regular expressions end up being .*\.ext$ and ^bannedfilename\..+
@@ -31,6 +33,7 @@ Feature: users cannot upload a file to a blacklisted name using old chunking
       | this-ContainsBannedString.txt | 403         |
 
 
+  @Tfd9be241
   Scenario: upload a file to a filename that does not match blacklisted_files_regex using old chunking
     # Note: we have to write JSON for the value, and to get a backslash in the double-quotes we have to escape it
     # The actual regular expressions end up being .*\.ext$ and ^bannedfilename\..+

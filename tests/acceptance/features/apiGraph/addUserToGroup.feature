@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @Sa05dd3f0
 Feature: add users to group
   As a admin
   I want to be able to add users to a group
@@ -8,6 +8,7 @@ Feature: add users to group
     Given user "Alice" has been created with default attributes and without skeleton files
 
 
+  @Tf7742595
   Scenario: adding a user to a group
     Given these groups have been created:
       | groupname   | comment                               |
@@ -27,6 +28,7 @@ Feature: add users to group
       | Alice    | नेपाली        |
 
 
+  @T3e2ad7a1
   Scenario: adding a user to a group with special character in its name
     Given these groups have been created:
       | groupname           | comment            |
@@ -67,6 +69,7 @@ Feature: add users to group
       | Alice    | admin:Pokhara@Nepal |
 
 
+  @T15124697
   Scenario: adding a user to a group with % and # in its name
     Given these groups have been created:
       | groupname           | comment                                 |
@@ -98,6 +101,7 @@ Feature: add users to group
       | Alice    | staff?group     |
 
 
+  @T411b2f1d
   Scenario: adding a user to a group that has a forward-slash in the group name
     Given these groups have been created:
       | groupname        | comment                            |
@@ -120,6 +124,7 @@ Feature: add users to group
       | Alice    | var/../etc       |
 
 
+  @T03a26ebf
   Scenario: normal user tries to add himself to a group
     Given group "groupA" has been created
     When user "Alice" tries to add himself to group "groupA" using the Graph API
@@ -127,6 +132,7 @@ Feature: add users to group
     And the last response should be an unauthorized response
 
 
+  @Tff235540
   Scenario: normal user tries to other user to a group
     Given user "Brian" has been created with default attributes and without skeleton files
     And group "groupA" has been created
@@ -135,17 +141,20 @@ Feature: add users to group
     And the last response should be an unauthorized response
 
 
+  @Tb34434b7
   Scenario: admin tries to add user to a non-existing group
     When the administrator tries to add user "Alice" to group "nonexistentgroup" using the Graph API
     Then the HTTP status code should be "404"
 
 
+  @T7bf70e2b
   Scenario: admin tries to add a non-existing user to a group
     Given group "groupA" has been created
     When the administrator tries to add user "nonexistentuser" to group "groupA" using the provisioning API
     Then the HTTP status code should be "405"
 
 
+  @T992d346b
   Scenario: admin tries to add user to a group without sending the group
     When the administrator tries to add user "Alice" to group "" using the Graph API
     Then the HTTP status code should be "404"

@@ -1,4 +1,4 @@
-@api @files_sharing-app-required @issue-ocis-1328 @issue-ocis-1289
+@api @files_sharing-app-required @issue-ocis-1328 @issue-ocis-1289 @S2d77e46d
 Feature: sharing
 
   Background:
@@ -11,6 +11,7 @@ Feature: sharing
     And user "Alice" has uploaded file with content "ownCloud test text file 0" to "/textfile0.txt"
 
 
+  @T8c84ceb9
   Scenario Outline: Delete all group shares
     Given using OCS API version "<ocs_api_version>"
     And group "grp1" has been created
@@ -29,7 +30,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @smokeTest
+  @smokeTest @Ta9d8b8de
   Scenario Outline: delete a share
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has shared file "textfile0.txt" with user "Brian"
@@ -45,6 +46,7 @@ Feature: sharing
       | 2               | 200             |
 
 
+  @Tf2c8d584
   Scenario Outline: orphaned shares
     Given using OCS API version "1"
     And user "Alice" has created folder "/common"
@@ -59,7 +61,7 @@ Feature: sharing
       | pending_share_path |
       | /sub               |
 
-  @smokeTest @files_trashbin-app-required
+  @smokeTest @files_trashbin-app-required @Td9d53f43
   Scenario: deleting a file out of a share as recipient creates a backup for the owner
     Given using OCS API version "1"
     And user "Alice" has created folder "/shared"
@@ -73,7 +75,7 @@ Feature: sharing
     And as "Alice" file "/shared_file.txt" should exist in the trashbin
     And as "Brian" file "/shared_file.txt" should exist in the trashbin
 
-  @files_trashbin-app-required
+  @files_trashbin-app-required @T572e49c6
   Scenario: deleting a folder out of a share as recipient creates a backup for the owner
     Given using OCS API version "1"
     And user "Alice" has created folder "/shared"
@@ -90,7 +92,7 @@ Feature: sharing
     And as "Brian" folder "/sub" should exist in the trashbin
     And as "Brian" file "/sub/shared_file.txt" should exist in the trashbin
 
-  @smokeTest
+  @smokeTest @T799ab674
   Scenario Outline: unshare from self
     And group "grp1" has been created
     And these users have been created with default attributes and without skeleton files:
@@ -115,6 +117,7 @@ Feature: sharing
       | /parent.txt        |
 
 
+  @Tdb933c00
   Scenario: sharee of a read-only share folder tries to delete the shared folder
     Given using OCS API version "1"
     And user "Alice" has created folder "/shared"
@@ -127,6 +130,7 @@ Feature: sharing
     And as "Brian" file "/Shares/shared/shared_file.txt" should exist
 
 
+  @T4fd29814
   Scenario: sharee of a upload-only shared folder tries to delete a file in the shared folder
     Given using OCS API version "1"
     And user "Alice" has created folder "/shared"
@@ -140,6 +144,7 @@ Feature: sharing
     And as "Brian" file "/Shares/shared/shared_file.txt" should not exist
 
 
+  @T98c6be4d
   Scenario: sharee of an upload-only shared folder tries to delete their file in the folder
     Given using OCS API version "1"
     And user "Alice" has created folder "/shared"
@@ -153,6 +158,7 @@ Feature: sharing
     And as "Brian" file "/Shares/shared/textfile.txt" should not exist
 
 
+  @T10320e97
   Scenario Outline: A Group share recipient tries to delete the share
     Given using OCS API version "<ocs_api_version>"
     And group "grp1" has been created
@@ -180,6 +186,7 @@ Feature: sharing
       | /shared                 | 2               | 404              | /Shares/shared          | /Shares/shared          |
 
 
+  @T3f904372
   Scenario Outline: An individual share recipient tries to delete the share
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/shared"
@@ -198,7 +205,7 @@ Feature: sharing
       | /shared                 | 1               | 200              | /Shares/shared          | /Shares/shared          |
       | /shared                 | 2               | 404              | /Shares/shared          | /Shares/shared          |
 
-  @issue-ocis-720
+  @issue-ocis-720 @T658daed5
   Scenario Outline: request PROPFIND after sharer deletes the collaborator
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has shared file "textfile0.txt" with user "Brian"
@@ -213,7 +220,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @issue-ocis-1229
+  @issue-ocis-1229 @T898bdc13
   Scenario Outline: delete a share with wrong authentication
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has shared file "textfile0.txt" with user "Brian"

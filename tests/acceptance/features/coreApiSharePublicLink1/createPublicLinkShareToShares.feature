@@ -1,4 +1,4 @@
-@api @files_sharing-app-required @public_link_share-feature-required
+@api @files_sharing-app-required @public_link_share-feature-required @S2fc83a2b
 Feature: create a public link share when share_folder is set to Shares
 
   Background:
@@ -7,6 +7,7 @@ Feature: create a public link share when share_folder is set to Shares
     And user "Alice" has been created with default attributes and without skeleton files
 
 
+  @T8f42b389
   Scenario Outline: Creating a new public link share of a file gives the correct response
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file with content "Random data" to "/randomfile.txt"

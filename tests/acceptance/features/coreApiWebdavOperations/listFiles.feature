@@ -1,4 +1,4 @@
-@api
+@api @S43e0842c
 Feature: list files
   As a user
   I want to be able to list my files and folders (resources)
@@ -24,6 +24,7 @@ Feature: list files
       | simple-folder/simple-folder1/simple-folder2/welcome.txt   |
 
 
+  @Te9838dd7
   Scenario Outline: Get the list of resources in the root folder with depth 0
     Given using <dav_version> DAV path
     When user "Alice" lists the resources in "/" with depth "0" using the WebDAV API
@@ -48,6 +49,7 @@ Feature: list files
       | spaces      |
 
 
+  @T94fd8789
   Scenario Outline: Get the list of resources in the root folder with depth 1
     Given using <dav_version> DAV path
     When user "Alice" lists the resources in "/" with depth "1" using the WebDAV API
@@ -73,7 +75,7 @@ Feature: list files
       | dav_version |
       | spaces      |
 
-  @depthInfinityPropfindEnabled
+  @depthInfinityPropfindEnabled @T90d3aa87
   Scenario Outline: Get the list of resources in the root folder with depth infinity
     Given using <dav_version> DAV path
     And the administrator has set depth_infinity_allowed to 1
@@ -104,6 +106,7 @@ Feature: list files
       | spaces      |
 
 
+  @T37b59638
   Scenario Outline: Get the list of resources in a folder with depth 0
     Given using <dav_version> DAV path
     When user "Alice" lists the resources in "/simple-folder" with depth "0" using the WebDAV API
@@ -128,6 +131,7 @@ Feature: list files
       | spaces      |
 
 
+  @Tbab685e3
   Scenario Outline: Get the list of resources in a folder with depth 1
     Given using <dav_version> DAV path
     When user "Alice" lists the resources in "/simple-folder" with depth "1" using the WebDAV API
@@ -155,7 +159,7 @@ Feature: list files
       | dav_version |
       | spaces      |
 
-  @depthInfinityPropfindEnabled
+  @depthInfinityPropfindEnabled @T392b2e2c
   Scenario Outline: Get the list of resources in a folder with depth infinity
     Given using <dav_version> DAV path
     And the administrator has set depth_infinity_allowed to 1
@@ -182,6 +186,7 @@ Feature: list files
       | spaces      |
 
 
+  @T406c7ee1
   Scenario Outline: Get the list of resources in a folder shared through public link with depth 0
     Given using <dav_version> DAV path
     And user "Alice" has created the following folders
@@ -208,6 +213,7 @@ Feature: list files
       | new         |
 
 
+  @T3c36db70
   Scenario Outline: Get the list of resources in a folder shared through public link with depth 1
     Given using <dav_version> DAV path
     And user "Alice" has created the following folders
@@ -235,7 +241,7 @@ Feature: list files
       | dav_version |
       | new         |
 
-  @depthInfinityPropfindEnabled
+  @depthInfinityPropfindEnabled @Tb57c1387
   Scenario Outline: Get the list of resources in a folder shared through public link with depth infinity
     Given using <dav_version> DAV path
     And the administrator has set depth_infinity_allowed to 1
@@ -263,6 +269,7 @@ Feature: list files
       | new         |
 
 
+  @Tc25d8cdc
   Scenario Outline: Get the list of files in the trashbin with depth 0
     Given using <dav_version> DAV path
     And user "Alice" has deleted the following resources
@@ -294,6 +301,7 @@ Feature: list files
       | spaces      |
 
 
+  @Tf59b3eb2
   Scenario Outline: Get the list of files in the trashbin with depth 1
     Given using <dav_version> DAV path
     And user "Alice" has deleted the following resources
@@ -326,7 +334,7 @@ Feature: list files
       | dav_version |
       | spaces      |
 
-  @depthInfinityPropfindEnabled
+  @depthInfinityPropfindEnabled @T72897356
   Scenario Outline: Get the list of files in the trashbin with depth infinity
     Given using <dav_version> DAV path
     And the administrator has set depth_infinity_allowed to 1
@@ -358,7 +366,7 @@ Feature: list files
       | dav_version |
       | spaces      |
 
-  @depthInfinityPropfindDisabled
+  @depthInfinityPropfindDisabled @T41f2e46c
   Scenario Outline: Get the list of resources in the root folder with depth infinity when depth infinity is not allowed
     Given using <dav_version> DAV path
     When user "Alice" lists the resources in "/" with depth "infinity" using the WebDAV API
@@ -373,7 +381,7 @@ Feature: list files
       | dav_version |
       | spaces      |
 
-  @depthInfinityPropfindDisabled
+  @depthInfinityPropfindDisabled @Td0faa703
   Scenario Outline: Get the list of resources in a folder shared through public link with depth infinity when depth infinity is not allowed
     Given using <dav_version> DAV path
     And user "Alice" has created the following folders
@@ -392,7 +400,7 @@ Feature: list files
       | dav_version |
       | spaces      |
 
-  @depthInfinityPropfindDisabled
+  @depthInfinityPropfindDisabled @T2915c1d6
   Scenario Outline: Get the list of files in the trashbin with depth infinity when depth infinity is not allowed
     Given using <dav_version> DAV path
     And user "Alice" has deleted the following resources

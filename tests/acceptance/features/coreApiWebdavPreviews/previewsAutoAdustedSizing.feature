@@ -1,4 +1,4 @@
-@api @preview-extension-required
+@api @preview-extension-required @Sfedbec17
 Feature: sizing of previews of files downloaded through the webdav API
   As a user
   I want the aspect-ratio of previews to be preserved even when I ask for an unusual preview size
@@ -10,7 +10,7 @@ Feature: sizing of previews of files downloaded through the webdav API
   Background:
     Given user "Alice" has been created with default attributes and without skeleton files
 
-  @skipOnOcV10
+  @skipOnOcV10 @T436cac2d
   Scenario Outline: download different sizes of previews of file
     Given user "Alice" has uploaded file "filesForUpload/lorem.txt" to "/parent.txt"
     When user "Alice" downloads the preview of "/parent.txt" with width <request_width> and height <request_height> using the WebDAV API

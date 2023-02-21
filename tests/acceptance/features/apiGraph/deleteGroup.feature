@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @Sed2f2510
 Feature: delete groups
   As an admin
   I want to be able to delete groups
@@ -9,6 +9,7 @@ Feature: delete groups
     And the administrator has given "Alice" the role "Admin" using the settings api
 
 
+  @T0af3d088
   Scenario Outline: admin user deletes a group
     Given group "<group_id>" has been created
     When user "Alice" deletes group "<group_id>" using the Graph API
@@ -38,7 +39,7 @@ Feature: delete groups
       | priv/subadmins/1    | Subadmins mentioned not at the end    |
       | var/../etc          | using slash-dot-dot                   |
 
-  @issue-5083
+  @issue-5083 @Tc7125f62
   Scenario Outline: admin user deletes a group having % (as only special char) in its name
     Given group "<group_id>" has been created
     When user "Alice" deletes group "<group_id>" using the Graph API
@@ -51,6 +52,7 @@ Feature: delete groups
       | 50%2Fix             | %2F literal looks like an escaped slash |
 
 
+  @Tf353650b
   Scenario: normal user tries to delete a group
     Given user "Brian" has been created with default attributes and without skeleton files
     And group "new-group" has been created
@@ -58,7 +60,7 @@ Feature: delete groups
     Then the HTTP status code should be "401"
     And group "new-group" should exist
 
-  @issue-903
+  @issue-903 @Tb7063a20
   Scenario: deleted group should not be listed in the sharees list
     Given group "grp1" has been created
     And group "grp2" has been created
@@ -72,6 +74,7 @@ Feature: delete groups
     But group "grp1" should not be included in the response
 
 
+  @T301a7a3c
   Scenario: user should not see share received via deleted group
     Given user "Alice" has uploaded file with content "sample text" to "lorem.txt"
     And user "Brian" has been created with default attributes and without skeleton files

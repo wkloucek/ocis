@@ -1,10 +1,10 @@
-@api
+@api @S85ef220c
 Feature: delay post-processing of uploaded files
 
   Background:
     Given user "Alice" has been created with default attributes and without skeleton files
 
-  @issue-5326
+  @issue-5326 @T96e1d665
   Scenario Outline: user sends GET request to the file while it's still being processed
     Given user "Alice" has uploaded file with content "uploaded content" to "/file.txt"
     When user "Alice" requests "<dav_path>" with "GET" without retrying
@@ -16,6 +16,7 @@ Feature: delay post-processing of uploaded files
       | /dav/spaces/%spaceid%/file.txt            |
 
 
+  @T56d1f1fa
   Scenario Outline: user sends PROPFIND request to the file while it's still being processed
     Given user "Alice" has uploaded file with content "uploaded content" to "/file.txt"
     When user "Alice" requests "<dav_path>" with "PROPFIND" without retrying
@@ -28,6 +29,7 @@ Feature: delay post-processing of uploaded files
       | /dav/spaces/%spaceid%/file.txt            |
 
 
+  @T39e73296
   Scenario Outline: user sends PROPFIND request to the folder while files in the folder are still being processed
     Given user "Alice" has created folder "my_data"
     And user "Alice" has uploaded file with content "uploaded content" to "/my_data/file.txt"

@@ -1,4 +1,4 @@
-@api
+@api @S7a3f972a
 Feature: get file properties
   As a user
   I want to be able to get meta-information about files
@@ -8,7 +8,7 @@ Feature: get file properties
     Given using OCS API version "1"
     And user "Alice" has been created with default attributes and without skeleton files
 
-  @smokeTest
+  @smokeTest @Tab07ea37
   Scenario Outline: Do a PROPFIND of various file names
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "uploaded content" to "<file_name>"
@@ -34,7 +34,7 @@ Feature: get file properties
       | spaces      | /नेपाली.txt         |
       | spaces      | s,a,m,p,l,e.txt   |
 
-  @issue-ocis-reva-214
+  @issue-ocis-reva-214 @Tab07ea37
   Scenario Outline: Do a PROPFIND of various file names
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "uploaded content" to "<file_name>"
@@ -61,7 +61,7 @@ Feature: get file properties
       | spaces      | /file ?2.txt  | dav/spaces/%spaceid%/file ?2.txt  |
       | spaces      | /file &2.txt  | dav/spaces/%spaceid%/file &2.txt  |
 
-  @issue-ocis-reva-214
+  @issue-ocis-reva-214 @Tda4e0e3c
   Scenario Outline: Do a PROPFIND of various folder names
     Given using <dav_version> DAV path
     And user "Alice" has created folder "<folder_name>"
@@ -101,6 +101,7 @@ Feature: get file properties
       | spaces      | /folder &2.txt  | dav/spaces/%spaceid%/folder &2.txt  |
 
 
+  @T3ec9affe
   Scenario Outline: Do a PROPFIND of various files inside various folders
     Given using <dav_version> DAV path
     And user "Alice" has created folder "<folder_name>"
@@ -130,7 +131,7 @@ Feature: get file properties
       | spaces      | /नेपाली         | नेपाली           |
       | spaces      | /folder #2.txt  | file #2.txt      |
 
-  @issue-ocis-reva-265
+  @issue-ocis-reva-265 @T3ec9affe
   #after fixing all issues delete this Scenario and merge with the one above
   Scenario Outline: Do a PROPFIND of various files inside various folders
     Given using <dav_version> DAV path
@@ -150,6 +151,7 @@ Feature: get file properties
       | spaces      | /folder ?2.txt | file ?2.txt |
 
 
+  @T2e230cba
   Scenario Outline: A file that is not shared does not have a share-types property
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/test"
@@ -168,7 +170,7 @@ Feature: get file properties
       | dav_version |
       | spaces      |
 
-  @files_sharing-app-required @issue-ocis-reva-11
+  @files_sharing-app-required @issue-ocis-reva-11 @T0df5db86
   Scenario Outline: A file that is shared to a user has a share-types property
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -194,7 +196,7 @@ Feature: get file properties
       | dav_version |
       | spaces      |
 
-  @files_sharing-app-required @issue-ocis-reva-11
+  @files_sharing-app-required @issue-ocis-reva-11 @T9543c9a4
   Scenario Outline: A file that is shared to a group has a share-types property
     Given using <dav_version> DAV path
     And group "grp1" has been created
@@ -220,7 +222,7 @@ Feature: get file properties
       | dav_version |
       | spaces      |
 
-  @public_link_share-feature-required @files_sharing-app-required @issue-ocis-reva-11
+  @public_link_share-feature-required @files_sharing-app-required @issue-ocis-reva-11 @T517b4361
   Scenario Outline: A file that is shared by link has a share-types property
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/test"
@@ -243,7 +245,7 @@ Feature: get file properties
       | dav_version |
       | spaces      |
 
-  @skipOnLDAP @user_ldap-issue-268 @public_link_share-feature-required @files_sharing-app-required @issue-ocis-reva-11
+  @skipOnLDAP @user_ldap-issue-268 @public_link_share-feature-required @files_sharing-app-required @issue-ocis-reva-11 @T3ebfa9c4
   Scenario Outline: A file that is shared by user,group and link has a share-types property
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -280,7 +282,7 @@ Feature: get file properties
       | dav_version |
       | spaces      |
 
-  @smokeTest @issue-ocis-reva-216
+  @smokeTest @issue-ocis-reva-216 @Ta83564e2
   Scenario Outline: Retrieving private link
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file "filesForUpload/textfile.txt" to "/somefile.txt"
@@ -300,6 +302,7 @@ Feature: get file properties
       | spaces      |
 
 
+  @Td67bafe2
   Scenario Outline: Do a PROPFIND to a nonexistent URL
     When user "Alice" requests "<url>" with "PROPFIND" using basic auth
     Then the HTTP status code should be "404"
@@ -324,7 +327,7 @@ Feature: get file properties
       | /remote.php/dav/spaces/%spaceid%/does-not-exist | Resource not found |          |
       | /remote.php/dav/spaces/%spaceid%/file1.txt      | Resource not found |          |
 
-  @issue-ocis-reva-217
+  @issue-ocis-reva-217 @Tb43ea843
   Scenario Outline: add, receive multiple custom meta properties to a file
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/TestFolder"
@@ -357,7 +360,7 @@ Feature: get file properties
       | dav_version |
       | spaces      |
 
-  @issue-36920 @issue-ocis-reva-217
+  @issue-36920 @issue-ocis-reva-217 @T78a41a28
   Scenario Outline: add multiple properties to files inside a folder and do a propfind of the parent folder
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/TestFolder"
@@ -398,6 +401,7 @@ Feature: get file properties
       | spaces      |
 
 
+  @T0e6933e4
   Scenario Outline: Propfind the last modified date of a folder using webdav api
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/test"
@@ -417,6 +421,7 @@ Feature: get file properties
       | spaces      |
 
 
+  @T358172b6
   Scenario Outline: Propfind the content type of a folder using webdav api
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/test"
@@ -436,6 +441,7 @@ Feature: get file properties
       | spaces      |
 
 
+  @T780ccf49
   Scenario Outline: Propfind the content type of a file using webdav api
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "uploaded content" to "file.txt"
@@ -455,6 +461,7 @@ Feature: get file properties
       | spaces      |
 
 
+  @Ta5e782fa
   Scenario Outline: Propfind the etag of a file using webdav api
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "uploaded content" to "file.txt"
@@ -474,6 +481,7 @@ Feature: get file properties
       | spaces      |
 
 
+  @T83fff2ce
   Scenario Outline: Propfind the resource type of a file using webdav api
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "uploaded content" to "file.txt"
@@ -493,6 +501,7 @@ Feature: get file properties
       | spaces      |
 
 
+  @Tbb7221f0
   Scenario Outline: Propfind the size of a file using webdav api
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "uploaded content" to "file.txt"
@@ -512,6 +521,7 @@ Feature: get file properties
       | spaces      |
 
 
+  @Tdf6c91a4
   Scenario Outline: Propfind the size of a folder using webdav api
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/test"
@@ -531,6 +541,7 @@ Feature: get file properties
       | spaces      |
 
 
+  @T41d3db7f
   Scenario Outline: Propfind the file id of a file using webdav api
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "uploaded content" to "file.txt"
@@ -550,6 +561,7 @@ Feature: get file properties
       | spaces      |
 
 
+  @T08c163e0
   Scenario Outline: Propfind the file id of a folder using webdav api
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/test"
@@ -569,6 +581,7 @@ Feature: get file properties
       | spaces      |
 
 
+  @Tc924bf51
   Scenario Outline: Propfind the owner display name of a file using webdav api
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "uploaded content" to "file.txt"
@@ -588,6 +601,7 @@ Feature: get file properties
       | spaces      |
 
 
+  @Tf80627c4
   Scenario Outline: Propfind the owner display name of a folder using webdav api
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/test"
@@ -607,6 +621,7 @@ Feature: get file properties
       | spaces      |
 
 
+  @Te8e98cb4
   Scenario Outline: Propfind the permissions on a file using webdav api
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "uploaded content" to "file.txt"
@@ -626,6 +641,7 @@ Feature: get file properties
       | spaces      |
 
 
+  @T2a2bc37d
   Scenario Outline: Propfind the permissions on a folder using webdav api
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/test"

@@ -1,4 +1,4 @@
-@api
+@api @S2ebe76a9
 Feature: PROPPATCH file/folder
 
   Background:
@@ -12,7 +12,7 @@ Feature: PROPPATCH file/folder
     And user "Alice" has created folder "/FOLDER"
     And user "Alice" has uploaded file with content "some data" to "/PARENT/parent.txt"
 
-  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112
+  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @Tfebad938
   Scenario: send PROPPATCH requests to webDav endpoints as normal user with wrong password
     When user "Alice" requests these endpoints with "PROPPATCH" including body "doesnotmatter" using password "invalid" about user "Alice"
       | endpoint                                           |
@@ -23,7 +23,7 @@ Feature: PROPPATCH file/folder
       | /remote.php/dav/files/%username%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "401"
 
-  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @skipOnOcV10 @personalSpace
+  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @skipOnOcV10 @personalSpace @Td4264430
   Scenario: send PROPPATCH requests to webDav endpoints as normal user with wrong password using the spaces WebDAV API
     When user "Alice" requests these endpoints with "PROPPATCH" including body "doesnotmatter" using password "invalid" about user "Alice"
       | endpoint                                           |
@@ -32,7 +32,7 @@ Feature: PROPPATCH file/folder
       | /remote.php/dav/spaces/%spaceid%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "401"
 
-  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112
+  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @T7c68c3d6
   Scenario: send PROPPATCH requests to webDav endpoints as normal user with no password
     When user "Alice" requests these endpoints with "PROPPATCH" including body "doesnotmatter" using password "" about user "Alice"
       | endpoint                                           |
@@ -43,7 +43,7 @@ Feature: PROPPATCH file/folder
       | /remote.php/dav/files/%username%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "401"
 
-  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @skipOnOcV10 @personalSpace
+  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @skipOnOcV10 @personalSpace @Tb63edf77
   Scenario: send PROPPATCH requests to webDav endpoints as normal user with no password using the spaces WebDAV API
     When user "Alice" requests these endpoints with "PROPPATCH" including body "doesnotmatter" using password "" about user "Alice"
       | endpoint                                           |
@@ -52,7 +52,7 @@ Feature: PROPPATCH file/folder
       | /remote.php/dav/spaces/%spaceid%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "401"
 
-  @issue-ocis-reva-9 @issue-ocis-reva-197
+  @issue-ocis-reva-9 @issue-ocis-reva-197 @Tdab45c85
   Scenario: send PROPPATCH requests to another user's webDav endpoints as normal user
     When user "Brian" requests these endpoints with "PROPPATCH" to set property "favorite" about user "Alice"
       | endpoint                                           |
@@ -61,7 +61,7 @@ Feature: PROPPATCH file/folder
       | /remote.php/dav/files/%username%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "404"
 
-  @issue-ocis-reva-9 @issue-ocis-reva-197 @skipOnOcV10 @personalSpace
+  @issue-ocis-reva-9 @issue-ocis-reva-197 @skipOnOcV10 @personalSpace @T96c8de2a
   Scenario: send PROPPATCH requests to another user's webDav endpoints as normal user using the spaces WebDAV API
     When user "Brian" requests these endpoints with "PROPPATCH" to set property "favorite" about user "Alice"
       | endpoint                                           |
@@ -71,6 +71,7 @@ Feature: PROPPATCH file/folder
     Then the HTTP status code of responses on all endpoints should be "404"
 
 
+  @T0439118d
   Scenario: send PROPPATCH requests to webDav endpoints using invalid username but correct password
     When user "usero" requests these endpoints with "PROPPATCH" including body "doesnotmatter" using the password of user "Alice"
       | endpoint                                           |
@@ -81,7 +82,7 @@ Feature: PROPPATCH file/folder
       | /remote.php/dav/files/%username%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "401"
 
-  @skipOnOcV10 @personalSpace
+  @skipOnOcV10 @personalSpace @T8d630cbe
   Scenario: send PROPPATCH requests to webDav endpoints using invalid username but correct password using the spaces WebDAV API
     When user "usero" requests these endpoints with "PROPPATCH" including body "doesnotmatter" using the password of user "Alice"
       | endpoint                                           |
@@ -91,6 +92,7 @@ Feature: PROPPATCH file/folder
     Then the HTTP status code of responses on all endpoints should be "401"
 
 
+  @T2b840383
   Scenario: send PROPPATCH requests to webDav endpoints using valid password and username of different user
     When user "Brian" requests these endpoints with "PROPPATCH" including body "doesnotmatter" using the password of user "Alice"
       | endpoint                                           |
@@ -101,7 +103,7 @@ Feature: PROPPATCH file/folder
       | /remote.php/dav/files/%username%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "401"
 
-  @skipOnOcV10 @personalSpace
+  @skipOnOcV10 @personalSpace @Tc2efe99d
   Scenario: send PROPPATCH requests to webDav endpoints using valid password and username of different user using the spaces WebDAV API
     When user "Brian" requests these endpoints with "PROPPATCH" including body "doesnotmatter" using the password of user "Alice"
       | endpoint                                           |
@@ -110,7 +112,7 @@ Feature: PROPPATCH file/folder
       | /remote.php/dav/spaces/%spaceid%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "401"
 
-  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112
+  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @T9709f1d5
   Scenario: send PROPPATCH requests to webDav endpoints without any authentication
     When a user requests these endpoints with "PROPPATCH" with body "doesnotmatter" and no authentication about user "Alice"
       | endpoint                                           |
@@ -121,7 +123,7 @@ Feature: PROPPATCH file/folder
       | /remote.php/dav/files/%username%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "401"
 
-  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @skipOnOcV10 @personalSpace
+  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @skipOnOcV10 @personalSpace @Tfe36b6f9
   Scenario: send PROPPATCH requests to webDav endpoints without any authentication using the spaces WebDAV API
     When a user requests these endpoints with "PROPPATCH" with body "doesnotmatter" and no authentication about user "Alice"
       | endpoint                                           |

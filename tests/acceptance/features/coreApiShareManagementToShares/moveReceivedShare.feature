@@ -1,4 +1,4 @@
-@api @files_sharing-app-required @issue-ocis-1289 @issue-ocis-1328
+@api @files_sharing-app-required @issue-ocis-1289 @issue-ocis-1328 @S9ac508e8
 Feature: sharing
 
   Background:
@@ -12,6 +12,7 @@ Feature: sharing
       | Carol    |
 
 
+  @T543cd45a
   Scenario: Keep usergroup shares when the user renames the share within the Shares folder(#22143)
     Given group "grp1" has been created
     And user "Brian" has been added to group "grp1"
@@ -28,6 +29,7 @@ Feature: sharing
       | /Shares/new/|
 
 
+  @T03d228a1
   Scenario: keep user shared file name same after one of recipient has renamed the file inside the Shares folder
     Given user "Alice" has uploaded file with content "foo" to "/sharefile.txt"
     And user "Alice" has shared file "/sharefile.txt" with user "Brian"
@@ -41,6 +43,7 @@ Feature: sharing
     And as "Brian" file "/Shares/sharefile.txt" should exist
 
 
+  @T0a5443c9
   Scenario: receiver renames a received share with share, read, change permissions inside the Shares folder
     Given user "Alice" has created folder "folderToShare"
     And user "Alice" has uploaded file with content "thisIsAFileInsideTheSharedFolder" to "/folderToShare/fileInside"
@@ -57,6 +60,7 @@ Feature: sharing
     But as "Alice" file "/folderToShare/fileInside" should not exist
 
 
+  @Tb059fe71
   Scenario: receiver tries to rename a received share with share, read permissions inside the Shares folder
     Given user "Alice" has created folder "folderToShare"
     And user "Alice" has uploaded file with content "thisIsAFileInsideTheSharedFolder" to "/folderToShare/fileInside"
@@ -72,6 +76,7 @@ Feature: sharing
     But as "Brian" file "Shares/myFolder/fileInside" should exist
 
 
+  @T89a5edaa
   Scenario: receiver renames a received folder share to a different name on the same folder
     Given user "Alice" has created folder "PARENT"
     And user "Alice" has shared folder "PARENT" with user "Brian"
@@ -82,6 +87,7 @@ Feature: sharing
     But as "Alice" folder "myFolder" should not exist
 
 
+  @T24059557
   Scenario: receiver renames a received file share to different name on the same folder
     Given user "Alice" has uploaded file "filesForUpload/textfile.txt" to "fileToShare.txt"
     And user "Alice" has shared file "fileToShare.txt" with user "Brian"
@@ -92,6 +98,7 @@ Feature: sharing
     But as "Alice" file "newFile.txt" should not exist
 
 
+  @T77a34206
   Scenario: receiver renames a received file share to different name on the same folder for group sharing
     Given group "grp1" has been created
     And user "Brian" has been added to group "grp1"
@@ -104,6 +111,7 @@ Feature: sharing
     But as "Alice" file "newFile.txt" should not exist
 
 
+  @T8ebb894a
   Scenario: receiver renames a received folder share to different name on the same folder for group sharing
     Given group "grp1" has been created
     And user "Alice" has created folder "PARENT"
@@ -116,6 +124,7 @@ Feature: sharing
     But as "Alice" folder "myFolder" should not exist
 
 
+  @T1fbf9583
   Scenario: receiver renames a received file share with read,update,share permissions inside the Shares folder in group sharing
     Given group "grp1" has been created
     And user "Brian" has been added to group "grp1"
@@ -128,6 +137,7 @@ Feature: sharing
     But as "Alice" file "/Shares/newFile.txt" should not exist
 
 
+  @T480f3407
   Scenario: receiver renames a received folder share with share, read, change permissions inside the Shares folder in group sharing
     Given group "grp1" has been created
     And user "Alice" has created folder "PARENT"
@@ -140,6 +150,7 @@ Feature: sharing
     But as "Alice" folder "/Shares/myFolder" should not exist
 
 
+  @T91293011
   Scenario: receiver renames a received file share with share, read permissions inside the Shares folder in group sharing)
     Given group "grp1" has been created
     And user "Brian" has been added to group "grp1"
@@ -152,6 +163,7 @@ Feature: sharing
     But as "Alice" file "/Shares/newFile.txt" should not exist
 
 
+  @Td0a2b288
   Scenario: receiver renames a received folder share with share, read permissions inside the Shares folder in group sharing
     Given group "grp1" has been created
     And user "Alice" has created folder "PARENT"
@@ -163,7 +175,7 @@ Feature: sharing
     And as "Brian" folder "/Shares/myFolder" should exist
     But as "Alice" folder "/Shares/myFolder" should not exist
 
-  @issue-ocis-2141
+  @issue-ocis-2141 @T08d6a221
   Scenario Outline: receiver renames a received folder share to name with special characters in group sharing
     Given group "grp1" has been created
     And user "Carol" has been added to group "grp1"
@@ -186,7 +198,7 @@ Feature: sharing
       | ?abc=oc #     | ?abc=oc g%rp#   | # oc?test=oc&a  |
       | @a#8a=b?c=d   | @a#8a=b?c=d grp | ?a#8 a=b?c=d    |
 
-  @issue-ocis-2141
+  @issue-ocis-2141 @T7851523d
   Scenario Outline: receiver renames a received file share to name with special characters with share, read, change permissions in group sharing
     Given group "grp1" has been created
     And user "Carol" has been added to group "grp1"

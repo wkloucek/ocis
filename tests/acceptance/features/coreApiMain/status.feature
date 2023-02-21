@@ -1,7 +1,7 @@
-@api
+@api @Sd4d08931
 Feature: Status
 
-  @smokeTest
+  @smokeTest @Ta76ccb47
   Scenario: Status.php is correct
     When the administrator requests status.php
     Then the status.php response should include

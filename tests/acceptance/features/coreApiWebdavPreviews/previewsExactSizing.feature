@@ -1,4 +1,4 @@
-@api @preview-extension-required
+@api @preview-extension-required @S1b33e326
 Feature: sizing of previews of files downloaded through the webdav API
   As a user
   I want previews to be the exact requested size even when I ask for an unusual preview size combination
@@ -10,7 +10,7 @@ Feature: sizing of previews of files downloaded through the webdav API
   Background:
     Given user "Alice" has been created with default attributes and without skeleton files
 
-  @skipOnOcis
+  @skipOnOcis @T4282574e
   Scenario Outline: download different sizes of previews of file
     Given user "Alice" has uploaded file "filesForUpload/lorem.txt" to "/parent.txt"
     When user "Alice" downloads the preview of "/parent.txt" with width <width> and height <height> using the WebDAV API

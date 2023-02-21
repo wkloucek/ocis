@@ -1,4 +1,4 @@
-@api @files_sharing-app-required
+@api @files_sharing-app-required @Sa4d2212f
 Feature: sharing
 
   Background:
@@ -9,7 +9,7 @@ Feature: sharing
       | Alice    |
       | Brian    |
 
-  @smokeTest @issue-ocis-reva-262
+  @smokeTest @issue-ocis-reva-262 @Tca33d4a2
   Scenario Outline: getting all shares of a user using that user
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file with content "some data" to "/file_to_share.txt"
@@ -24,7 +24,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @issue-ocis-reva-65
+  @issue-ocis-reva-65 @T4c3199f5
   Scenario Outline: getting all shares of a user using another user
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file with content "some data" to "/textfile0.txt"
@@ -39,7 +39,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @smokeTest
+  @smokeTest @T19dd2ef1
   Scenario Outline: getting all shares of a file
     Given using OCS API version "<ocs_api_version>"
     And these users have been created with default attributes and without skeleton files:
@@ -62,7 +62,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @smokeTest
+  @smokeTest @Td8aadd87
   Scenario Outline: getting all shares of a file with reshares
     Given using OCS API version "<ocs_api_version>"
     And these users have been created with default attributes and without skeleton files:
@@ -85,7 +85,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @smokeTest
+  @smokeTest @T54dcf9de
   Scenario Outline: User's own shares reshared to him don't appear when getting "shared with me" shares
     Given using OCS API version "<ocs_api_version>"
     And group "grp1" has been created
@@ -106,7 +106,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @smokeTest @toFixOnOCIS @issue-ocis-reva-357 @issue-ocis-reva-301 @issue-ocis-reva-302
+  @smokeTest @toFixOnOCIS @issue-ocis-reva-357 @issue-ocis-reva-301 @issue-ocis-reva-302 @T2a0b4fb6
   #after fixing all the issues merge this scenario with the one below
   Scenario Outline: getting share info of a share
     Given using OCS API version "<ocs_api_version>"
@@ -138,7 +138,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @smokeTest @toFixOnOCIS @issue-ocis-reva-357 @issue-ocis-reva-301 @issue-ocis-reva-302
+  @smokeTest @toFixOnOCIS @issue-ocis-reva-357 @issue-ocis-reva-301 @issue-ocis-reva-302 @T0799ccd4
   #after fixing all the issues merge this scenario with the one above
   Scenario Outline: getting share info of a share (Bug demonstration for ocis)
     Given using OCS API version "<ocs_api_version>"
@@ -170,7 +170,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @issue-ocis-reva-374
+  @issue-ocis-reva-374 @T28b30daa
   Scenario Outline: Get a share with a user that didn't receive the share
     Given using OCS API version "<ocs_api_version>"
     And user "Carol" has been created with default attributes and without skeleton files
@@ -184,7 +184,7 @@ Feature: sharing
       | 1               | 200              |
       | 2               | 404              |
 
-  @skipOnLDAP @issue-ocis-reva-194 @skipOnGraph
+  @skipOnLDAP @issue-ocis-reva-194 @skipOnGraph @Tef22ac87
   Scenario: Share of folder to a group, remove user from that group
     Given using OCS API version "1"
     And user "Carol" has been created with default attributes and without skeleton files
@@ -205,7 +205,7 @@ Feature: sharing
       | /Shares/PARENT/           |
       | /Shares/PARENT/parent.txt |
 
-  @issue-ocis-reva-372
+  @issue-ocis-reva-372 @Tdfdbe2ca
   Scenario Outline: getting all the shares inside the folder
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/PARENT"

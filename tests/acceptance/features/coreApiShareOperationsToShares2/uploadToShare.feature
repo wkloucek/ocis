@@ -1,4 +1,4 @@
-@api @files_sharing-app-required
+@api @files_sharing-app-required @S3db064ae
 Feature: sharing
 
   Background:
@@ -7,6 +7,7 @@ Feature: sharing
     And user "Alice" has been created with default attributes and without skeleton files
 
 
+  @Tcf51864f
   Scenario: Uploading file to a user read-only share folder does not work
     Given user "Brian" has been created with default attributes and without skeleton files
     And user "Alice" has created folder "FOLDER"
@@ -21,6 +22,7 @@ Feature: sharing
     And as "Alice" file "/FOLDER/textfile.txt" should not exist
 
 
+  @Ta5e91563
   Scenario Outline: Uploading file to a group read-only share folder does not work
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -42,6 +44,7 @@ Feature: sharing
       | new      |
 
 
+  @Tbbdeb198
   Scenario Outline: Uploading file to a user upload-only share folder works
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -68,6 +71,7 @@ Feature: sharing
       | new      |
 
 
+  @T063c4c11
   Scenario Outline: Uploading file to a group upload-only share folder works
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -95,7 +99,7 @@ Feature: sharing
       | old      |
       | new      |
 
-  @smokeTest
+  @smokeTest @T55e84fb0
   Scenario Outline: Uploading file to a user read/write share folder works
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -120,6 +124,7 @@ Feature: sharing
       | new      |
 
 
+  @T2dbf7e29
   Scenario Outline: Uploading file to a group read/write share folder works
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -145,7 +150,7 @@ Feature: sharing
       | old      |
       | new      |
 
-  @smokeTest @skipOnGraph
+  @smokeTest @skipOnGraph @Tbd1a6c52
   Scenario Outline: Check quota of owners parent directory of a shared file
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -168,7 +173,7 @@ Feature: sharing
       | old      |
       | new      |
 
-  @skipOnGraph
+  @skipOnGraph @T569459bb
   Scenario Outline: Uploading to a user shared folder with read/write permission when the sharer has unsufficient quota does not work
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and small skeleton files
@@ -189,6 +194,7 @@ Feature: sharing
       | new      |
 
 
+  @Ta56b18cf
   Scenario Outline: Uploading to a group shared folder with read/write permission when the sharer has unsufficient quota does not work
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -210,7 +216,7 @@ Feature: sharing
       | old      |
       | new      |
 
-  @skipOnGraph
+  @skipOnGraph @Ta6c30b5e
   Scenario Outline: Uploading to a user shared folder with upload-only permission when the sharer has insufficient quota does not work
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -230,7 +236,7 @@ Feature: sharing
       | old      |
       | new      |
 
-  @skipOnGraph
+  @skipOnGraph @T4a02e0da
   Scenario Outline: Uploading to a group shared folder with upload-only permission when the sharer has insufficient quota does not work
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -253,6 +259,7 @@ Feature: sharing
       | new      |
 
 
+  @T80d368b0
   Scenario Outline: Sharer can download file uploaded with different permission by sharee to a shared folder
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -273,6 +280,7 @@ Feature: sharing
       | new      | create      |
 
 
+  @Td4fcbc08
   Scenario Outline: upload an empty file (size zero byte) to a shared folder
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files

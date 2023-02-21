@@ -1,4 +1,4 @@
-@api @files_sharing-app-required
+@api @files_sharing-app-required @Sd582e6f6
 Feature: moving a share inside another share
   As a user
   I want to move a shared resource inside another shared resource
@@ -22,6 +22,7 @@ Feature: moving a share inside another share
     And user "Brian" has accepted share "/folderB" offered by user "Alice"
 
 
+  @T210cec10
   Scenario: share receiver cannot move a whole share inside another share
     When user "Brian" moves folder "Shares/folderB" to "Shares/folderA/folderB" using the WebDAV API
     Then the HTTP status code should be "403"
@@ -31,6 +32,7 @@ Feature: moving a share inside another share
     And as "Brian" file "/Shares/folderB/fileB.txt" should exist
 
 
+  @T49a657ac
   Scenario: share owner moves a whole share inside another share
     When user "Alice" moves folder "folderB" to "folderA/folderB" using the WebDAV API
     Then the HTTP status code should be "201"
@@ -42,6 +44,7 @@ Feature: moving a share inside another share
     And as "Brian" file "/Shares/folderB/fileB.txt" should exist
 
 
+  @Tc9ee0802
   Scenario: share receiver moves a local folder inside a received share (local folder does not have a share in it)
     Given user "Brian" has created folder "localFolder"
     And user "Brian" has created folder "localFolder/subFolder"
@@ -55,7 +58,7 @@ Feature: moving a share inside another share
     And as "Alice" file "/folderA/localFolder/localFile.txt" should exist
     And as "Brian" file "/Shares/folderA/localFolder/localFile.txt" should exist
 
-  @skipOnOcV10
+  @skipOnOcV10 @Tc5e736ca
   Scenario: share receiver tries to move a whole share inside a local folder
     Given user "Brian" has created folder "localFolder"
     And user "Brian" has uploaded file with content "local text" to "/localFolder/localFile.txt"

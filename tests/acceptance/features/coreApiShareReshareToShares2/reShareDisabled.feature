@@ -1,4 +1,4 @@
-@api @files_sharing-app-required @issue-ocis-1328
+@api @files_sharing-app-required @issue-ocis-1328 @S5cc1efe5
 Feature: resharing can be disabled
 
   Background:
@@ -10,7 +10,7 @@ Feature: resharing can be disabled
       | Brian    |
     And user "Alice" has uploaded file "filesForUpload/textfile.txt" to "/textfile0.txt"
 
-  @smokeTest @skipOnOcis
+  @smokeTest @skipOnOcis @Tff52a6ef
   Scenario Outline: resharing a file is not allowed when allow resharing has been disabled
     Given using OCS API version "<ocs_api_version>"
     And user "Carol" has been created with default attributes and without skeleton files
@@ -28,6 +28,7 @@ Feature: resharing can be disabled
       | 2               | 404              |
 
 
+  @Te458ceb2
   Scenario Outline: ordinary sharing is allowed when allow resharing has been disabled
     Given using OCS API version "<ocs_api_version>"
     And parameter "shareapi_allow_resharing" of app "core" has been set to "no"

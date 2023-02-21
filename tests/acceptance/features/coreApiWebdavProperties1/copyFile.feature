@@ -1,4 +1,4 @@
-@api
+@api @S87b935b3
 Feature: copy file
   As a user
   I want to be able to copy files
@@ -13,7 +13,7 @@ Feature: copy file
     And user "Alice" has uploaded file with content "ownCloud test text file 1" to "/textfile1.txt"
     And user "Alice" has created folder "/FOLDER"
 
-  @smokeTest
+  @smokeTest @T9bb910d8
   Scenario Outline: Copying a file
     Given using <dav_version> DAV path
     When user "Alice" copies file "/textfile0.txt" to "/FOLDER/textfile0.txt" using the WebDAV API
@@ -29,7 +29,7 @@ Feature: copy file
       | dav_version |
       | spaces      |
 
-  @smokeTest
+  @smokeTest @T0198e62f
   Scenario Outline: Copying and overwriting a file
     Given using <dav_version> DAV path
     When user "Alice" copies file "/textfile0.txt" to "/textfile1.txt" using the WebDAV API
@@ -46,6 +46,7 @@ Feature: copy file
       | spaces      |
 
 
+  @Tc3a660f4
   Scenario Outline: Copying a file when 2 files exist with different case
     Given using <dav_version> DAV path
     # "/textfile1.txt" already exists in the skeleton, make another with only case differences in the file name
@@ -63,7 +64,7 @@ Feature: copy file
       | dav_version |
       | spaces      |
 
-  @files_sharing-app-required @issue-ocis-reva-11
+  @files_sharing-app-required @issue-ocis-reva-11 @T702c5c83
   Scenario Outline: Copying a file to a folder with no permissions
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -82,7 +83,7 @@ Feature: copy file
       | old         |
       | new         |
 
-  @files_sharing-app-required @issue-ocis-reva-11
+  @files_sharing-app-required @issue-ocis-reva-11 @T1ef435ca
   Scenario Outline: Copying a file to overwrite a file into a folder with no permissions
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -103,7 +104,7 @@ Feature: copy file
       | old         |
       | new         |
 
-  @issue-ocis-reva-15
+  @issue-ocis-reva-15 @T0b67a182
   Scenario Outline: Copying file to a path with extension .part should not be possible
     Given using <dav_version> DAV path
     When user "Alice" copies file "/textfile1.txt" to "/textfile1.part" using the WebDAV API
@@ -125,7 +126,7 @@ Feature: copy file
       | dav_version |
       | spaces      |
 
-  @issue-ocis-reva-387
+  @issue-ocis-reva-387 @T7012f6a6
   Scenario Outline: copy a file over the top of an existing folder
     Given using <dav_version> DAV path
     And user "Alice" has created folder "FOLDER/sample-folder"
@@ -144,7 +145,7 @@ Feature: copy file
       | dav_version |
       | spaces      |
 
-  @issue-ocis-reva-387
+  @issue-ocis-reva-387 @Tdcdda8df
   Scenario Outline: copy a folder over the top of an existing file
     Given using <dav_version> DAV path
     And user "Alice" has created folder "FOLDER/sample-folder"
@@ -162,7 +163,7 @@ Feature: copy file
       | dav_version |
       | spaces      |
 
-  @issue-ocis-reva-387
+  @issue-ocis-reva-387 @Tead124d5
   Scenario Outline: copy a folder into another folder at different level
     Given using <dav_version> DAV path
     And user "Alice" has created folder "FOLDER/second-level-folder"
@@ -184,7 +185,7 @@ Feature: copy file
       | dav_version |
       | spaces      |
 
-  @issue-ocis-reva-387
+  @issue-ocis-reva-387 @Te6ce9b31
   Scenario Outline: copy a file into a folder at different level
     Given using <dav_version> DAV path
     And user "Alice" has created folder "FOLDER/second-level-folder"
@@ -208,7 +209,7 @@ Feature: copy file
       | dav_version |
       | spaces      |
 
-  @issue-ocis-reva-387
+  @issue-ocis-reva-387 @Taae4ccf4
   Scenario Outline: copy a file into a file at different level
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "file at second level" to "FOLDER/second-level-file.txt"
@@ -231,7 +232,7 @@ Feature: copy file
       | dav_version |
       | spaces      |
 
-  @issue-ocis-reva-387
+  @issue-ocis-reva-387 @Ta8b6dae8
   Scenario Outline: copy a folder into a file at different level
     Given using <dav_version> DAV path
     And user "Alice" has created folder "FOLDER/second-level-folder"
@@ -255,7 +256,7 @@ Feature: copy file
       | dav_version |
       | spaces      |
 
-  @issue-ocis-1239
+  @issue-ocis-1239 @Te464d2a5
   Scenario Outline: copy a file over the top of an existing folder received as a user share
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -274,7 +275,7 @@ Feature: copy file
       | old         |
       | new         |
 
-  @issue-ocis-1239
+  @issue-ocis-1239 @Tb08c779e
   Scenario Outline: copy a folder over the top of an existing file received as a user share
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -292,7 +293,7 @@ Feature: copy file
       | old         |
       | new         |
 
-  @issue-ocis-1239
+  @issue-ocis-1239 @Tebdc087a
   Scenario Outline: copy a folder into another folder at different level which is received as a user share
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -315,7 +316,7 @@ Feature: copy file
       | old         |
       | new         |
 
-  @issue-ocis-1239
+  @issue-ocis-1239 @Tc706f556
   Scenario Outline: copy a file into a folder at different level received as a user share
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -340,7 +341,7 @@ Feature: copy file
       | old         |
       | new         |
 
-  @issue-ocis-1239
+  @issue-ocis-1239 @T68f46d7b
   Scenario Outline: copy a file into a file at different level received as a user share
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -364,7 +365,7 @@ Feature: copy file
       | old         |
       | new         |
 
-  @issue-ocis-1239
+  @issue-ocis-1239 @T06984523
   Scenario Outline: copy a folder into a file at different level received as a user share
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -388,7 +389,7 @@ Feature: copy file
       | old         |
       | new         |
 
-  @issue-ocis-1239
+  @issue-ocis-1239 @Tf9d186b2
   Scenario Outline: copy a file over the top of an existing folder received as a group share
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -415,7 +416,7 @@ Feature: copy file
       | dav_version |
       | spaces      |
 
-  @issue-ocis-1239
+  @issue-ocis-1239 @T8ff5031a
   Scenario Outline: copy a folder over the top of an existing file received as a group share
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -441,7 +442,7 @@ Feature: copy file
       | dav_version |
       | spaces      |
 
-  @issue-ocis-1239
+  @issue-ocis-1239 @T0bfc201c
   Scenario Outline: copy a folder into another folder at different level which is received as a group share
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -467,7 +468,7 @@ Feature: copy file
       | old         |
       | new         |
 
-  @issue-ocis-1239
+  @issue-ocis-1239 @Tc1bc9e51
   Scenario Outline: copy a file into a folder at different level received as a group share
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -495,7 +496,7 @@ Feature: copy file
       | old         |
       | new         |
 
-  @issue-ocis-1239
+  @issue-ocis-1239 @T06bfe089
   Scenario Outline: copy a file into a file at different level received as a group share
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -522,7 +523,7 @@ Feature: copy file
       | old         |
       | new         |
 
-  @issue-ocis-1239
+  @issue-ocis-1239 @Tde0513db
   Scenario Outline: copy a folder into a file at different level received as a group share
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -550,6 +551,7 @@ Feature: copy file
       | new         |
 
 
+  @T214aa01c
   Scenario Outline: copy a file of size zero byte
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file "filesForUpload/zerobyte.txt" to "/zerobyte.txt"
@@ -569,6 +571,7 @@ Feature: copy file
       | spaces      |
 
 
+  @T7ca3c6b6
   Scenario Outline: Copy file into a nonexistent folder
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file "filesForUpload/textfile.txt" to "fileToCopy.txt"
@@ -586,6 +589,7 @@ Feature: copy file
       | spaces      |
 
 
+  @T16475500
   Scenario Outline: Copy a nonexistent file into a folder
     Given using <dav_version> DAV path
     When user "Alice" copies file "/doesNotExist.txt" to "/FOLDER/doesNotExist.txt" using the WebDAV API
@@ -602,6 +606,7 @@ Feature: copy file
       | spaces      |
 
 
+  @T271b0b19
   Scenario Outline: Copy a folder into a nonexistent one
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/testshare"
@@ -619,7 +624,7 @@ Feature: copy file
       | dav_version |
       | spaces      |
 
-  @files_sharing-app-required
+  @files_sharing-app-required @T30b078dd
   Scenario Outline: Copying a file into a shared folder as the sharee
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -639,7 +644,7 @@ Feature: copy file
       | old         |
       | new         |
 
-  @files_sharing-app-required
+  @files_sharing-app-required @Tdf446473
   Scenario Outline: Copying a file into a shared folder as the sharer
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -660,7 +665,7 @@ Feature: copy file
       | old         |
       | new         |
 
-  @files_sharing-app-required
+  @files_sharing-app-required @T3fb71c80
   Scenario Outline: Copying a file out of a shared folder as the sharee
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -682,7 +687,7 @@ Feature: copy file
       | old         |
       | new         |
 
-  @files_sharing-app-required
+  @files_sharing-app-required @Tf61617a1
   Scenario Outline: Copying a file out of a shared folder as the sharer
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -705,6 +710,7 @@ Feature: copy file
       | new         |
 
 
+  @Tcad803ff
   Scenario Outline: Copying a hidden file
     Given using <dav_version> DAV path
     And user "Alice" has uploaded the following files with content "hidden file"
@@ -731,7 +737,7 @@ Feature: copy file
       | dav_version |
       | spaces      |
 
-  @files_sharing-app-required
+  @files_sharing-app-required @T3773c6bf
   Scenario Outline: Copying a file between shares received from different users
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -762,7 +768,7 @@ Feature: copy file
       | old         |
       | new         |
 
-  @files_sharing-app-required
+  @files_sharing-app-required @T29fd26de
   Scenario Outline: Copying a folder between shares received from different users
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -794,7 +800,7 @@ Feature: copy file
       | old         |
       | new         |
 
-  @files_sharing-app-required
+  @files_sharing-app-required @Ta3732900
   Scenario Outline: Copying a file to a folder that is shared with multiple users
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -824,6 +830,7 @@ Feature: copy file
       | new         |
 
 
+  @T214a49c2
   Scenario Outline: Copy a folder into another one
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/testshare"
@@ -844,7 +851,7 @@ Feature: copy file
       | dav_version |
       | spaces      |
 
-  @issue-ocis-3023
+  @issue-ocis-3023 @T5594d9dc
   Scenario Outline: Copying a folder into a sub-folder of itself
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/PARENT"
@@ -866,6 +873,7 @@ Feature: copy file
       | spaces      |
 
 
+  @Tf360ac41
   Scenario Outline: Copying a folder with a file into another folder
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/FOLDER1"

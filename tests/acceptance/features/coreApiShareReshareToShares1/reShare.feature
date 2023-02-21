@@ -1,4 +1,4 @@
-@api @files_sharing-app-required @issue-ocis-1328
+@api @files_sharing-app-required @issue-ocis-1328 @S67bee473
 Feature: sharing
 
   Background:
@@ -10,7 +10,7 @@ Feature: sharing
       | Brian    |
       | Carol    |
 
-  @smokeTest
+  @smokeTest @Tcc80f53e
   Scenario Outline: User is not allowed to reshare file when reshare permission is not given
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file "filesForUpload/textfile.txt" to "/textfile0.txt"
@@ -28,6 +28,7 @@ Feature: sharing
       | 2               | 404              |
 
 
+  @Tfecc4baf
   Scenario Outline: User is not allowed to reshare folder when reshare permission is not given
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/FOLDER"
@@ -44,7 +45,7 @@ Feature: sharing
       | 1               | 200              |
       | 2               | 404              |
 
-  @smokeTest
+  @smokeTest @Tdb34607f
   Scenario Outline: User is allowed to reshare file with the same permissions
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file "filesForUpload/textfile.txt" to "/textfile0.txt"
@@ -61,6 +62,7 @@ Feature: sharing
       | 2               | 200             |
 
 
+  @Tf595a750
   Scenario Outline: User is allowed to reshare folder with the same permissions
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/FOLDER"
@@ -77,6 +79,7 @@ Feature: sharing
       | 2               | 200             |
 
 
+  @T97085c0e
   Scenario Outline: User is allowed to reshare file with less permissions
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file "filesForUpload/textfile.txt" to "/textfile0.txt"
@@ -93,6 +96,7 @@ Feature: sharing
       | 2               | 200             |
 
 
+  @Tef6d7e66
   Scenario Outline: User is allowed to reshare folder with less permissions
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/FOLDER"
@@ -109,6 +113,7 @@ Feature: sharing
       | 2               | 200             |
 
 
+  @Tc08578e7
   Scenario Outline: User is not allowed to reshare file and set more permissions bits
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file "filesForUpload/textfile.txt" to "/textfile0.txt"
@@ -138,6 +143,7 @@ Feature: sharing
       | 2               | 404              | 17                   | 15                  |
 
 
+  @T79aada3f
   Scenario Outline: User is allowed to reshare file and set create (4) or delete (8) permissions bits, which get ignored
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file "filesForUpload/textfile.txt" to "/textfile0.txt"
@@ -179,6 +185,7 @@ Feature: sharing
       | 2               | 200             | 17                   | 9                   | 1                   |
 
 
+  @Tfa7f8f35
   Scenario Outline: User is not allowed to reshare folder and set more permissions bits
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/PARENT"
@@ -220,6 +227,7 @@ Feature: sharing
       | 2               | 404              | 19                   | 15                  |
 
 
+  @T55f8d13f
   Scenario Outline: User is not allowed to reshare folder and add delete permission bit (8)
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/PARENT"
@@ -249,6 +257,7 @@ Feature: sharing
       | 2               | 404              | 23                   | 15                  |
 
 
+  @Tf65fbd9a
   Scenario Outline: Reshare a file with same name as a deleted file
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file "filesForUpload/textfile.txt" to "/textfile0.txt"
@@ -267,6 +276,7 @@ Feature: sharing
       | 2               | 200             |
 
 
+  @T177ea745
   Scenario Outline: Reshare a folder with same name as a deleted folder
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/PARENT"
@@ -285,6 +295,7 @@ Feature: sharing
       | 2               | 200             |
 
 
+  @T0b8b4072
   Scenario Outline: Reshare a folder with same name as a deleted file
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file "filesForUpload/textfile.txt" to "/textfile0.txt"

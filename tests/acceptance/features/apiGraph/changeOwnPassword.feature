@@ -1,7 +1,8 @@
-@api
+@api @Sba58c244
 Feature: an user changes its own password
 
 
+    @Tc00df871
     Scenario Outline: change own password
         Given user "Alice" has been created with default attributes and without skeleton files
         When the user "Alice" changes its own password "<currentPassword>" to "<newPassword>" using the Graph API

@@ -1,4 +1,4 @@
-@api @skipOnOcV10 @Sd2399fe4
+@api @skipOnOcV10 @S0bd09cbe
 Feature: A manager of the space can edit public link
   As an user with manager space role
   I want to be able to edit a public link.
@@ -25,7 +25,8 @@ Feature: A manager of the space can edit public link
     And user "Alice" has uploaded a file inside space "edit space" with content "some content" to "test.txt"
 
 
-  @T93798d38
+
+  @T0019e1a4
   Scenario Outline: A manager of the space can edit public link.
     Given using OCS API version "2"
     When user "Alice" updates the last public link share using the sharing API with
@@ -52,7 +53,8 @@ Feature: A manager of the space can edit public link
       | 15          | read,update,create,delete |          | newName  |
 
 
-  @Tc7fc38b7
+
+  @T3e312dc0
   Scenario Outline: All members can see a created public link
     Given using OCS API version "2"
     When user "Alice" shares a space "edit space" to user "Brian" with role "<role>"
@@ -67,7 +69,8 @@ Feature: A manager of the space can edit public link
       | viewer  |
 
 
-  @T7caa446a
+
+  @Tcaf0cfa7
   Scenario Outline: Members of the space try to edit a public link
     Given using OCS API version "2"
     And user "Alice" has shared a space "edit space" to user "Brian" with role "<role>"

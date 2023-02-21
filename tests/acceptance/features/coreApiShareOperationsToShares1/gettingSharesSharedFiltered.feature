@@ -1,4 +1,4 @@
-@api @files_sharing-app-required
+@api @files_sharing-app-required @S0aa4a32e
 Feature: get shares filtered by type (user, group etc)
   As a user
   I want to be able to know the shares that I have made of a particular type (user, group etc)
@@ -35,6 +35,7 @@ Feature: get shares filtered by type (user, group etc)
       | permissions | read                       |
 
 
+  @T1deeb8d2
   Scenario Outline: getting shares shared to users
     Given using OCS API version "<ocs_api_version>"
     When user "Alice" gets the user shares shared by him using the sharing API
@@ -49,6 +50,7 @@ Feature: get shares filtered by type (user, group etc)
       | 2               | 200             |
 
 
+  @Tfb476bdc
   Scenario Outline: getting shares shared to groups
     Given using OCS API version "<ocs_api_version>"
     When user "Alice" gets the group shares shared by him using the sharing API
@@ -63,6 +65,7 @@ Feature: get shares filtered by type (user, group etc)
       | 2               | 200             |
 
 
+  @T738949f6
   Scenario Outline: getting shares shared to public links
     Given using OCS API version "<ocs_api_version>"
     When user "Alice" gets the public link shares shared by him using the sharing API
@@ -77,6 +80,7 @@ Feature: get shares filtered by type (user, group etc)
       | 2               | 200             |
 
 
+  @Tc578ca8a
   Scenario Outline: getting shares shared to users and groups
     Given using OCS API version "<ocs_api_version>"
     When user "Alice" gets the user and group shares shared by him using the sharing API

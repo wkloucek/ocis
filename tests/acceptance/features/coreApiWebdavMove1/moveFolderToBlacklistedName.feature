@@ -1,4 +1,4 @@
-@api @issue-ocis-reva-14
+@api @issue-ocis-reva-14 @S31fdca40
 Feature: users cannot move (rename) a folder to a blacklisted name
   As an administrator
   I want to be able to prevent users from moving (renaming) folders to specified names
@@ -9,6 +9,7 @@ Feature: users cannot move (rename) a folder to a blacklisted name
     And user "Alice" has been created with default attributes and without skeleton files
 
 
+  @T3bc239b8
   Scenario Outline: Rename a folder to a name that is banned by default
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/testshare"
@@ -27,6 +28,7 @@ Feature: users cannot move (rename) a folder to a blacklisted name
       | spaces      |
 
 
+  @Tac0cb8db
   Scenario Outline: Rename a folder to a banned name
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/testshare"
@@ -46,6 +48,7 @@ Feature: users cannot move (rename) a folder to a blacklisted name
       | spaces      |
 
 
+  @T6fcc30ba
   Scenario Outline: rename a folder to a folder name that matches (or not) blacklisted_files_regex
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files

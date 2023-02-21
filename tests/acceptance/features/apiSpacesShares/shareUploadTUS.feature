@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @Sb4c97948
 Feature: upload resources on share using TUS protocol
   As a user
   I want to be able to upload files
@@ -12,6 +12,7 @@ Feature: upload resources on share using TUS protocol
       | Brian    |
 
 
+  @Tf5d2e895
   Scenario: upload file with mtime to a received share
     Given user "Alice" has created folder "/toShare"
     And user "Alice" has shared folder "/toShare" with user "Brian"
@@ -23,6 +24,7 @@ Feature: upload resources on share using TUS protocol
     And as "Alice" the mtime of the file "/toShare/file.txt" in space "Personal" should be "Thu, 08 Aug 2012 04:18:13 GMT"
 
 
+  @Td8215137
   Scenario: upload file with mtime to a sent share
     Given user "Alice" has created folder "/toShare"
     And user "Alice" has shared folder "/toShare" with user "Brian"
@@ -34,6 +36,7 @@ Feature: upload resources on share using TUS protocol
     And as "Brian" the mtime of the file "/toShare/file.txt" in space "Shares" should be "Thu, 08 Aug 2012 04:18:13 GMT"
 
 
+  @Tfdbdc8a0
   Scenario: overwriting a file with mtime in a received share
     Given user "Alice" has created folder "/toShare"
     And user "Alice" has shared folder "/toShare" with user "Brian"
@@ -46,6 +49,7 @@ Feature: upload resources on share using TUS protocol
     And as "Alice" the mtime of the file "/toShare/file.txt" in space "Personal" should be "Thu, 08 Aug 2012 04:18:13 GMT"
 
 
+  @T39452c86
   Scenario: overwriting a file with mtime in a sent share
     Given user "Alice" has created folder "/toShare"
     And user "Alice" has shared folder "/toShare" with user "Brian"
@@ -58,6 +62,7 @@ Feature: upload resources on share using TUS protocol
     And as "Brian" the mtime of the file "/toShare/file.txt" in space "Shares" should be "Thu, 08 Aug 2012 04:18:13 GMT"
 
 
+  @T09f3debf
   Scenario: attempt to upload a file into a nonexistent folder within correctly received share
     Given using OCS API version "1"
     And user "Alice" has created folder "/toShare"
@@ -68,6 +73,7 @@ Feature: upload resources on share using TUS protocol
       | nonExistentFolder/file.txt |
 
 
+  @Te9966482
   Scenario: attempt to upload a file into a nonexistent folder within correctly received read only share
     Given using OCS API version "1"
     And user "Alice" has created folder "/toShare"
@@ -78,6 +84,7 @@ Feature: upload resources on share using TUS protocol
       | nonExistentFolder/file.txt |
 
 
+  @T72d7b7f6
   Scenario: Uploading a file to a received share folder
     Given user "Alice" has created folder "/toShare"
     And user "Alice" has shared folder "/toShare" with user "Brian"
@@ -88,6 +95,7 @@ Feature: upload resources on share using TUS protocol
     And for user "Alice" the content of the file "toShare/file.txt" of the space "Personal" should be "uploaded content"
 
 
+  @Tc942b40f
   Scenario: Uploading a file to a user read/write share folder
     Given user "Alice" has created folder "/toShare"
     And user "Alice" has shared folder "/toShare" with user "Brian" with permissions "change"
@@ -98,6 +106,7 @@ Feature: upload resources on share using TUS protocol
     And for user "Alice" the content of the file "toShare/file.txt" of the space "Personal" should be "uploaded content"
 
 
+  @T589dd7c9
   Scenario: Uploading a file into a group share as a share receiver
     Given group "grp1" has been created
     And user "Brian" has been added to group "grp1"
@@ -110,6 +119,7 @@ Feature: upload resources on share using TUS protocol
     And for user "Alice" the content of the file "toShare/file.txt" of the space "Personal" should be "uploaded content"
 
 
+  @T3c46abb1
   Scenario: Overwrite file to a received share folder
     Given user "Alice" has created folder "/toShare"
     And user "Alice" has uploaded file with content "original content" to "/toShare/file.txt"
@@ -121,6 +131,7 @@ Feature: upload resources on share using TUS protocol
     And for user "Alice" the content of the file "toShare/file.txt" of the space "Personal" should be "overwritten content"
 
 
+  @T815816c1
   Scenario: attempt to upload a file into a folder within correctly received read only share
     Given user "Alice" has created folder "/toShare"
     And user "Alice" has shared folder "/toShare" with user "Brian" with permissions "read"
@@ -130,6 +141,7 @@ Feature: upload resources on share using TUS protocol
       | file.txt |
 
 
+  @T0e3fbd98
   Scenario: Upload a file to shared folder with checksum should return the checksum in the propfind for sharee
     Given user "Alice" has created folder "/FOLDER"
     And user "Alice" has shared folder "/FOLDER" with user "Brian"
@@ -145,6 +157,7 @@ Feature: upload resources on share using TUS protocol
     And the webdav checksum should match "SHA1:8cb2237d0679ca88db6464eac60da96345513964 MD5:827ccb0eea8a706c4c34a16891f84e7b ADLER32:02f80100"
 
 
+  @T6a5d8852
   Scenario: Upload a file to shared folder with checksum should return the checksum in the download header for sharee
     Given user "Alice" has created folder "/FOLDER"
     And user "Alice" has shared folder "/FOLDER" with user "Brian"
@@ -159,6 +172,7 @@ Feature: upload resources on share using TUS protocol
     Then the header checksum should match "SHA1:8cb2237d0679ca88db6464eac60da96345513964"
 
 
+  @T9bf30733
   Scenario: Sharer shares a file with correct checksum should return the checksum in the propfind for sharee
     Given user "Alice" has created a new TUS resource for the space "Personal" with content "" using the WebDAV API with these headers:
       | Upload-Length   | 5                         |
@@ -173,6 +187,7 @@ Feature: upload resources on share using TUS protocol
     And the webdav checksum should match "SHA1:8cb2237d0679ca88db6464eac60da96345513964 MD5:827ccb0eea8a706c4c34a16891f84e7b ADLER32:02f80100"
 
 
+  @T25afe01f
   Scenario: Sharer shares a file with correct checksum should return the checksum in the download header for sharee
     Given user "Alice" has created a new TUS resource for the space "Personal" with content "" using the WebDAV API with these headers:
       | Upload-Length   | 5                         |
@@ -186,6 +201,7 @@ Feature: upload resources on share using TUS protocol
     Then the header checksum should match "SHA1:8cb2237d0679ca88db6464eac60da96345513964"
 
 
+  @T745730ca
   Scenario: Sharee uploads a file to a received share folder with correct checksum
     Given user "Alice" has created folder "/FOLDER"
     And user "Alice" has shared folder "/FOLDER" with user "Brian"
@@ -201,6 +217,7 @@ Feature: upload resources on share using TUS protocol
     And for user "Alice" the content of the file "FOLDER/textFile.txt" of the space "Personal" should be "uploaded content"
 
 
+  @T7b76a9d1
   Scenario: Sharee uploads a file to a received share folder with wrong checksum should not work
     Given user "Alice" has created folder "/FOLDER"
     And user "Alice" has shared folder "/FOLDER" with user "Brian"
@@ -216,6 +233,7 @@ Feature: upload resources on share using TUS protocol
       | textFile.txt |
 
 
+  @T5519c9a8
   Scenario: Sharer uploads a file to shared folder with wrong checksum should not work
     Given user "Alice" has created folder "/FOLDER"
     And user "Alice" has shared folder "/FOLDER" with user "Brian"
@@ -233,6 +251,7 @@ Feature: upload resources on share using TUS protocol
       | textFile.txt |
 
 
+  @T531776e1
   Scenario: Sharer uploads a chunked file with correct checksum and share it with sharee should work
     Given user "Alice" has created a new TUS resource for the space "Personal" with content "" using the WebDAV API with these headers:
       | Upload-Length   | 10                        |
@@ -246,6 +265,7 @@ Feature: upload resources on share using TUS protocol
     Then for user "Brian" the content of the file "/textFile.txt" of the space "Shares" should be "0123456789"
 
 
+  @T0ac55460
   Scenario: Sharee uploads a chunked file with correct checksum to a received share folder should work
     Given user "Alice" has created folder "/FOLDER"
     And user "Alice" has shared folder "/FOLDER" with user "Brian"
@@ -263,6 +283,7 @@ Feature: upload resources on share using TUS protocol
     And for user "Alice" the content of the file "/FOLDER/textFile.txt" of the space "Personal" should be "0123456789"
 
 
+  @T46c4a11c
   Scenario: Sharer uploads a file with checksum and as a sharee overwrites the shared file with new data and correct checksum
     Given user "Alice" has created a new TUS resource for the space "Personal" with content "" using the WebDAV API with these headers:
       | Upload-Length   | 16                        |
@@ -281,6 +302,7 @@ Feature: upload resources on share using TUS protocol
     And for user "Alice" the content of the file "/textFile.txt" of the space "Personal" should be "overwritten content"
 
 
+  @T3e984bf7
   Scenario: Sharer uploads a file with checksum and as a sharee overwrites the shared file with new data and invalid checksum
     Given user "Alice" has created a new TUS resource for the space "Personal" with content "" using the WebDAV API with these headers:
       | Upload-Length   | 16                        |

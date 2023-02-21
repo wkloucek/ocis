@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @Sa8ef0e2f
 Feature: Share a file or folder that is inside a space via public link
   As an user with manager space role
   I want to be able to share the data inside the space via public link
@@ -32,6 +32,7 @@ Feature: Share a file or folder that is inside a space via public link
     And user "Alice" has uploaded a file inside space "share sub-item" with content "some content" to "folder/file.txt"
 
 
+  @T62e5c77e
   Scenario Outline: A manager of the space can share an entity inside project space via public link
     When user "Alice" creates a public link share inside of space "share sub-item" with settings:
       | path        | <entity>      |
@@ -64,6 +65,7 @@ Feature: Share a file or folder that is inside a space via public link
       | folder/file.txt | /file.txt   | 3           | 123      | link | 2042-03-25T23:59:59+0100 | file      | text/plain           |
 
 
+  @Tfc73fc19
   Scenario Outline: An user participant of the project space with space manager role can share an entity inside project space via public link
     Given user "Alice" has shared a space "share sub-item" to user "Brian" with role "manager"
     When user "Brian" creates a public link share inside of space "share sub-item" with settings:
@@ -90,6 +92,7 @@ Feature: Share a file or folder that is inside a space via public link
       | folder/file.txt | /file.txt   | file      | text/plain           |
 
 
+  @Tb5b7d935
   Scenario Outline: An user participant of the project space without space manager role cannot share an entity inside project space via public link
     Given user "Alice" has shared a space "share sub-item" to user "Brian" with role "<spaceRole>"
     When user "Brian" creates a public link share inside of space "share sub-item" with settings:
@@ -110,6 +113,7 @@ Feature: Share a file or folder that is inside a space via public link
       | folder/file.txt | viewer    |
 
 
+  @T37b94819
   Scenario Outline: User creates a new public link share of a file with edit permissions
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file with content "Random data" to "/file.txt"
@@ -137,6 +141,7 @@ Feature: Share a file or folder that is inside a space via public link
       | 2               | 200             |
 
 
+  @T70b75273
   Scenario Outline: An user participant of the project space can see the created public resources link
     Given user "Alice" has shared a space "share sub-item" to user "Brian" with role "<spaceRole>"
     When user "Alice" creates a public link share inside of space "share sub-item" with settings:

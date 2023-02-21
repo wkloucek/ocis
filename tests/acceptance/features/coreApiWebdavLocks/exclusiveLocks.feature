@@ -1,10 +1,11 @@
-@api @issue-ocis-reva-172
+@api @issue-ocis-reva-172 @Sf0340463
 Feature: there can be only one exclusive lock on a resource
 
   Background:
     Given user "Alice" has been created with default attributes and without skeleton files
 
 
+  @T085dd5b6
   Scenario Outline: a second lock cannot be set on a folder when its exclusively locked
     Given using <dav-path> DAV path
     And user "Alice" has uploaded file "filesForUpload/textfile.txt" to "textfile0.txt"
@@ -27,7 +28,7 @@ Feature: there can be only one exclusive lock on a resource
       | spaces   | shared     |
       | spaces   | exclusive  |
 
-  @files_sharing-app-required
+  @files_sharing-app-required @Td6474c48
   Scenario Outline: a share receiver cannot lock a resource exclusively locked by itself
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -54,7 +55,7 @@ Feature: there can be only one exclusive lock on a resource
       | spaces   | shared     |
       | spaces   | exclusive  |
 
-  @files_sharing-app-required
+  @files_sharing-app-required @T9c1c4302
   Scenario Outline: a share receiver cannot lock a resource exclusively locked by the owner
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -81,7 +82,7 @@ Feature: there can be only one exclusive lock on a resource
       | spaces   | shared     |
       | spaces   | exclusive  |
 
-  @files_sharing-app-required
+  @files_sharing-app-required @T8b4a2635
   Scenario Outline: a share owner cannot lock a resource exclusively locked by a share receiver
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files

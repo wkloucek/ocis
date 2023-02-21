@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @S2c8739df
 Feature: edit user
 
   Note - this feature is run in CI with ACCOUNTS_HASH_DIFFICULTY set to the default for production
@@ -14,6 +14,7 @@ Feature: edit user
       | password    | 1234              |
 
 
+  @T1cce2a2f
   Scenario: the admin user can edit another user email
     When the user "Alice" changes the email of user "Brian" to "newemail@example.com" using the Graph API
     Then the HTTP status code should be "200"
@@ -22,6 +23,7 @@ Feature: edit user
       | mail | newemail@example.com |
 
 
+  @Tc47c2ea1
   Scenario: the admin user can override an existing user email of another user
     When the user "Alice" changes the email of user "Brian" to "brian@example.com" using the Graph API
     Then the HTTP status code should be "200"
@@ -30,6 +32,7 @@ Feature: edit user
       | mail | brian@example.com |
 
 
+  @Tf34199c6
   Scenario: the admin user cannot clear an existing user email
     When the user "Alice" tries to change the email of user "Brian" to "" using the Graph API
     Then the HTTP status code should be "400"
@@ -38,6 +41,7 @@ Feature: edit user
       | mail | brian@example.com |
 
 
+  @T168a7636
   Scenario Outline: a normal user should not be able to change their email address
     Given the administrator has given "Brian" the role "<role>" using the settings api
     When the user "Brian" tries to change the email of user "Brian" to "newemail@example.com" using the Graph API
@@ -51,6 +55,7 @@ Feature: edit user
       | User        |
 
 
+  @Ta0359e6a
   Scenario Outline: a normal user should not be able to edit another user's email
     Given the administrator has given "Brian" the role "<role>" using the settings api
     And the user "Alice" has created a new user using the Graph API with the following settings:
@@ -69,6 +74,7 @@ Feature: edit user
       | User        |
 
 
+  @Tdf2ae535
   Scenario: the admin user can edit another user display name
     When the user "Alice" changes the display name of user "Brian" to "Carol King" using the Graph API
     Then the HTTP status code should be "200"
@@ -77,6 +83,7 @@ Feature: edit user
       | displayName | Carol King |
 
 
+  @T48991cc7
   Scenario: the admin user cannot clear another user display name
     When the user "Alice" tries to change the display name of user "Brian" to "" using the Graph API
     Then the HTTP status code should be "400"
@@ -85,6 +92,7 @@ Feature: edit user
       | displayName | Brian Murphy |
 
 
+  @T91c15ec0
   Scenario Outline: a normal user should not be able to change his/her own display name
     Given the administrator has given "Brian" the role "<role>" using the settings api
     When the user "Brian" tries to change the display name of user "Brian" to "Brian Murphy" using the Graph API
@@ -98,6 +106,7 @@ Feature: edit user
       | User        |
 
 
+  @T144d5672
   Scenario Outline: a normal user should not be able to edit another user's display name
     Given the administrator has given "Brian" the role "<role>" using the settings api
     And the user "Alice" has created a new user using the Graph API with the following settings:
@@ -116,6 +125,7 @@ Feature: edit user
       | User        |
 
 
+  @T7d7b680d
   Scenario: the admin user resets password of another user
     Given user "Brian" has uploaded file with content "test file for reset password" to "/resetpassword.txt"
     When the user "Alice" resets the password of user "Brian" to "newpassword" using the Graph API
@@ -123,6 +133,7 @@ Feature: edit user
     And the content of file "resetpassword.txt" for user "Brian" using password "newpassword" should be "test file for reset password"
 
 
+  @T66814c3c
   Scenario Outline: a normal user should not be able to reset the password of another user
     Given the administrator has given "Brian" the role "<role>" using the settings api
     And the user "Alice" has created a new user using the Graph API with the following settings:

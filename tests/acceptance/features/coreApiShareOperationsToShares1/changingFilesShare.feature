@@ -1,4 +1,4 @@
-@api @files_sharing-app-required @issue-ocis-1289 @issue-ocis-1328
+@api @files_sharing-app-required @issue-ocis-1289 @issue-ocis-1328 @S5464a644
 Feature: sharing
 
   Background:
@@ -9,7 +9,7 @@ Feature: sharing
       | Alice    |
       | Brian    |
 
-  @smokeTest
+  @smokeTest @T82739780
   Scenario Outline: moving a file into a share as recipient
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/shared"
@@ -26,6 +26,7 @@ Feature: sharing
       | new         |
 
 
+  @Tb6e93001
   Scenario Outline: Move files between shares by same user
     Given using <dav_version> DAV path
     And user "Alice" has created folder "share1"
@@ -48,6 +49,7 @@ Feature: sharing
       | new         |
 
 
+  @T5d43bbe7
   Scenario Outline: Move files between shares by same user added by sharee
     Given using <dav_version> DAV path
     And user "Alice" has created folder "share1"
@@ -70,6 +72,7 @@ Feature: sharing
       | new         |
 
 
+  @Tc68a1b3f
   Scenario Outline: Move files between shares by different users
     Given using <dav_version> DAV path
     And user "Carol" has been created with default attributes and without skeleton files
@@ -92,6 +95,7 @@ Feature: sharing
       | new         |
 
 
+  @T58dd4886
   Scenario Outline: overwrite a received file share
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "this is the old content" to "/textfile1.txt"

@@ -1,4 +1,4 @@
-@api
+@api @S8d47ae2a
 Feature: COPY file/folder
 
   As a user
@@ -15,7 +15,7 @@ Feature: COPY file/folder
     And user "Alice" has created folder "/FOLDER"
     And user "Alice" has uploaded file with content "some data" to "/PARENT/parent.txt"
 
-  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112
+  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @Te2cd7940
   Scenario: send COPY requests to webDav endpoints as normal user with wrong password
     When user "Alice" requests these endpoints with "COPY" using password "invalid" about user "Alice"
       | endpoint                                           |
@@ -26,7 +26,7 @@ Feature: COPY file/folder
       | /remote.php/dav/files/%username%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "401"
 
-  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @skipOnOcV10 @personalSpace
+  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @skipOnOcV10 @personalSpace @T52c08513
   Scenario: send COPY requests to webDav endpoints as normal user with wrong password using the spaces WebDAV API
     When user "Alice" requests these endpoints with "COPY" using password "invalid" about user "Alice"
       | endpoint                                           |
@@ -35,7 +35,7 @@ Feature: COPY file/folder
       | /remote.php/dav/spaces/%spaceid%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "401"
 
-  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112
+  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @T385313d7
   Scenario: send COPY requests to webDav endpoints as normal user with no password
     When user "Alice" requests these endpoints with "COPY" using password "" about user "Alice"
       | endpoint                                           |
@@ -46,7 +46,7 @@ Feature: COPY file/folder
       | /remote.php/dav/files/%username%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "401"
 
-  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @skipOnOcV10 @personalSpace
+  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @skipOnOcV10 @personalSpace @Ta642a001
   Scenario: send COPY requests to webDav endpoints as normal user with no password using the spaces WebDAV API
     When user "Alice" requests these endpoints with "COPY" using password "" about user "Alice"
       | endpoint                                           |
@@ -55,7 +55,7 @@ Feature: COPY file/folder
       | /remote.php/dav/spaces/%spaceid%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "401"
 
-  @issue-ocis-reva-14
+  @issue-ocis-reva-14 @T3466cb63
   Scenario: send COPY requests to another user's webDav endpoints as normal user
     When user "Brian" requests these endpoints with "COPY" about user "Alice"
       | endpoint                                           |
@@ -64,7 +64,7 @@ Feature: COPY file/folder
       | /remote.php/dav/files/%username%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "403"
 
- @skipOnOcV10 @personalSpace @issue-ocis-reva-14
+ @skipOnOcV10 @personalSpace @issue-ocis-reva-14 @Tdc78fa8f
  Scenario: send COPY requests to another user's webDav endpoints as normal user using the spaces WebDAV API
    When user "Brian" requests these endpoints with "COPY" about user "Alice"
      | endpoint                                           |
@@ -74,6 +74,7 @@ Feature: COPY file/folder
    Then the HTTP status code of responses on all endpoints should be "403"
 
 
+  @T5f63af08
   Scenario: send COPY requests to webDav endpoints using invalid username but correct password
     When user "usero" requests these endpoints with "COPY" using the password of user "Alice"
       | endpoint                                           |
@@ -84,7 +85,7 @@ Feature: COPY file/folder
       | /remote.php/dav/files/%username%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "401"
 
-  @skipOnOcV10 @personalSpace
+  @skipOnOcV10 @personalSpace @T2b56ed86
   Scenario: send COPY requests to webDav endpoints using invalid username but correct password using the spaces WebDAV API
     When user "usero" requests these endpoints with "COPY" using the password of user "Alice"
       | endpoint                                           |
@@ -94,6 +95,7 @@ Feature: COPY file/folder
     Then the HTTP status code of responses on all endpoints should be "401"
 
 
+  @T5006e0f5
   Scenario: send COPY requests to webDav endpoints using valid password and username of different user
     When user "Brian" requests these endpoints with "COPY" using the password of user "Alice"
       | endpoint                                           |
@@ -104,7 +106,7 @@ Feature: COPY file/folder
       | /remote.php/dav/files/%username%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "401"
 
-  @skipOnOcV10 @personalSpace
+  @skipOnOcV10 @personalSpace @T1fdfae91
   Scenario: send COPY requests to webDav endpoints using valid password and username of different user using the spaces WebDAV API
     When user "Brian" requests these endpoints with "COPY" using the password of user "Alice"
       | endpoint                                           |
@@ -113,7 +115,7 @@ Feature: COPY file/folder
       | /remote.php/dav/spaces/%spaceid%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "401"
 
-  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112
+  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @T8969a1e8
   Scenario: send COPY requests to webDav endpoints without any authentication
     When a user requests these endpoints with "COPY" with no authentication about user "Alice"
       | endpoint                                           |
@@ -124,7 +126,7 @@ Feature: COPY file/folder
       | /remote.php/dav/files/%username%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "401"
 
-  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @skipOnOcV10 @personalSpace
+  @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @skipOnOcV10 @personalSpace @Tf9fdfe08
   Scenario: send COPY requests to webDav endpoints without any authentication using the spaces WebDAV API
     When a user requests these endpoints with "COPY" with no authentication about user "Alice"
       | endpoint                                           |
@@ -133,7 +135,7 @@ Feature: COPY file/folder
       | /remote.php/dav/spaces/%spaceid%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "401"
 
-  @skipOnOcV10
+  @skipOnOcV10 @T906edf12
   Scenario: send COPY requests to webDav endpoints with body as normal user
     When user "Alice" requests these endpoints with "COPY" including body "doesnotmatter" about user "Alice"
       | endpoint                                           |
@@ -145,7 +147,7 @@ Feature: COPY file/folder
       | /remote.php/dav/files/%username%/PARENT/parent.txt |
     Then the HTTP status code of responses on all endpoints should be "415"
 
- @skipOnOcV10 @personalSpace
+  @skipOnOcV10 @personalSpace @Tcdda5a41
   Scenario: send COPY requests to webDav endpoints with body as normal user using the spaces WebDAV API
     When user "Alice" requests these endpoints with "COPY" including body "doesnotmatter" about user "Alice"
       | endpoint                                           |

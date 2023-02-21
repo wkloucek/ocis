@@ -1,4 +1,4 @@
-@api @skipOnReva
+@api @skipOnReva @Sc39aad4a
 Feature: upload file
   As a user
   I want to be able to upload files when passwords are stored with the full hash difficulty
@@ -8,6 +8,7 @@ Feature: upload file
   See https://github.com/owncloud/ocis/issues/1542 and https://github.com/owncloud/ocis/pull/839
 
 
+  @T9f3a1b96
   Scenario Outline: upload a file and check download content
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has been created with default attributes and without skeleton files

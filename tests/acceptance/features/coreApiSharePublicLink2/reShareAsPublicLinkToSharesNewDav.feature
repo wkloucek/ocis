@@ -1,4 +1,4 @@
-@api @files_sharing-app-required @public_link_share-feature-required
+@api @files_sharing-app-required @public_link_share-feature-required @Sd6387fd2
 Feature: reshare as public link
   As a user
   I want to create public link shares from files/folders shared with me
@@ -11,6 +11,7 @@ Feature: reshare as public link
       | Brian    |
 
 
+  @T64c080f7
   Scenario Outline: creating a public link from a share with read permission only is not allowed
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/test"
@@ -27,6 +28,7 @@ Feature: reshare as public link
       | 2               | 404              |
 
 
+  @Tc54e759b
   Scenario Outline: creating a public link from a share with share+read only permissions is allowed
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/test"
@@ -47,6 +49,7 @@ Feature: reshare as public link
       | 2               | 200             |
 
 
+  @T0400e20f
   Scenario Outline: creating an upload public link from a share with share+read only permissions is not allowed
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/test"
@@ -64,6 +67,7 @@ Feature: reshare as public link
       | 2               | 404              |
 
 
+  @Tdbf7970c
   Scenario Outline: creating a public link from a share with read+write permissions only is not allowed
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/test"
@@ -80,6 +84,7 @@ Feature: reshare as public link
       | 2               | 404              |
 
 
+  @Teb46e77e
   Scenario Outline: creating a public link from a share with share+read+write permissions is allowed
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/test"
@@ -100,6 +105,7 @@ Feature: reshare as public link
       | 2               | 200             |
 
 
+  @Tf65f4224
   Scenario Outline: creating an upload public link from a share with share+read+write permissions is allowed
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/test"
@@ -121,6 +127,7 @@ Feature: reshare as public link
       | 2               | 200             |
 
 
+  @T70e7c31e
   Scenario Outline: creating an upload public link from a sub-folder of a share with share+read only permissions is not allowed
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/test"
@@ -139,6 +146,7 @@ Feature: reshare as public link
       | 2               | 404              |
 
 
+  @T928e96c4
   Scenario Outline: increasing permissions of a public link of a share with share+read only permissions is not allowed
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/test"
@@ -160,6 +168,7 @@ Feature: reshare as public link
       | 2               | 404               | 403               |
 
 
+  @Ta0ba3e52
   Scenario Outline: increasing permissions of a public link from a sub-folder of a share with share+read only permissions is not allowed
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/test"

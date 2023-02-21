@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @Sca278fc8
 Feature: Propfind test
   check that the PROPFIND response contains all the relevant values
 
@@ -12,6 +12,7 @@ Feature: Propfind test
     And user "Alice" has created a space "new-space" with the default quota using the GraphApi
 
 
+  @T4d0a988a
   Scenario: space-admin checks the PROPFIND request of a space
     Given user "Alice" has uploaded a file inside space "new-space" with content "some content" to "testfile.txt"
     When user "Alice" sends PROPFIND request to space "new-space" using the WebDAV API
@@ -25,6 +26,7 @@ Feature: Propfind test
       | oc:size                      | 12               |
 
 
+  @T735c383c
   Scenario Outline: space member with a different role checks the PROPFIND request of a space
     Given user "Alice" has uploaded a file inside space "new-space" with content "some content" to "testfile.txt"
     And user "Alice" has shared a space "new-space" to user "Brian" with role "<role>"

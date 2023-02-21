@@ -1,4 +1,4 @@
-@api @files_sharing-app-required @issue-ocis-1327
+@api @files_sharing-app-required @issue-ocis-1327 @Sced31f1d
 Feature: shares are received in the default folder for received shares
 
   Background:
@@ -7,6 +7,7 @@ Feature: shares are received in the default folder for received shares
     And user "Alice" has been created with default attributes and without skeleton files
 
 
+  @Td86916e8
   Scenario Outline: Do not allow sharing of the entire share_folder
     Given using OCS API version "<ocs_api_version>"
     And user "Brian" has been created with default attributes and without skeleton files

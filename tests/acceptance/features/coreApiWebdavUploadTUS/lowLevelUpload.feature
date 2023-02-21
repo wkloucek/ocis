@@ -1,10 +1,11 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @S456c9b37
 Feature: low level tests for upload of chunks
 
   Background:
     Given user "Alice" has been created with default attributes and without skeleton files
 
 
+  @Tbfee5bb4
   Scenario Outline: upload a chunk twice
     Given using <dav_version> DAV path
     And user "Alice" has created a new TUS resource on the WebDAV API with these headers:
@@ -26,6 +27,7 @@ Feature: low level tests for upload of chunks
       | spaces      |
 
 
+  @Td567e217
   Scenario Outline: finalize file upload after uploading a chunk twice
     Given using <dav_version> DAV path
     And user "Alice" has created a new TUS resource on the WebDAV API with these headers:
@@ -48,6 +50,7 @@ Feature: low level tests for upload of chunks
       | spaces      |
 
 
+  @T7b43cba5
   Scenario Outline: send last chunk twice
     Given using <dav_version> DAV path
     And user "Alice" has created a new TUS resource on the WebDAV API with these headers:
@@ -70,6 +73,7 @@ Feature: low level tests for upload of chunks
       | spaces      |
 
 
+  @T04aaf96f
   Scenario Outline: start with uploading not at the beginning of the file
     Given using <dav_version> DAV path
     And user "Alice" has created a new TUS resource on the WebDAV API with these headers:

@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @S3c95caa1
 Feature: Share a file or folder that is inside a space
   As an user with manager space role
   I want to be able to share the data inside the space
@@ -21,6 +21,7 @@ Feature: Share a file or folder that is inside a space
     And using new DAV path
 
 
+  @Tde47b8a7
   Scenario Outline: A manager of the space can share an entity inside project space to another user with role
     And user "Alice" creates a share inside of space "share sub-item" with settings:
       | path       | <entity>     |
@@ -42,6 +43,7 @@ Feature: Share a file or folder that is inside a space
       | file.txt | file   | editor | 2042-03-25T23:59:59+0100 | 2042-03-25 |
 
 
+  @T0995df0f
   Scenario Outline: A user participant of the project space with manager role can share an entity to another user
     Given user "Alice" has shared a space "share sub-item" to user "Brian" with role "manager"
     When user "Brian" creates a share inside of space "share sub-item" with settings:
@@ -64,6 +66,7 @@ Feature: Share a file or folder that is inside a space
       | file.txt | file   | editor |                          |            |
 
 
+  @T88fd0cba
   Scenario Outline: A user participant of the project space without space manager role cannot share an entity to another user
     Given user "Alice" has shared a space "share sub-item" to user "Brian" with role "<spaceRole>"
     When user "Brian" creates a share inside of space "share sub-item" with settings:
@@ -81,6 +84,7 @@ Feature: Share a file or folder that is inside a space
       | folder   | viewer    | 404        | No share permission |
 
 
+  @T797fc7a0
   Scenario Outline: A user participant of the project space can see the created resources share
     Given user "Alice" has shared a space "share sub-item" to user "Brian" with role "<spaceRole>"
     When user "Alice" creates a share inside of space "share sub-item" with settings:
@@ -96,6 +100,7 @@ Feature: Share a file or folder that is inside a space
       | manager   |
 
 
+  @Te2d9ebf9
   Scenario: A user shares the folder to the group
     Given group "sales" has been created
     And the administrator has added a user "Brian" to the group "sales" using GraphApi
@@ -114,6 +119,7 @@ Feature: Share a file or folder that is inside a space
       | expiration | 2042-01-01 |
 
 
+  @T5b70fa5e
   Scenario: A user changes the expiration date
     Given user "Alice" has created a share inside of space "share sub-item" with settings:
       | path       | folder                   |
@@ -128,6 +134,7 @@ Feature: Share a file or folder that is inside a space
       | expiration | 2044-01-01 |
 
 
+  @Tf090a01b
   Scenario: A user deletes the expiration date
     Given user "Alice" has created a share inside of space "share sub-item" with settings:
       | path       | folder                   |

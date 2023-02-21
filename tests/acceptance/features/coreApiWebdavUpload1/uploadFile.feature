@@ -1,4 +1,4 @@
-@api
+@api @Sde36c646
 Feature: upload file
   As a user
   I want to be able to upload files
@@ -8,7 +8,7 @@ Feature: upload file
     Given using OCS API version "1"
     And user "Alice" has been created with default attributes and without skeleton files
 
-  @smokeTest
+  @smokeTest @T4d06b991
   Scenario Outline: upload a file and check download content
     Given using <dav_version> DAV path
     When user "Alice" uploads file with content "uploaded content" to "<file_name>" using the WebDAV API
@@ -36,6 +36,7 @@ Feature: upload file
       | spaces      | /s,a,m,p,l,e.txt  |
 
 
+  @T4d06b991
   Scenario Outline: upload a file and check download content
     Given using <dav_version> DAV path
     When user "Alice" uploads file with content "uploaded content" to <file_name> using the WebDAV API
@@ -54,7 +55,7 @@ Feature: upload file
       | spaces      | "C++ file.cpp" |
       | spaces      | "file #2.txt"  |
 
-  @issue-ocis-reva-265
+  @issue-ocis-reva-265 @T4d06b991
   #after fixing all issues delete this Scenario and merge with the one above
   Scenario Outline: upload a file and check download content
     Given using <dav_version> DAV path
@@ -78,6 +79,7 @@ Feature: upload file
       | spaces      | " # %ab ab?=ed "    |
 
 
+  @Tf67de97a
   Scenario Outline: upload a file with comma in the filename and check download content
     Given using <dav_version> DAV path
     When user "Alice" uploads file with content "file with comma" to <file_name> using the WebDAV API
@@ -100,6 +102,7 @@ Feature: upload file
       | spaces      | ",,,.,"        |
 
 
+  @Tf2fb821d
   Scenario Outline: upload a file into a folder and check download content
     Given using <dav_version> DAV path
     And user "Alice" has created folder "<folder_name>"
@@ -128,7 +131,7 @@ Feature: upload file
       | spaces      | /नेपाली         | नेपाली           |
       | spaces      | /folder #2.txt  | file #2.txt      |
 
-  @issue-ocis-reva-265
+    @issue-ocis-reva-265 @Tf2fb821d
     #after fixing all issues delete this Scenario and merge with the one above
   Scenario Outline: upload a file into a folder and check download content
     Given using <dav_version> DAV path
@@ -150,6 +153,7 @@ Feature: upload file
       | spaces      | /?fi=le&%#2 . txt | # %ab ab?=ed |
 
 
+  @T7da0316a
   Scenario Outline: attempt to upload a file into a nonexistent folder
     Given using <dav_version> DAV path
     When user "Alice" uploads file with content "uploaded content" to "nonexistent-folder/new-file.txt" using the WebDAV API
@@ -166,7 +170,7 @@ Feature: upload file
       | dav_version |
       | spaces      |
 
-  @issue-ocis-reva-15
+  @issue-ocis-reva-15 @Tcbf0b038
   Scenario Outline: Uploading file to path with extension .part should not be possible
     Given using <dav_version> DAV path
     When user "Alice" uploads file "filesForUpload/textfile.txt" to "/textfile.part" using the WebDAV API
@@ -187,6 +191,7 @@ Feature: upload file
       | spaces      |
 
 
+  @Tfa334f77
   Scenario Outline: upload a file into a folder with dots in the path and check download content
     Given using <dav_version> DAV path
     And user "Alice" has created folder "<folder_name>"
@@ -217,7 +222,7 @@ Feature: upload file
       | spaces      | /upload...1.. | abc...txt.. |
       | spaces      | /...          | ...         |
 
-  @issue-ocis-reva-174
+  @issue-ocis-reva-174 @T6322521c
   Scenario Outline: upload file with mtime
     Given using <dav_version> DAV path
     When user "Alice" uploads file "filesForUpload/textfile.txt" to "file.txt" with mtime "Thu, 08 Aug 2019 04:18:13 GMT" using the WebDAV API
@@ -234,7 +239,7 @@ Feature: upload file
       | dav_version |
       | spaces      |
 
-  @issue-ocis-reva-174
+  @issue-ocis-reva-174 @Tcd188a1c
   Scenario Outline: upload a file with mtime in a folder
     Given using <dav_version> DAV path
     And user "Alice" has created folder "testFolder"
@@ -252,7 +257,7 @@ Feature: upload file
       | dav_version |
       | spaces      |
 
-  @issue-ocis-reva-174
+  @issue-ocis-reva-174 @T917703fb
   Scenario Outline: moving a file does not change its mtime
     Given using <dav_version> DAV path
     And user "Alice" has created folder "testFolder"
@@ -271,7 +276,7 @@ Feature: upload file
       | dav_version |
       | spaces      |
 
-  @issue-ocis-reva-174
+  @issue-ocis-reva-174 @Td427a3c6
   Scenario Outline: overwriting a file changes its mtime
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "first time upload content" to "file.txt"
@@ -291,6 +296,7 @@ Feature: upload file
       | spaces      |
 
 
+  @Td7ded2c6
   Scenario Outline: upload a hidden file and check download content
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/FOLDER"
@@ -318,6 +324,7 @@ Feature: upload file
       | spaces      |
 
 
+  @T0db9e0e1
   Scenario Outline: upload a file of size zero byte
     Given using <dav_version> DAV path
     When user "Alice" uploads file "filesForUpload/zerobyte.txt" to "/zerobyte.txt" using the WebDAV API

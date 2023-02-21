@@ -1,4 +1,4 @@
-@api @files_sharing-app-required @public_link_share-feature-required @issue-ocis-reva-252
+@api @files_sharing-app-required @public_link_share-feature-required @issue-ocis-reva-252 @S5a3d7445
 Feature: update a public link share
 
   Background:
@@ -6,6 +6,7 @@ Feature: update a public link share
     And user "Alice" has been created with default attributes and without skeleton files
 
 
+  @T9129e7e0
   Scenario Outline: API responds with a full set of parameters when owner changes the expireDate of a public share
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "FOLDER"
@@ -45,7 +46,7 @@ Feature: update a public link share
       | 1               | 100             |
       | 2               | 200             |
 
-  @smokeTest @issue-ocis-reva-336
+  @smokeTest @issue-ocis-reva-336 @T83913561
   Scenario Outline: Creating a new public link share, updating its expiration date and getting its info
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "FOLDER"
@@ -79,6 +80,7 @@ Feature: update a public link share
       | 2               | 200             |
 
 
+  @T08a8fc45
   Scenario Outline: Creating a new public link share with password and adding an expiration date using public API
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file with content "Random data" to "/randomfile.txt"
@@ -99,6 +101,7 @@ Feature: update a public link share
       | 2               | 200             |
 
 
+  @Tbf0b0529
   Scenario Outline: Creating a new public link share with password and removing (updating) it to make the resources accessible without password using public API
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file with content "Random data" to "/randomfile.txt"
@@ -119,7 +122,7 @@ Feature: update a public link share
       | 1               | 100             |
       | 2               | 200             |
 
-  @issue-ocis-reva-336
+  @issue-ocis-reva-336 @Tcc2fa4a8
   Scenario Outline: Creating a new public link share, updating its expiration date and getting its info (ocis Bug demonstration)
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "FOLDER"
@@ -152,7 +155,7 @@ Feature: update a public link share
       | 1               | 100             |
       | 2               | 200             |
 
-  @issue-ocis-reva-336
+  @issue-ocis-reva-336 @Tf7b7c64b
   Scenario Outline: Creating a new public link share, updating its password and getting its info
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "FOLDER"
@@ -184,7 +187,7 @@ Feature: update a public link share
       | 1               | 100             |
       | 2               | 200             |
 
-  @issue-ocis-reva-336
+  @issue-ocis-reva-336 @Tad953602
   Scenario Outline: Creating a new public link share, updating its permissions and getting its info
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "FOLDER"
@@ -216,7 +219,7 @@ Feature: update a public link share
       | 1               | 100             |
       | 2               | 200             |
 
-  @issue-ocis-reva-336
+  @issue-ocis-reva-336 @T1106d64c
   Scenario Outline: Creating a new public link share, updating its permissions to view download and upload and getting its info
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "FOLDER"
@@ -248,7 +251,7 @@ Feature: update a public link share
       | 1               | 100             |
       | 2               | 200             |
 
-  @issue-ocis-reva-336
+  @issue-ocis-reva-336 @T4a3485e3
   Scenario Outline: Creating a new public link share, updating publicUpload option and getting its info
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "FOLDER"
@@ -281,6 +284,7 @@ Feature: update a public link share
       | 2               | 200             |
 
 
+  @Ta2d35efd
   Scenario Outline: Adding public upload to a read only shared folder as recipient is not allowed using the public API
     Given the administrator has set the default folder for received shares to "Shares"
     And auto-accept shares has been disabled
@@ -305,6 +309,7 @@ Feature: update a public link share
       | 1               | 200              |
       | 2               | 404              |
 
+  @T25921311
   Scenario Outline: Adding public upload to a shared folder as recipient is allowed with permissions using the public API
     Given the administrator has set the default folder for received shares to "Shares"
     And auto-accept shares has been disabled
@@ -330,6 +335,7 @@ Feature: update a public link share
       | 2               | 200             |
 
 
+  @Td8aa07f0
   Scenario Outline: Adding public link with all permissions to a read only shared folder as recipient is not allowed using the public API
     Given the administrator has set the default folder for received shares to "Shares"
     And auto-accept shares has been disabled
@@ -355,6 +361,7 @@ Feature: update a public link share
       | 2               | 404              |
 
 
+  @T36d59beb
   Scenario Outline: Adding public link with all permissions to a read only shared folder as recipient is allowed with permissions using the public API
     Given the administrator has set the default folder for received shares to "Shares"
     And auto-accept shares has been disabled
@@ -380,6 +387,7 @@ Feature: update a public link share
       | 2               | 200             |
 
 
+  @T5c78ea20
   Scenario Outline: Updating share permissions from change to read restricts public from deleting files using the public API
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "PARENT"
@@ -402,6 +410,7 @@ Feature: update a public link share
       | 2               |
 
 
+  @T9385b7c7
   Scenario Outline: Updating share permissions from read to change allows public to delete files using the public API
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "PARENT"
@@ -424,6 +433,7 @@ Feature: update a public link share
       | 2               |
 
 
+  @T5a4ae73a
   Scenario Outline: API responds with a full set of parameters when owner renames the folder with a public link in ocis
     Given using OCS API version "<ocs_api_version>"
     And using <dav-path> DAV path
@@ -470,6 +480,7 @@ Feature: update a public link share
       | spaces   | 2               | 200             |
 
 
+  @T7244617d
   Scenario Outline: API responds with a full set of parameters when owner renames the file with a public link in ocis
     Given using OCS API version "<ocs_api_version>"
     And using <dav-path> DAV path
@@ -516,6 +527,7 @@ Feature: update a public link share
       | spaces   | 2               | 200             |
 
 
+  @T81e13fe0
   Scenario Outline: Updating the role of a public link to internal
     Given using OCS API version "<ocs_api_version>"
     And using <dav-path> DAV path

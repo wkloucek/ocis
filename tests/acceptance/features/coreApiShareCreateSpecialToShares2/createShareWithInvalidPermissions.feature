@@ -1,4 +1,4 @@
-@api @files_sharing-app-required
+@api @files_sharing-app-required @S9443bfbd
 Feature: cannot share resources with invalid permissions
 
   Background:
@@ -9,6 +9,7 @@ Feature: cannot share resources with invalid permissions
     And user "Alice" has created folder "/PARENT"
 
 
+  @Te66cca47
   Scenario Outline: Cannot create a share of a file or folder with invalid permissions
     Given using OCS API version "<ocs_api_version>"
     And user "Brian" has been created with default attributes and without skeleton files
@@ -34,6 +35,7 @@ Feature: cannot share resources with invalid permissions
       | 2               | 404             | 404              | PARENT        | 32          |
 
 
+  @T4b1d80e9
   Scenario Outline: Cannot create a share of a file with a user with only create permission
     Given using OCS API version "<ocs_api_version>"
     And user "Brian" has been created with default attributes and without skeleton files
@@ -53,6 +55,7 @@ Feature: cannot share resources with invalid permissions
       | 2               | 400              |
 
 
+  @Tda38fa67
   Scenario Outline: Cannot create a share of a file with a user with only (create,delete) permission
     Given using OCS API version "<ocs_api_version>"
     And user "Brian" has been created with default attributes and without skeleton files
@@ -73,7 +76,7 @@ Feature: cannot share resources with invalid permissions
       | 1               | 200              | create,delete |
       | 2               | 400              | create,delete |
 
-  @issue-ocis-reva-34
+  @issue-ocis-reva-34 @T151dc8db
   Scenario Outline: Cannot create a share of a file with a group with only create permission
     Given using OCS API version "<ocs_api_version>"
     And user "Brian" has been created with default attributes and without skeleton files
@@ -94,7 +97,7 @@ Feature: cannot share resources with invalid permissions
       | 1               | 200              |
       | 2               | 400              |
 
-  @issue-ocis-reva-34
+  @issue-ocis-reva-34 @Tc70e1ada
   Scenario Outline: Cannot create a share of a file with a group with only (create,delete) permission
     Given using OCS API version "<ocs_api_version>"
     And user "Brian" has been created with default attributes and without skeleton files

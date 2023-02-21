@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @Sfc1c0e2d
 Feature: move folders
   As a user
   I want to be able to move and upload files/folders
@@ -8,6 +8,7 @@ Feature: move folders
     Given user "Alice" has been created with default attributes and without skeleton files
 
 
+  @T7cf57347
   Scenario Outline: Uploading file into a moved folder
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/test"

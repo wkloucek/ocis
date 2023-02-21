@@ -1,10 +1,11 @@
-@api @preview-extension-required
+@api @preview-extension-required @S2543f559
 Feature: previews of files downloaded through the webdav API
 
   Background:
     Given user "Alice" has been created with default attributes and without skeleton files
 
 
+  @T8dc4778f
   Scenario Outline: download previews with invalid width
     Given user "Alice" has uploaded file "filesForUpload/lorem.txt" to "/parent.txt"
     When user "Alice" downloads the preview of "/parent.txt" with width "<width>" and height "32" using the WebDAV API
@@ -22,6 +23,7 @@ Feature: previews of files downloaded through the webdav API
       | %2F   |
 
 
+  @Td99816ae
   Scenario Outline: download previews with invalid height
     Given user "Alice" has uploaded file "filesForUpload/lorem.txt" to "/parent.txt"
     When user "Alice" downloads the preview of "/parent.txt" with width "32" and height "<height>" using the WebDAV API
@@ -39,6 +41,7 @@ Feature: previews of files downloaded through the webdav API
       | %2F    |
 
 
+  @T79179fe9
   Scenario: download previews of files inside sub-folders
     Given user "Alice" has created folder "subfolder"
     And user "Alice" has uploaded file "filesForUpload/lorem.txt" to "/subfolder/parent.txt"
@@ -47,6 +50,7 @@ Feature: previews of files downloaded through the webdav API
     And the downloaded image should be "32" pixels wide and "32" pixels high
 
 
+  @Te1e9a280
   Scenario Outline: download previews of file types that don't support preview
     Given user "Alice" has uploaded file "filesForUpload/<filename>" to "/<newfilename>"
     When user "Alice" downloads the preview of "/<newfilename>" with width "32" and height "32" using the WebDAV API
@@ -59,6 +63,7 @@ Feature: previews of files downloaded through the webdav API
       | new-data.zip | test.zip    |
 
 
+  @Tf9dcb2e7
   Scenario Outline: download previews of different image file types
     Given user "Alice" has uploaded file "filesForUpload/<imageName>" to "/<newImageName>"
     When user "Alice" downloads the preview of "/<newImageName>" with width "32" and height "32" using the WebDAV API
@@ -70,6 +75,7 @@ Feature: previews of files downloaded through the webdav API
       | testavatar.png | testimage.png |
 
 
+  @T4dbdfdc0
   Scenario: download previews of image after renaming it
     Given user "Alice" has uploaded file "filesForUpload/testavatar.jpg" to "/testimage.jpg"
     And user "Alice" has moved file "/testimage.jpg" to "/testimage.txt"
@@ -78,6 +84,7 @@ Feature: previews of files downloaded through the webdav API
     And the downloaded image should be "32" pixels wide and "32" pixels high
 
 
+  @Tfe968119
   Scenario: download previews of shared files (to shares folder)
     Given the administrator has set the default folder for received shares to "Shares"
     And auto-accept shares has been disabled
@@ -90,6 +97,7 @@ Feature: previews of files downloaded through the webdav API
     And the downloaded image should be "32" pixels wide and "32" pixels high
 
 
+  @T2a37c2a8
   Scenario: download previews of other users files
     Given user "Brian" has been created with default attributes and without skeleton files
     And user "Alice" has uploaded file "filesForUpload/lorem.txt" to "/parent.txt"
@@ -99,6 +107,7 @@ Feature: previews of files downloaded through the webdav API
     And the value of the item "/d:error/s:exception" in the response about user "Alice" should be "Sabre\DAV\Exception\NotFound"
 
 
+  @T4b14ae06
   Scenario: download previews of folders
     Given user "Alice" has created folder "subfolder"
     When user "Alice" downloads the preview of "/subfolder/" with width "32" and height "32" using the WebDAV API
@@ -107,6 +116,7 @@ Feature: previews of files downloaded through the webdav API
     And the value of the item "/d:error/s:exception" in the response about user "Alice" should be "Sabre\DAV\Exception\BadRequest"
 
 
+  @Tc133f264
   Scenario: download previews of not-existing files
     When user "Alice" downloads the preview of "/parent.txt" with width "32" and height "32" using the WebDAV API
     Then the HTTP status code should be "404"
@@ -114,6 +124,7 @@ Feature: previews of files downloaded through the webdav API
     And the value of the item "/d:error/s:exception" in the response about user "Alice" should be "Sabre\DAV\Exception\NotFound"
 
 
+  @T7bc3552b
   Scenario: Download file previews when it is disabled by the administrator
     Given the administrator has updated system config key "enable_previews" with value "false" and type "boolean"
     And user "Alice" has uploaded file "filesForUpload/lorem.txt" to "/parent.txt"
@@ -122,6 +133,7 @@ Feature: previews of files downloaded through the webdav API
     And the value of the item "/d:error/s:exception" in the response about user "Alice" should be "Sabre\DAV\Exception\NotFound"
 
 
+  @Tfa65d5c1
   Scenario: unset maximum size of previews
     Given user "Alice" has uploaded file "filesForUpload/lorem.txt" to "/parent.txt"
     And the administrator has updated system config key "preview_max_x" with value "null"
@@ -131,6 +143,7 @@ Feature: previews of files downloaded through the webdav API
     And the value of the item "/d:error/s:exception" in the response about user "Alice" should be "Sabre\DAV\Exception\NotFound"
 
 
+  @T0e43ec99
   Scenario: download preview of size "null"
     Given user "Alice" has uploaded file "filesForUpload/lorem.txt" to "/parent.txt"
     And the administrator has updated system config key "preview_max_x" with value "null"
@@ -140,6 +153,7 @@ Feature: previews of files downloaded through the webdav API
     And the value of the item "/d:error/s:exception" in the response about user "Alice" should be "Sabre\DAV\Exception\BadRequest"
 
 
+  @T7b4499ea
   Scenario Outline: download previews of different size smaller than the maximum size set
     Given user "Alice" has uploaded file "filesForUpload/lorem.txt" to "/parent.txt"
     And the administrator has updated system config key "preview_max_x" with value "32"
@@ -155,6 +169,7 @@ Feature: previews of files downloaded through the webdav API
       | 12    | 32     |
 
 
+  @T05071d23
   Scenario Outline: download previews of different size larger than the maximum size set
     Given user "Alice" has uploaded file "filesForUpload/lorem.txt" to "/parent.txt"
     And the administrator has updated system config key "preview_max_x" with value "32"
@@ -168,6 +183,7 @@ Feature: previews of files downloaded through the webdav API
       | 2048  | 2048   |
 
 
+  @Tcf7ef8d6
   Scenario: preview content changes with the change in file content
     Given user "Alice" has uploaded file "filesForUpload/lorem.txt" to "/parent.txt"
     And user "Alice" has downloaded the preview of "/parent.txt" with width "32" and height "32"
@@ -175,7 +191,7 @@ Feature: previews of files downloaded through the webdav API
     Then the HTTP status code should be "204"
     And as user "Alice" the preview of "/parent.txt" with width "32" and height "32" should have been changed
 
-  @issue-ocis-2538
+  @issue-ocis-2538 @T281d26ba
   Scenario: when owner updates a shared file, previews for sharee are also updated (to shared folder)
     Given the administrator has set the default folder for received shares to "Shares"
     And auto-accept shares has been disabled
@@ -189,6 +205,7 @@ Feature: previews of files downloaded through the webdav API
     And as user "Brian" the preview of "/Shares/parent.txt" with width "32" and height "32" should have been changed
 
 
+  @Tacee4d81
   Scenario: it should update the preview content if the file content is updated (content with UTF chars)
     Given user "Alice" has uploaded file "filesForUpload/lorem.txt" to "/lorem.txt"
     And user "Alice" has uploaded file with content "सिमसिमे पानी" to "/lorem.txt"
@@ -198,6 +215,7 @@ Feature: previews of files downloaded through the webdav API
     And the downloaded preview content should match with "सिमसिमे-पानी.png" fixtures preview content
 
 
+  @Tce910815
   Scenario: updates to a file should change the preview for both sharees and sharers
     Given the administrator has set the default folder for received shares to "Shares"
     And auto-accept shares has been disabled
@@ -218,6 +236,7 @@ Feature: previews of files downloaded through the webdav API
     And as user "Brian" the preview of "Shares/FOLDER/lorem.txt" with width "32" and height "32" should have been changed
 
 
+  @T0a6723c1
   Scenario: updates to a group shared file should change the preview for both sharees and sharers
     Given the administrator has set the default folder for received shares to "Shares"
     And auto-accept shares has been disabled

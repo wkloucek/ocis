@@ -1,7 +1,7 @@
-@api
+@api @S8d135e22
 Feature: PROPFIND
 
-  @issue-ocis-751
+  @issue-ocis-751 @T9f5bc0d7
   Scenario Outline: PROPFIND to "/remote.php/dav/(files|spaces)"
     Given user "Alice" has been created with default attributes and without skeleton files
     When user "Alice" requests "<dav_path>" with "PROPFIND" using basic auth
@@ -16,6 +16,7 @@ Feature: PROPFIND
       | /remote.php/dav/spaces        |
 
 
+  @Tafe192a2
   Scenario Outline: PROPFIND to "/remote.php/dav/(files|spaces)" with depth header
     Given user "Alice" has been created with default attributes and without skeleton files
     And the administrator has set depth_infinity_allowed to <depth_infinity_allowed>
@@ -40,6 +41,7 @@ Feature: PROPFIND
       | /remote.php/dav/spaces/%spaceid% | 1                      | infinity | 207         |
 
 
+  @Tfd65fc93
   Scenario: send PROPFIND request to a public link
     Given user "Alice" has been created with default attributes and without skeleton files
     And user "Alice" has created folder "/PARENT"
@@ -52,6 +54,7 @@ Feature: PROPFIND
     And the value of the item "//oc:public-link-share-owner" in the response should be "Alice"
 
 
+  @Tec3538aa
   Scenario: send PROPFIND request to a public link shared with password
     Given user "Alice" has been created with default attributes and without skeleton files
     And user "Alice" has created folder "/PARENT"
@@ -65,6 +68,7 @@ Feature: PROPFIND
     And the value of the item "//oc:public-link-share-owner" in the response should be "Alice"
 
 
+  @T4f71f462
   Scenario: send PROPFIND request to a public link shared with password (request without password)
     Given user "Alice" has been created with default attributes and without skeleton files
     And user "Alice" has created folder "/PARENT"
@@ -77,6 +81,7 @@ Feature: PROPFIND
     And the value of the item "/d:error/s:exception" in the response should be "Sabre\DAV\Exception\NotAuthenticated"
 
 
+  @T3e7a36b9
   Scenario: send PROPFIND request to a public link shared with password (request with incorrect password)
     Given user "Alice" has been created with default attributes and without skeleton files
     And user "Alice" has created folder "/PARENT"

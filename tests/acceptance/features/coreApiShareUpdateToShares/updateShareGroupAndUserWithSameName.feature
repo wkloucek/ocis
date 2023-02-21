@@ -1,4 +1,4 @@
-@api @files_sharing-app-required @issue-ocis-1289 @issue-ocis-1328
+@api @files_sharing-app-required @issue-ocis-1289 @issue-ocis-1328 @Sc604fba5
 Feature: updating shares to users and groups that have the same name
 
   Background:
@@ -14,7 +14,7 @@ Feature: updating shares to users and groups that have the same name
     And user "Alice" has created folder "/TMP"
     And user "Alice" has uploaded file with content "Random data" to "/TMP/randomfile.txt"
 
-  @skipOnLDAP
+  @skipOnLDAP @T761dbfe6
   Scenario Outline: update permissions of a user share with a user and a group having the same name
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has shared folder "/TMP" with group "Brian"
@@ -34,7 +34,7 @@ Feature: updating shares to users and groups that have the same name
       | 1               | 100             |
       | 2               | 200             |
 
-  @skipOnLDAP
+  @skipOnLDAP @Td96d1add
   Scenario Outline: update permissions of a group share with a user and a group having the same name
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has shared folder "/TMP" with user "Brian"

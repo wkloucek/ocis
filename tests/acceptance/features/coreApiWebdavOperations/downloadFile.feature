@@ -1,4 +1,4 @@
-@api
+@api @S312a0a70
 Feature: download file
   As a user
   I want to be able to download files
@@ -9,7 +9,7 @@ Feature: download file
     And user "Alice" has uploaded file with content "ownCloud test text file 0" to "/textfile0.txt"
     And user "Alice" has uploaded file with content "Welcome this is just an example file for developers." to "/welcome.txt"
 
-  @smokeTest
+  @smokeTest @T887d2b2b
   Scenario Outline: download a file
     Given using <dav_version> DAV path
     When user "Alice" downloads file "/textfile0.txt" using the WebDAV API
@@ -25,7 +25,7 @@ Feature: download file
       | dav_version |
       | spaces      |
 
-  @issue-ocis-reva-12
+  @issue-ocis-reva-12 @T9232bff9
   Scenario Outline: download a file with range
     Given using <dav_version> DAV path
     When user "Alice" downloads file "/welcome.txt" with range "bytes=24-50" using the WebDAV API
@@ -42,6 +42,7 @@ Feature: download file
       | spaces      |
 
 
+  @T33305868
   Scenario Outline: download a file larger than 4MB (ref: https://github.com/sabre-io/http/pull/119 )
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file "/file9000000.txt" ending with "text at end of file" of size 9000000 bytes
@@ -60,6 +61,7 @@ Feature: download file
       | spaces      |
 
 
+  @T7617510b
   Scenario Outline: Get the size of a file
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "This is a test file" to "test-file.txt"
@@ -77,7 +79,7 @@ Feature: download file
       | dav_version |
       | spaces      |
 
-  @issue-ocis-reva-98
+  @issue-ocis-reva-98 @T9a811064
   Scenario Outline: Get the content-length response header of a pdf file
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file "filesForUpload/simple.pdf" to "/simple.pdf"
@@ -96,7 +98,7 @@ Feature: download file
       | dav_version |
       | spaces      |
 
-  @issue-ocis-reva-98
+  @issue-ocis-reva-98 @T946c1d21
   Scenario Outline: Get the content-length response header of an image file
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file "filesForUpload/testavatar.png" to "/testavatar.png"
@@ -116,6 +118,7 @@ Feature: download file
       | spaces      |
 
 
+  @T8cf30176
   Scenario Outline: Download a file with comma in the filename
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "file with comma in filename" to <filename>
@@ -139,6 +142,7 @@ Feature: download file
       | spaces         | ",,,.,"        |
 
 
+  @T40241a78
   Scenario Outline: download a file with single part ranges
     Given using <dav_version> DAV path
     When user "Alice" downloads file "/welcome.txt" with range "bytes=0-51" using the WebDAV API
@@ -159,6 +163,7 @@ Feature: download file
       | spaces      |
 
 
+  @T21ed4cab
   Scenario Outline: download a file with multipart ranges
     Given using <dav_version> DAV path
     When user "Alice" downloads file "/welcome.txt" with range "bytes=0-6, 40-51" using the WebDAV API
@@ -190,6 +195,7 @@ Feature: download file
       | spaces      |
 
 
+  @T37b931bb
   Scenario Outline: download a file with last byte range out of bounds
     Given using <dav_version> DAV path
     When user "Alice" downloads file "/welcome.txt" with range "bytes=0-55" using the WebDAV API
@@ -206,6 +212,7 @@ Feature: download file
       | spaces      |
 
 
+  @T3783baec
   Scenario Outline: download a range at the end of a file
     Given using <dav_version> DAV path
     When user "Alice" downloads file "/welcome.txt" with range "bytes=-11" using the WebDAV API
@@ -222,6 +229,7 @@ Feature: download file
       | spaces      |
 
 
+  @T6a61c5a0
   Scenario Outline: download a file with range out of bounds
     Given using <dav_version> DAV path
     When user "Alice" downloads file "/welcome.txt" with range "bytes=55-60" using the WebDAV API
@@ -237,6 +245,7 @@ Feature: download file
       | spaces      |
 
 
+  @T86d846c8
   Scenario Outline: download hidden files
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/FOLDER"
@@ -263,7 +272,7 @@ Feature: download file
       | dav_version |
       | spaces      |
 
-  @smokeTest @skipOnOcV10
+  @smokeTest @skipOnOcV10 @T36a20203
   Scenario Outline: Downloading a file should serve security headers
     Given using <dav_version> DAV path
     When user "Alice" downloads file "/welcome.txt" using the WebDAV API
@@ -290,6 +299,7 @@ Feature: download file
       | spaces      |
 
 
+  @Tb71b0f16
   Scenario: download a zero byte size file
     Given user "Alice" has uploaded file "filesForUpload/zerobyte.txt" to "/zerobyte.txt"
     When user "Alice" downloads file "/zerobyte.txt" using the WebDAV API

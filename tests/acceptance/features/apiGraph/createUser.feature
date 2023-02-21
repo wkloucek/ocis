@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @S584212c9
 Feature: create user
   Only user with admin permissions can create new user
 
@@ -9,6 +9,7 @@ Feature: create user
     Given user "Alice" has been created with default attributes and without skeleton files
 
 
+  @T616a694c
   Scenario Outline: the admin creates a user
     Given the administrator has given "Alice" the role "Admin" using the settings api
     When the user "Alice" creates a new user using GraphAPI with the following settings:
@@ -29,6 +30,7 @@ Feature: create user
       | name with space              | name with space  | example@example.org | 123                          | 400  | should not |
 
 
+  @Tc0268add
   Scenario: a user cannot be created with empty name
     Given the administrator has given "Alice" the role "Admin" using the settings api
     When the user "Alice" creates a new user using GraphAPI with the following settings:
@@ -39,6 +41,7 @@ Feature: create user
     Then the HTTP status code should be "400"
 
 
+  @T5e0ef8d9
   Scenario Outline: a user without admin right cannot create a user
     Given the administrator has given "Alice" the role "<role>" using the settings api
     When the user "Alice" creates a new user using GraphAPI with the following settings:

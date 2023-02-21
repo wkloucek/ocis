@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @S9012baa9
 Feature: download multiple resources bundled into an archive
   As a user
   I want to be able to download multiple items at once
@@ -12,6 +12,7 @@ Feature: download multiple resources bundled into an archive
     Given user "Alice" has been created with default attributes and without skeleton files
 
 
+  @T781f1a2f
   Scenario Outline: download a single file
     Given user "Alice" has uploaded file with content "some data" to "/textfile0.txt"
     When user "Alice" downloads the archive of "/home/textfile0.txt" using the resource path and setting these headers
@@ -27,6 +28,7 @@ Feature: download multiple resources bundled into an archive
       | Windows NT | zip          |
 
 
+  @T76c1bd8e
   Scenario Outline: download a single folder
     Given user "Alice" has created folder "my_data"
     And user "Alice" has uploaded file with content "some data" to "/my_data/textfile0.txt"
@@ -45,6 +47,7 @@ Feature: download multiple resources bundled into an archive
       | Windows NT | zip          |
 
 
+  @Td2d63928
   Scenario: download multiple files and folders
     Given user "Alice" has uploaded file with content "some data" to "/textfile0.txt"
     And user "Alice" has uploaded file with content "other data" to "/textfile1.txt"
@@ -66,11 +69,13 @@ Feature: download multiple resources bundled into an archive
       | more_data/an_other_file.txt | more data  |
 
 
+  @Ted59fadc
   Scenario: download a not existing single file
     When user "Alice" downloads the archive of "/doesnotexist.txt" of user "Alice" using the resource path
     Then the HTTP status code should be "404"
 
 
+  @T7ccc4120
   Scenario: download multiple shared items as share receiver
     Given user "Brian" has been created with default attributes and without skeleton files
     And user "Alice" has uploaded file with content "some data" to "/textfile0.txt"
@@ -101,6 +106,7 @@ Feature: download multiple resources bundled into an archive
       | more_data/an_other_file.txt | more data  |
 
 
+  @T4ab854cc
   Scenario Outline: download the Shares folder as share receiver
     Given user "Brian" has been created with default attributes and without skeleton files
     And user "Alice" has uploaded file with content "some data" to "/textfile0.txt"

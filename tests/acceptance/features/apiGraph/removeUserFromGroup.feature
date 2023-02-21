@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @Sb40fe230
 Feature: remove a user from a group
   As an admin
   I want to be able to remove a user from a group
@@ -8,6 +8,7 @@ Feature: remove a user from a group
     Given user "Alice" has been created with default attributes and without skeleton files
 
 
+  @T4ac92d9e
   Scenario: admin removes a user from a group
     Given these groups have been created:
       | groupname       | comment                               |
@@ -32,6 +33,7 @@ Feature: remove a user from a group
       | Alice    | नेपाली            |
 
 
+  @T23c54524
   Scenario: admin removes a user from a group with special characters
     Given these groups have been created:
       | groupname           | comment            |
@@ -88,6 +90,7 @@ Feature: remove a user from a group
       | Alice    | 😁 😂               |
 
 
+  @Tb10beb39
   Scenario: admin removes a user from a group having % and # in their names
     Given these groups have been created:
       | groupname       | comment                                 |
@@ -124,6 +127,7 @@ Feature: remove a user from a group
       | Alice    | 50%2Fix         |
 
 
+  @T5b3be212
   Scenario: admin removes a user from a group that has forward-slash(s) in the group name
     Given these groups have been created:
       | groupname        | comment                            |
@@ -152,11 +156,13 @@ Feature: remove a user from a group
       | Alice    | var/../etc       |
 
 
+  @T9c75574b
   Scenario: admin tries to remove a user from a non-existing group
     When the administrator tries to remove user "Alice" from group "nonexistentgroup" using the Graph API
     Then the HTTP status code should be "404"
 
 
+  @T7991be84
   Scenario: normal user tries to remove a user in their group
     Given user "Brian" has been created with default attributes and without skeleton files
     And group "grp1" has been created

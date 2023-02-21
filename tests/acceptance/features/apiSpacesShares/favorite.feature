@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @S15b2af59
 Feature: favorite
 
   Background:
@@ -10,6 +10,7 @@ Feature: favorite
     And user "Alice" has created folder "/PARENT"
 
 
+  @Tc9062378
   Scenario: favorite a received share itself
     Given user "Alice" has shared folder "/PARENT" with user "Brian"
     And user "Brian" has accepted share "/PARENT" offered by user "Alice"
@@ -18,6 +19,7 @@ Feature: favorite
     And as user "Brian" folder "/PARENT" inside space "Shares" should be favorited
 
 
+  @Tb0db73bb
   Scenario: favorite a file inside of a received share
     Given user "Alice" has uploaded file with content "some data" to "/PARENT/parent.txt"
     And user "Alice" has shared folder "/PARENT" with user "Brian"
@@ -27,6 +29,7 @@ Feature: favorite
     And as user "Brian" file "/PARENT/parent.txt" inside space "Shares" should be favorited
 
 
+  @T422fafed
   Scenario: favorite a folder inside of a received share
     Given user "Alice" has created folder "/PARENT/sub-folder"
     And user "Alice" has shared folder "/PARENT" with user "Brian"
@@ -36,6 +39,7 @@ Feature: favorite
     And as user "Brian" folder "/PARENT/sub-folder" inside space "Shares" should be favorited
 
 
+  @Tc6111a07
   Scenario: sharee file favorite state should not change the favorite state of sharer
     Given user "Alice" has uploaded file with content "some data" to "/PARENT/parent.txt"
     And user "Alice" has shared file "/PARENT/parent.txt" with user "Brian"

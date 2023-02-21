@@ -1,4 +1,4 @@
-@api @files_sharing-app-required
+@api @files_sharing-app-required @S7c29072c
 Feature: favorite
 
   Background:
@@ -9,6 +9,7 @@ Feature: favorite
     And user "Alice" has uploaded file with content "some data" to "/PARENT/parent.txt"
 
 
+  @Td03e4b0f
   Scenario Outline: favorite a file inside of a received share
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -23,6 +24,7 @@ Feature: favorite
       | new         |
 
 
+  @T8c7eda34
   Scenario Outline: favorite a folder inside of a received share
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -38,6 +40,7 @@ Feature: favorite
       | new         |
 
 
+  @T4ec30c46
   Scenario Outline: favorite a received share itself
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -52,6 +55,7 @@ Feature: favorite
       | new         |
 
 
+  @T05e4c9cb
   Scenario Outline: moving a favorite file out of a share keeps favorite state
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -68,6 +72,7 @@ Feature: favorite
       | new         |
 
 
+  @T33deb641
   Scenario Outline: sharee file favorite state should not change the favorite state of sharer
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files

@@ -1,10 +1,10 @@
-@api @public_link_share-feature-required @files_sharing-app-required @issue-ocis-reva-288 @issue-ocis-reva-252
+@api @public_link_share-feature-required @files_sharing-app-required @issue-ocis-reva-288 @issue-ocis-reva-252 @Se18b2e34
 Feature: multilinksharing
 
   Background:
     Given user "Alice" has been created with default attributes and without skeleton files
 
-  @smokeTest
+  @smokeTest @Tb814985c
   Scenario Outline: Creating three public shares of a folder
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "FOLDER"
@@ -44,6 +44,7 @@ Feature: multilinksharing
       | 2               | 200             |
 
 
+  @Tb7a2659d
   Scenario Outline: Creating three public shares of a file
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file "filesForUpload/textfile.txt" to "/textfile0.txt"
@@ -80,6 +81,7 @@ Feature: multilinksharing
       | 2               | 200             |
 
 
+  @Tca2b7997
   Scenario Outline: Check that updating password doesn't remove name of links
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "FOLDER"
@@ -111,6 +113,7 @@ Feature: multilinksharing
       | 2               | 200             |
 
 
+  @Tb4a4f22d
   Scenario Outline: Deleting a file deletes also its public links
     Given using OCS API version "1"
     And using <dav-path> DAV path
@@ -143,6 +146,7 @@ Feature: multilinksharing
       | spaces   |
 
 
+  @T1bd16814
   Scenario Outline: Deleting one public link share of a file doesn't affect the rest
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file "filesForUpload/textfile.txt" to "/textfile0.txt"
@@ -177,6 +181,7 @@ Feature: multilinksharing
       | 2               | 200             |
 
 
+  @T626d7da6
   Scenario Outline: Overwriting a file doesn't remove its public shares
     Given using OCS API version "1"
     And using <dav-path> DAV path
@@ -209,7 +214,7 @@ Feature: multilinksharing
       | dav-path |
       | spaces   |
 
-  @issue-ocis-reva-335
+  @issue-ocis-reva-335 @Teeca0e02
   Scenario Outline: Renaming a folder doesn't remove its public shares
     Given using OCS API version "1"
     And using <dav-path> DAV path

@@ -1,4 +1,4 @@
-@api
+@api @Sad15c169
 Feature: propagation of etags when deleting a file or folder
 
   Background:
@@ -8,6 +8,7 @@ Feature: propagation of etags when deleting a file or folder
     And user "Alice" has created folder "/upload"
 
 
+  @T263e120e
   Scenario Outline: deleting a file changes the etags of all parents
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/upload/sub"
@@ -32,7 +33,7 @@ Feature: propagation of etags when deleting a file or folder
       | dav_version |
       | spaces      |
 
-  @issue-product-280
+  @issue-product-280 @T71fa56c8
   Scenario Outline: deleting a folder changes the etags of all parents
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/upload/sub"
@@ -58,6 +59,7 @@ Feature: propagation of etags when deleting a file or folder
       | spaces      |
 
 
+  @Tef1c6b35
   Scenario Outline: deleting a folder with content changes the etags of all parents
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/upload/sub"
@@ -84,6 +86,7 @@ Feature: propagation of etags when deleting a file or folder
       | spaces      |
 
 
+  @T920225dc
   Scenario Outline: as share receiver deleting a file changes the etags of all parents for all collaborators
     Given user "Brian" has been created with default attributes and without skeleton files
     And using <dav_version> DAV path
@@ -115,6 +118,7 @@ Feature: propagation of etags when deleting a file or folder
       | new         |
 
 
+  @T00880109
   Scenario Outline: as sharer deleting a file changes the etags of all parents for all collaborators
     Given user "Brian" has been created with default attributes and without skeleton files
     And using <dav_version> DAV path
@@ -145,7 +149,7 @@ Feature: propagation of etags when deleting a file or folder
       | old         |
       | new         |
 
-  @issue-product-280
+  @issue-product-280 @T7d013c1e
   Scenario Outline: as share receiver deleting a folder changes the etags of all parents for all collaborators
     Given user "Brian" has been created with default attributes and without skeleton files
     And the administrator has set the default folder for received shares to "Shares"
@@ -178,7 +182,7 @@ Feature: propagation of etags when deleting a file or folder
       | old         |
       | new         |
 
-  @issue-product-280
+  @issue-product-280 @Td5e80bdf
   Scenario Outline: as sharer deleting a folder changes the etags of all parents for all collaborators
     Given user "Brian" has been created with default attributes and without skeleton files
     And the administrator has set the default folder for received shares to "Shares"
@@ -211,7 +215,7 @@ Feature: propagation of etags when deleting a file or folder
       | old         |
       | new         |
 
-  @issue-product-280
+  @issue-product-280 @Tf0250d95
   Scenario Outline: deleting a file in a publicly shared folder changes its etag for the sharer
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "uploaded content" to "/upload/file.txt"
@@ -236,7 +240,7 @@ Feature: propagation of etags when deleting a file or folder
       | dav_version |
       | spaces      |
 
-  @issue-product-280
+  @issue-product-280 @T085b97af
   Scenario Outline: deleting a folder in a publicly shared folder changes its etag for the sharer
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/upload/sub"

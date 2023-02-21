@@ -1,4 +1,4 @@
-@api
+@api @Saeadc60d
 Feature: users cannot upload a file to or into an excluded directory
   As an administrator
   I want to be able to exclude directories (folders) from being processed. Any attempt to upload a file to one of those names should be refused.
@@ -8,7 +8,7 @@ Feature: users cannot upload a file to or into an excluded directory
     Given using OCS API version "1"
     And user "Alice" has been created with default attributes and without skeleton files
 
-  @issue-ocis-reva-54
+  @issue-ocis-reva-54 @Ta4e9ae65
   Scenario Outline: upload a file to an excluded directory name
     Given using <dav_version> DAV path
     And the administrator has updated system config key "excluded_directories" with value '[".github"]' and type "json"
@@ -25,7 +25,7 @@ Feature: users cannot upload a file to or into an excluded directory
       | dav_version |
       | spaces      |
 
-  @issue-ocis-reva-54
+  @issue-ocis-reva-54 @Tc8838047
   Scenario Outline: upload a file to an excluded directory name inside a parent directory
     Given using <dav_version> DAV path
     And user "Alice" has created folder "FOLDER"
@@ -44,7 +44,7 @@ Feature: users cannot upload a file to or into an excluded directory
       | dav_version |
       | spaces      |
 
-  @issue-ocis-reva-54
+  @issue-ocis-reva-54 @T3e68b001
   Scenario Outline: upload a file to a filename that matches (or not) excluded_directories_regex
     Given using <dav_version> DAV path
     And user "Alice" has created folder "FOLDER"

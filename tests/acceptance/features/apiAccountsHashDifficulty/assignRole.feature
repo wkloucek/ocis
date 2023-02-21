@@ -1,9 +1,10 @@
-@api
+@api @S3438de3c
 Feature: assign role
   As an admin, I want to assign roles to users.
   I cannot change my own role.
   Users without an admin role cannot get the list of roles, assignments list and assign roles to users
 
+  @Tf6be0639
   Scenario Outline: only admin user can see all existing roles
     Given user "Alice" has been created with default attributes and without skeleton files
     And the administrator has given "Alice" the role "<userRole>" using the settings api
@@ -16,6 +17,7 @@ Feature: assign role
       | User        | 201        |
 
 
+  @Td9d3040a
   Scenario Outline: only admin user can see assignments list
     Given user "Alice" has been created with default attributes and without skeleton files
     And the administrator has given "Alice" the role "<userRole>" using the settings api
@@ -28,6 +30,7 @@ Feature: assign role
       | User        | 401        |
 
 
+  @T8cc3bafa
   Scenario Outline: a user cannot change own role
     Given user "Alice" has been created with default attributes and without skeleton files
     And the administrator has given "Alice" the role "<userRole>" using the settings api
@@ -44,6 +47,7 @@ Feature: assign role
       | User        | Space Admin |
 
 
+  @T242e9f39
   Scenario Outline: only admin user can change the role for another user
     Given these users have been created with default attributes and without skeleton files:
       | username |

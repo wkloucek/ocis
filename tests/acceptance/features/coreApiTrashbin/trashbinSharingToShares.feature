@@ -1,4 +1,4 @@
-@api @files_trashbin-app-required @files_sharing-app-required
+@api @files_trashbin-app-required @files_sharing-app-required @Sef6fc904
 Feature: using trashbin together with sharing
 
   Background:
@@ -7,7 +7,7 @@ Feature: using trashbin together with sharing
     And user "Alice" has been created with default attributes and without skeleton files
     And user "Alice" has uploaded file with content "file to delete" to "/textfile0.txt"
 
-  @smokeTest
+  @smokeTest @Ta12a494b
   Scenario Outline: deleting a received folder doesn't move it to trashbin
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -29,6 +29,7 @@ Feature: using trashbin together with sharing
       | spaces   |
 
 
+  @Tfa2b99c9
   Scenario Outline: deleting a file in a received folder moves it to trashbin of both users
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -51,6 +52,7 @@ Feature: using trashbin together with sharing
       | spaces   |
 
 
+  @T447ffc80
   Scenario Outline: sharee deleting a file in a group-shared folder moves it to the trashbin of sharee and sharer only
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -78,6 +80,7 @@ Feature: using trashbin together with sharing
       | spaces   |
 
 
+  @T454a9283
   Scenario Outline: sharer deleting a file in a group-shared folder moves it to the trashbin of sharer only
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -105,6 +108,7 @@ Feature: using trashbin together with sharing
       | spaces   |
 
 
+  @T0698c3dc
   Scenario Outline: sharee deleting a folder in a group-shared folder moves it to the trashbin of sharee and sharer only
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -133,6 +137,7 @@ Feature: using trashbin together with sharing
       | spaces   |
 
 
+  @Te157b3ee
   Scenario Outline: sharer deleting a folder in a group-shared folder moves it to the trashbin of sharer only
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -161,6 +166,7 @@ Feature: using trashbin together with sharing
       | spaces   |
 
 
+  @T2ab2a483
   Scenario Outline: deleting a file in a received folder when restored it comes back to the original path
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -189,6 +195,7 @@ Feature: using trashbin together with sharing
       | spaces   |
 
 
+  @T25b53525
   Scenario Outline: restoring a file to a read-only folder
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -212,6 +219,7 @@ Feature: using trashbin together with sharing
       | spaces   |
 
 
+  @T06e33a44
   Scenario Outline: restoring a file to a read-only sub-folder
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files

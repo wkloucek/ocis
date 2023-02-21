@@ -1,4 +1,4 @@
-@api
+@api @Sfb93e2e3
 Feature: delete folder
   As a user
   I want to be able to delete folders
@@ -8,7 +8,7 @@ Feature: delete folder
     Given user "Alice" has been created with default attributes and without skeleton files
     And user "Alice" creates folder "/PARENT" using the WebDAV API
 
-  @smokeTest
+  @smokeTest @T9db0ae8d
   Scenario Outline: delete a folder
     Given using <dav_version> DAV path
     When user "Alice" deletes folder "/PARENT" using the WebDAV API
@@ -24,7 +24,7 @@ Feature: delete folder
       | dav_version |
       | spaces      |
 
-  @issue-ocis-reva-269
+  @issue-ocis-reva-269 @Td06cc87e
   Scenario Outline: delete a folder when 2 folder exist with different case
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/parent"
@@ -42,7 +42,7 @@ Feature: delete folder
       | dav_version |
       | spaces      |
 
-  @issue-ocis-reva-269
+  @issue-ocis-reva-269 @T6a1ebdbb
   Scenario Outline: delete a sub-folder
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/PARENT/CHILD"
@@ -63,6 +63,7 @@ Feature: delete folder
       | spaces      |
 
 
+  @T0c4d7a63
   Scenario Outline: deleting folder with dot in the name
     Given using <dav_version> DAV path
     And user "Alice" has created folder "<folder_name>"

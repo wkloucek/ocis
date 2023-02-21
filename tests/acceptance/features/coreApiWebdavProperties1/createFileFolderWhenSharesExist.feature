@@ -1,4 +1,4 @@
-@api
+@api @S5bca8d0b
 Feature: create file or folder named similar to Shares folder
   As a user
   I want to be able to create files and folders when the Shares folder exists
@@ -16,6 +16,7 @@ Feature: create file or folder named similar to Shares folder
     And user "Brian" has accepted share "/FOLDER" offered by user "Alice"
 
 
+  @Te1d3fe58
   Scenario Outline: create a folder with a name similar to Shares
     Given using <dav_version> DAV path
     When user "Brian" creates folder "<folder_name>" using the WebDAV API
@@ -32,6 +33,7 @@ Feature: create file or folder named similar to Shares folder
       | new         | /Shares1    |
 
 
+  @T8109725b
   Scenario Outline: create a file with a name similar to Shares
     Given using <dav_version> DAV path
     When user "Brian" uploads file with content "some text" to "<file_name>" using the WebDAV API
@@ -48,6 +50,7 @@ Feature: create file or folder named similar to Shares folder
       | new         | /Shares1  |
 
 
+  @T89f25268
   Scenario Outline: try to create a folder named Shares
     Given using <dav_version> DAV path
     When user "Brian" creates folder "/Shares" using the WebDAV API
@@ -60,6 +63,7 @@ Feature: create file or folder named similar to Shares folder
       | new         |
 
 
+  @T1f70af86
   Scenario Outline: try to create a file named Shares
     Given using <dav_version> DAV path
     When user "Brian" uploads file with content "some text" to "/Shares" using the WebDAV API

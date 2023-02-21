@@ -1,4 +1,4 @@
-@api @files_trashbin-app-required @issue-ocis-reva-52
+@api @files_trashbin-app-required @issue-ocis-reva-52 @S5fb396ae
 Feature: Restore deleted files/folders
   As a user
   I would like to restore files/folders
@@ -8,7 +8,7 @@ Feature: Restore deleted files/folders
     Given user "Alice" has been created with default attributes and without skeleton files
     And user "Alice" has uploaded file with content "file to delete" to "/textfile0.txt"
 
-  @smokeTest
+  @smokeTest @Ta31f7189
   Scenario Outline: A deleted file can be restored
     Given using <dav-path> DAV path
     And user "Alice" has created folder "/FOLDER"
@@ -35,6 +35,7 @@ Feature: Restore deleted files/folders
       | new      |
 
 
+  @T1bfc6ba9
   Scenario Outline: A file deleted from a folder can be restored to the original folder
     Given using <dav-path> DAV path
     And user "Alice" has created folder "/new-folder"
@@ -51,6 +52,7 @@ Feature: Restore deleted files/folders
       | new      |
 
 
+  @Tebe6c9d0
   Scenario Outline: A file deleted from a folder is restored to the original folder if the original folder was deleted and restored
     Given using <dav-path> DAV path
     And user "Alice" has created folder "/new-folder"
@@ -68,7 +70,7 @@ Feature: Restore deleted files/folders
       | old      |
       | new      |
 
-  @skipOnFilesClassifier @issue-files-classifier-291
+  @skipOnFilesClassifier @issue-files-classifier-291 @T8013320c
   Scenario Outline: a file is deleted and restored to a new destination
     Given using <dav-path> DAV path
     And user "Alice" has created folder "/PARENT"
@@ -93,6 +95,7 @@ Feature: Restore deleted files/folders
       | new      | /textfile0.txt          | PARENT/textfile0.txt |
 
 
+  @Tc18da720
   Scenario Outline: restoring a file to an already existing path overrides the file
     Given user "Alice" has uploaded file with content "file to delete" to "/.hiddenfile0.txt"
     And using <dav-path> DAV path
@@ -111,6 +114,7 @@ Feature: Restore deleted files/folders
       | new      | "/PARENT/.hiddenfile0.txt" | ".hiddenfile0.txt" |
 
 
+  @T55bd5e47
   Scenario Outline: A file deleted from a folder is restored to the original folder if the original folder was deleted and recreated
     Given using <dav-path> DAV path
     And user "Alice" has created folder "/new-folder"
@@ -130,7 +134,7 @@ Feature: Restore deleted files/folders
       | old      |
       | new      |
 
-  @local_storage @files_external-app-required @skipOnEncryptionType:user-keys @encryption-issue-42 @skip_on_objectstore
+  @local_storage @files_external-app-required @skipOnEncryptionType:user-keys @encryption-issue-42 @skip_on_objectstore @T8d955fd8
   Scenario Outline: Deleting a file into external storage moves it to the trashbin and can be restored
     Given using <dav-path> DAV path
     And the administrator has invoked occ command "files:scan --all"
@@ -153,7 +157,7 @@ Feature: Restore deleted files/folders
       | old      |
       | new      |
 
-  @local_storage @files_external-app-required @skipOnEncryptionType:user-keys @encryption-issue-42 @skip_on_objectstore
+  @local_storage @files_external-app-required @skipOnEncryptionType:user-keys @encryption-issue-42 @skip_on_objectstore @T5b098203
   Scenario: Deleting an updated file into external storage moves it to the trashbin and can be restored
     Given using old DAV path
     And the administrator has invoked occ command "files:scan --all"
@@ -167,7 +171,7 @@ Feature: Restore deleted files/folders
     And as "Alice" the folder with original path "/local_storage/tmp/textfile0.txt" should not exist in the trashbin
     And the content of file "/local_storage/tmp/textfile0.txt" for user "Alice" should be "AA"
 
-  @smokeTest
+  @smokeTest @T718d5304
   Scenario Outline: A deleted file cannot be restored by a different user
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -188,7 +192,7 @@ Feature: Restore deleted files/folders
       | old      | 404         |
       | new      | 404         |
 
-  @smokeTest
+  @smokeTest @Td76ee6f5
   Scenario Outline: A deleted file cannot be restored with invalid password
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -203,7 +207,7 @@ Feature: Restore deleted files/folders
       | old      |
       | new      |
 
-  @smokeTest
+  @smokeTest @Te00593a0
   Scenario Outline: A deleted file cannot be restored without using a password
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -219,6 +223,7 @@ Feature: Restore deleted files/folders
       | new      |
 
 
+  @Ta73f0018
   Scenario Outline: Files with strange names can be restored
     Given using <dav-path> DAV path
     And user "Alice" has uploaded file with content "file original content" to "<file-to-upload>"
@@ -238,6 +243,7 @@ Feature: Restore deleted files/folders
       | new      | sample,1.txt            |
 
 
+  @T3fc4652c
   Scenario Outline: A file deleted from a multi level sub-folder can be restored to the original folder
     Given using <dav-path> DAV path
     And user "Alice" has created folder "/new-folder"
@@ -256,6 +262,7 @@ Feature: Restore deleted files/folders
       | new      |
 
 
+  @Tc187be30
   Scenario Outline: A deleted multi level folder can be restored including the content
     Given using <dav-path> DAV path
     And user "Alice" has created folder "/new-folder"
@@ -274,6 +281,7 @@ Feature: Restore deleted files/folders
       | new      |
 
 
+  @T30e0aa3f
   Scenario Outline: A subfolder from a deleted multi level folder can be restored including the content
     Given using <dav-path> DAV path
     And user "Alice" has created folder "/new-folder"
@@ -294,6 +302,7 @@ Feature: Restore deleted files/folders
       | new      |
 
 
+  @T8f8080ce
   Scenario Outline: A file from a deleted multi level sub-folder can be restored
     Given using <dav-path> DAV path
     And user "Alice" has created folder "/new-folder"
@@ -314,6 +323,7 @@ Feature: Restore deleted files/folders
       | new      |
 
 
+  @T7b764e37
   Scenario Outline: A deleted hidden file can be restored
     Given using <dav-path> DAV path
     And user "Alice" has created folder "/FOLDER"
@@ -348,6 +358,7 @@ Feature: Restore deleted files/folders
       | new      |
 
 
+  @Tec2701dd
   Scenario Outline: restoring files with special characters
     Given using <dav-path> DAV path
     And user "Alice" has uploaded the following files with content "special character file"
@@ -387,6 +398,7 @@ Feature: Restore deleted files/folders
       | new      |
 
 
+  @T1d94307e
   Scenario Outline: restoring folders with special characters
     Given using <dav-path> DAV path
     And user "Alice" has created the following folders
@@ -426,6 +438,7 @@ Feature: Restore deleted files/folders
       | new      |
 
 
+  @Ta4ac7a7a
   Scenario Outline: A deleted file inside a nested folder can be restored to a different location
     Given using <dav-path> DAV path
     And user "Alice" has created folder "/parent_folder"
@@ -444,6 +457,7 @@ Feature: Restore deleted files/folders
       | new      |
 
 
+  @T419dbde4
   Scenario Outline: A deleted file inside a nested folder cannot be restored to the original location if the location doesn't exist
     Given using <dav-path> DAV path
     And user "Alice" has created folder "/parent_folder"
@@ -463,6 +477,7 @@ Feature: Restore deleted files/folders
       | new      |
 
 
+  @Tf6f1eeae
   Scenario Outline: A deleted file inside a nested folder can be restored to the original location if the location exists
     Given using <dav-path> DAV path
     And user "Alice" has created folder "/parent_folder"
@@ -487,6 +502,7 @@ Feature: Restore deleted files/folders
       | new      |
 
 
+  @T27b58235
   Scenario Outline: A deleted file inside a nested folder cannot be restored without the destination
     Given using <dav-path> DAV path
     And user "Alice" has created folder "/parent_folder"
@@ -506,6 +522,7 @@ Feature: Restore deleted files/folders
       | new      |
 
 
+  @Te1220cea
   Scenario Outline: A deleted file cannot be restored without the destination
     Given using <dav-path> DAV path
     And user "Alice" has uploaded file with content "parent text" to "/parent.txt"
@@ -521,6 +538,7 @@ Feature: Restore deleted files/folders
       | new      |
 
 
+  @T948cea53
   Scenario Outline: restoring folders with dot in the name
     Given using <dav-path> DAV path
     And user "Alice" has created the following folders

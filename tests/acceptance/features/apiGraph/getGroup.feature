@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @S306513a6
 Feature: get groups and their members
   As an admin
   I want to be able to get groups
@@ -9,6 +9,7 @@ Feature: get groups and their members
     And the administrator has given "Alice" the role "Admin" using the settings api
 
 
+  @T2d52ae40
   Scenario: admin user lists all the groups
     Given group "tea-lover" has been created
     And group "coffee-lover" has been created
@@ -21,6 +22,7 @@ Feature: get groups and their members
       | h2o-lover    |
 
 
+  @Td21c66a4
   Scenario: normal user cannot get the groups list
     Given user "Brian" has been created with default attributes and without skeleton files
     And group "tea-lover" has been created
@@ -31,6 +33,7 @@ Feature: get groups and their members
     And the last response should be an unauthorized response
 
 
+  @Tb7269e0f
   Scenario: admin user gets users of a group
     Given these users have been created with default attributes and without skeleton files:
       | username |
@@ -46,6 +49,7 @@ Feature: get groups and their members
       | Carol |
 
 
+  @T246ff606
   Scenario: normal user tries to get users of a group
     Given user "Brian" has been created with default attributes and without skeleton files
     And group "tea-lover" has been created

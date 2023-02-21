@@ -1,7 +1,8 @@
-@api
+@api @Sbbda4437
 Feature: create groups, group names are case insensitive
 
 
+  @T3663d7b2
   Scenario Outline: group names are case insensitive, creating groups with different upper and lower case names
     Given using OCS API version "<ocs_api_version>"
     And group "<group_id1>" has been created

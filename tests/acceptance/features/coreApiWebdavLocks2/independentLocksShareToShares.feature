@@ -1,4 +1,4 @@
-@api @issue-ocis-reva-172
+@api @issue-ocis-reva-172 @S74b0b246
 Feature: independent locks
   Make sure all locks are independent and don't interact with other items that have the same name
 
@@ -9,6 +9,7 @@ Feature: independent locks
     And user "Brian" has been created with default attributes and without skeleton files
 
 
+  @Tec9dde69
   Scenario Outline: locking a file in a received share does not lock other items with the same name in other received shares (shares from different users)
     Given using <dav-path> DAV path
     And user "Carol" has been created with default attributes and without skeleton files
@@ -39,6 +40,7 @@ Feature: independent locks
       | spaces   | exclusive  |
 
 
+  @T9f1cd64e
   Scenario Outline: locking a file in a received share does not lock other items with the same name in other received shares (shares from same user)
     Given using <dav-path> DAV path
     And user "Alice" has created folder "locked/"

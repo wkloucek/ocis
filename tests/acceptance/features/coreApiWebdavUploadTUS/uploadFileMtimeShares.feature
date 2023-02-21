@@ -1,4 +1,4 @@
-@api @files_sharing-app-required @skipOnOcV10
+@api @files_sharing-app-required @skipOnOcV10 @S5bb4f309
 Feature: upload file
   As a user
   I want the mtime of an uploaded file to be the creation date on upload source not the upload date
@@ -13,6 +13,7 @@ Feature: upload file
       | Brian    |
 
 
+  @Td777fc9e
   Scenario Outline: upload file with mtime to a received share
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/toShare"
@@ -27,6 +28,7 @@ Feature: upload file
       | new         |
 
 
+  @T1cd2759d
   Scenario Outline: upload file with mtime to a send share
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/toShare"
@@ -41,6 +43,7 @@ Feature: upload file
       | new         |
 
 
+  @Td4b6b380
   Scenario Outline: overwriting a file with mtime in a received share
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/toShare"
@@ -56,6 +59,7 @@ Feature: upload file
       | new         |
 
 
+  @Ta5a4482b
   Scenario Outline: overwriting a file with mtime in a send share
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/toShare"

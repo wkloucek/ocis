@@ -1,4 +1,4 @@
-@api @files_sharing-app-required
+@api @files_sharing-app-required @S78fae202
 Feature: get the received shares filtered by type (user, group etc)
   As a user
   I want to be able to know the shares that I have received of a particular type (user, group etc)
@@ -35,6 +35,7 @@ Feature: get the received shares filtered by type (user, group etc)
       | permissions | read                       |
 
 
+  @T9fed6546
   Scenario Outline: getting shares received from users
     Given using OCS API version "<ocs_api_version>"
     When user "Brian" gets the user shares shared with him using the sharing API
@@ -49,6 +50,7 @@ Feature: get the received shares filtered by type (user, group etc)
       | 2               | 200             |
 
 
+  @Tf98a1cd4
   Scenario Outline: getting shares received from groups
     Given using OCS API version "<ocs_api_version>"
     When user "Brian" gets the group shares shared with him using the sharing API

@@ -1,10 +1,11 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @S51d70254
 Feature: low level tests of the creation extension see https://tus.io/protocols/resumable-upload.html#creation
 
   Background:
     Given user "Alice" has been created with default attributes and without skeleton files
 
 
+  @T12741968
   Scenario Outline: creating a new upload resource
     Given using <dav_version> DAV path
     When user "Alice" creates a new TUS resource on the WebDAV API with these headers:
@@ -27,6 +28,7 @@ Feature: low level tests of the creation extension see https://tus.io/protocols/
       | spaces      |
 
 
+  @T3d3ece05
   Scenario Outline: creating a new upload resource without upload length
     Given using <dav_version> DAV path
     When user "Alice" creates a new TUS resource on the WebDAV API with these headers:

@@ -1,4 +1,4 @@
-@api @skipOnOcV10 @Sfae14278
+@api @skipOnOcV10 @Sdff5dec2
 Feature: Restore files, folder
   As a user with manager and editor role
   I want to be able to restore files, folders
@@ -21,7 +21,8 @@ Feature: Restore files, folder
     And user "Alice" has uploaded a file inside space "restore objects" with content "test" to "newFolder/file.txt"
 
 
-  @T15574cf9
+
+  @Tc979b461
   Scenario Outline: The user with different role can see deleted objects in trash bin of the space via the webDav API
     Given user "Alice" has shared a space "restore objects" to user "Brian" with role "<role>"
     And user "Alice" has removed the file "newFolder/file.txt" from space "restore objects"
@@ -37,7 +38,8 @@ Feature: Restore files, folder
       | Brian | viewer  |
 
 
-  @T83c07f98
+
+  @T4a357164
   Scenario Outline: The user can restore a folder with some objects from the trash via the webDav API
     Given user "Alice" has shared a space "restore objects" to user "Brian" with role "<role>"
     And user "Alice" has removed the folder "newFolder" from space "restore objects"
@@ -54,7 +56,8 @@ Feature: Restore files, folder
       | Brian | viewer  | 403  | should not           | should               |
 
 
-  @Te79a37f4
+
+  @T2726c1ba
   Scenario Outline: The user can restore a file from the trash via the webDav API
     Given user "Alice" has shared a space "restore objects" to user "Brian" with role "<role>"
     And user "Alice" has removed the file "newFolder/file.txt" from space "restore objects"
@@ -71,7 +74,8 @@ Feature: Restore files, folder
       | Brian | viewer  | 403  | should not           | should               |
 
 
-  @T229830ff
+
+  @T60e35d20
   Scenario: The user can restore a file even if there is not enough quota to do so
     Given user "Admin" has changed the quota of the "Brian Murphy" space to "30"
     And user "Brian" has uploaded file with content "file is less than 30 bytes" to "/file.txt"
@@ -87,7 +91,8 @@ Feature: Restore files, folder
       | quota@@@state | exceeded |
 
 
-  @T44970e65
+
+  @T17a96c28
   Scenario: The recipient can restore a file even if there is not enough owner's quota to do so
     Given user "Admin" has changed the quota of the "Brian Murphy" space to "30"
     And user "Brian" has uploaded file with content "file is less than 30 bytes" to "/file.txt"

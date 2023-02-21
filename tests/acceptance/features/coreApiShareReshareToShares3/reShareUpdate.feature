@@ -1,4 +1,4 @@
-@api @files_sharing-app-required @issue-ocis-1328
+@api @files_sharing-app-required @issue-ocis-1328 @S4dfef5ef
 Feature: sharing
 
   Background:
@@ -11,6 +11,7 @@ Feature: sharing
       | Carol    |
 
 
+  @T83de85ea
   Scenario Outline: Update of reshare can reduce permissions
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/TMP"
@@ -29,6 +30,7 @@ Feature: sharing
       | 2               | 200             |
 
 
+  @T0935036d
   Scenario Outline: Update of reshare can increase permissions to the maximum allowed
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/TMP"
@@ -47,6 +49,7 @@ Feature: sharing
       | 2               | 200             |
 
 
+  @T327355bb
   Scenario Outline: Do not allow update of reshare to exceed permissions
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/TMP"
@@ -65,6 +68,7 @@ Feature: sharing
       | 2               | 404              |
 
 
+  @T1124d145
   Scenario Outline: Update of user reshare by the original share owner can increase permissions up to the permissions of the top-level share
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/TMP"
@@ -83,6 +87,7 @@ Feature: sharing
       | 2               | 200             |
 
 
+  @T4e5c7c9d
   Scenario Outline: Update of user reshare by the original share owner can increase permissions to more than the permissions of the top-level share
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/TMP"
@@ -101,6 +106,7 @@ Feature: sharing
       | 2               | 200             |
 
 
+  @Tad5f6a6f
   Scenario Outline: Update of group reshare by the original share owner can increase permissions up to permissions of the top-level share
     Given using OCS API version "<ocs_api_version>"
     And group "grp1" has been created
@@ -121,6 +127,7 @@ Feature: sharing
       | 2               | 200             |
 
 
+  @Tf531e6ef
   Scenario Outline: Update of group reshare by the original share owner can increase permissions to more than the permissions of the top-level share
     Given using OCS API version "<ocs_api_version>"
     And group "grp1" has been created
@@ -141,6 +148,7 @@ Feature: sharing
       | 2               | 200             |
 
 
+  @Ta0177170
   Scenario Outline: After losing share permissions user can still delete a previously reshared share
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/TMP"

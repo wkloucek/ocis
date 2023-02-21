@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @Sdc1c0f7c
 Feature: delete user
   Only user with admin permission can delete user
 
@@ -9,6 +9,7 @@ Feature: delete user
     Given user "Alice" has been created with default attributes and without skeleton files
 
 
+  @Tbed0e485
   Scenario Outline: the admin user deletes a user
     Given the administrator has given "Alice" the role "Admin" using the settings api
     And the user "Alice" has created a new user using the Graph API with the following settings:
@@ -26,6 +27,7 @@ Feature: delete user
       | name                 | pass with space | example@example.org | my pass                      |
 
 
+  @T66234e42
   Scenario: Delete a user and specify the user name in different case
     Given user "brand-new-user" has been created with default attributes and without skeleton files
     And the administrator has given "Alice" the role "Admin" using the settings api
@@ -34,6 +36,7 @@ Feature: delete user
     And user "brand-new-user" should not exist
 
 
+  @T68001222
   Scenario Outline: the admin user deletes another user with different role
     Given user "Brian" has been created with default attributes and without skeleton files
     And the administrator has given "Alice" the role "Admin" using the settings api
@@ -48,6 +51,7 @@ Feature: delete user
       | User        |
 
 
+  @T3f95cf68
   Scenario: the admin user tries to delete his/her own account
     Given the administrator has given "Alice" the role "Admin" using the settings api
     When the user "Alice" deletes a user "Alice" using the Graph API
@@ -55,12 +59,14 @@ Feature: delete user
     And user "Alice" should exist
 
 
+  @Tc10f5e81
   Scenario: the admin user tries to delete a non-existent user
     Given the administrator has given "Alice" the role "Admin" using the settings api
     When the user "Alice" deletes a user "nonExistentUser" using the Graph API
     Then the HTTP status code should be "404"
 
 
+  @T2042b316
   Scenario Outline: Non-admin user tries to delete another user with different role
     Given user "Brian" has been created with default attributes and without skeleton files
     And the administrator has given "Alice" the role "<role>" using the settings api

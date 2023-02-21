@@ -1,4 +1,4 @@
-@api
+@api @S56f624cd
 Feature: delete file
   As a user
   I want to be able to delete files
@@ -7,7 +7,7 @@ Feature: delete file
   Background:
     Given user "Alice" has been created with default attributes and without skeleton files
 
-  @smokeTest
+  @smokeTest @Tde3b693a
   Scenario Outline: delete a file
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "to delete" to "/textfile0.txt"
@@ -25,6 +25,7 @@ Feature: delete file
       | spaces      |
 
 
+  @Td4e0228a
   Scenario Outline: delete a file when 2 files exist with different case
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "to delete" to "/textfile1.txt"
@@ -45,6 +46,7 @@ Feature: delete file
       | spaces      |
 
 
+  @T69391154
   Scenario Outline: delete file from folder with dots in the path
     Given using <dav_version> DAV path
     And user "Alice" has created folder "<folder_name>"
@@ -81,6 +83,7 @@ Feature: delete file
       | spaces         | /..upload     | ...abc      |
 
 
+  @Tf628bfee
   Scenario Outline: delete a file with comma in the filename
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "file with comma in filename" to <filename>
@@ -104,6 +107,7 @@ Feature: delete file
       | spaces         | ",,,.,"        |
 
 
+  @T1e4018c6
   Scenario Outline: delete a hidden file
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/FOLDER"
@@ -131,6 +135,7 @@ Feature: delete file
       | spaces         |
 
 
+  @T412c2cc1
   Scenario: delete a file of size zero byte
     Given user "Alice" has uploaded file "filesForUpload/zerobyte.txt" to "/zerobyte.txt"
     When user "Alice" deletes file "/zerobyte.txt" using the WebDAV API

@@ -1,4 +1,4 @@
-@api @provisioning_api-app-required @skipOnLDAP @skipOnGraph @skipOnReva
+@api @provisioning_api-app-required @skipOnLDAP @skipOnGraph @skipOnReva @S70535bfa
 Feature: add user
   As an admin
   I want to be able to add users and store their password with the full hash difficulty
@@ -8,6 +8,7 @@ Feature: add user
   See https://github.com/owncloud/ocis/issues/1542 and https://github.com/owncloud/ocis/pull/839
 
 
+  @T4b018376
   Scenario Outline: admin creates a user
     Given using OCS API version "<ocs_api_version>"
     And user "brand-new-user" has been deleted

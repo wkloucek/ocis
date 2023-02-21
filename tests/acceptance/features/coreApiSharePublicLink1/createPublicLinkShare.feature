@@ -1,11 +1,11 @@
-@api @files_sharing-app-required @public_link_share-feature-required @issue-ocis-reva-315 @issue-ocis-reva-316
+@api @files_sharing-app-required @public_link_share-feature-required @issue-ocis-reva-315 @issue-ocis-reva-316 @S4e337716
 
 Feature: create a public link share
 
   Background:
     Given user "Alice" has been created with default attributes and without skeleton files
 
-  @smokeTest
+  @smokeTest @T0e6b1cb5
   Scenario Outline: A new public link share of a file using the default permissions only grants read access using the public WebDAV API
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file with content "Random data" to "/randomfile.txt"
@@ -36,7 +36,7 @@ Feature: create a public link share
       | 1               | 100             |
       | 2               | 200             |
 
-  @smokeTest @issue-ocis-reva-199
+  @smokeTest @issue-ocis-reva-199 @T3ea87754
   Scenario Outline: Creating a new public link share of a file with password using the new public WebDAV API
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file with content "Random data" to "/randomfile.txt"
@@ -69,6 +69,7 @@ Feature: create a public link share
       | 2               | 200             |
 
 
+  @T2c881a4a
   Scenario Outline: Create a new public link share of a file with edit permissions
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file with content "Random data" to "/randomfile.txt"
@@ -101,6 +102,7 @@ Feature: create a public link share
       | 2               | 200             |
 
 
+  @Tc3e195c7
   Scenario Outline: Creating a new public link share of a folder using the default permissions only grants read access and can be accessed with no password or any password using the public WebDAV API
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/PARENT"
@@ -133,6 +135,7 @@ Feature: create a public link share
       | 2               | 200             |
 
 
+  @T07948ce7
   Scenario Outline: Creating a new public link share of a folder, with a password and accessing using the public WebDAV API
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/PARENT"
@@ -167,7 +170,7 @@ Feature: create a public link share
       | 1               | 100             |
       | 2               | 200             |
 
-  @smokeTest @issue-ocis-reva-294
+  @smokeTest @issue-ocis-reva-294 @T98ee5e06
   Scenario Outline: Getting the share information of public link share from the OCS API does not expose sensitive information
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file with content "Random data" to "/randomfile.txt"
@@ -191,6 +194,7 @@ Feature: create a public link share
       | 2               | 200             |
 
 
+  @T4a9bc832
   Scenario Outline: Getting the share information of passwordless public-links hides credential placeholders
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file with content "Random data" to "/randomfile.txt"
@@ -214,6 +218,7 @@ Feature: create a public link share
       | 2               | 200             |
 
 
+  @Te424674a
   Scenario Outline: Creating a link share with no specified permissions defaults to read permissions when public upload is disabled globally and accessing using the public WebDAV API
     Given using OCS API version "<ocs_api_version>"
     And parameter "shareapi_allow_public_upload" of app "core" has been set to "no"
@@ -236,6 +241,7 @@ Feature: create a public link share
       | 2               | 200             |
 
 
+  @T826bef94
   Scenario Outline: Creating a link share with edit permissions keeps it using the public WebDAV API
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/afolder"
@@ -258,6 +264,7 @@ Feature: create a public link share
       | 2               | 200             |
 
 
+  @Tb53899d3
   Scenario Outline: Creating a link share with upload permissions keeps it using the public WebDAV API
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/afolder"
@@ -279,7 +286,7 @@ Feature: create a public link share
       | 1               | 100             |
       | 2               | 200             |
 
-  @issue-ocis-reva-283 @issue-ocis-2079
+  @issue-ocis-reva-283 @issue-ocis-2079 @Td39b3bff
   Scenario Outline: Allow public sharing of the root on OCIS when the default permission is read and access using the public WebDAV API
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file with content "Random data" to "/randomfile.txt"
@@ -306,7 +313,7 @@ Feature: create a public link share
       | 1               | 100             |
       | 2               | 200             |
 
-  @issue-ocis-2079
+  @issue-ocis-2079 @Tb88b46da
   Scenario Outline: user creates a public link share of a file with file name longer than 64 chars using the public WebDAV API
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file with content "long file" to "/aquickbrownfoxjumpsoveraverylazydogaquickbrownfoxjumpsoveralazydog.txt"
@@ -322,7 +329,7 @@ Feature: create a public link share
       | 1               | 100             |
       | 2               | 200             |
 
-  @issue-ocis-2079
+  @issue-ocis-2079 @Td880f4ca
   Scenario Outline: user creates a public link share of a folder with folder name longer than 64 chars and access using the public WebDAV API
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has created folder "/aquickbrownfoxjumpsoveraverylazydogaquickbrownfoxjumpsoveralazydog"
@@ -339,7 +346,7 @@ Feature: create a public link share
       | 1               | 100             |
       | 2               | 200             |
 
-  @issue-ocis-reva-199
+  @issue-ocis-reva-199 @T97569377
   Scenario: Delete a folder that has been publicly shared and try to access using the public WebDAV API
     Given user "Alice" has created folder "PARENT"
     And user "Alice" has uploaded file with content "Random data" to "/PARENT/parent.txt"
@@ -349,7 +356,7 @@ Feature: create a public link share
     When user "Alice" deletes folder "/PARENT" using the WebDAV API
     Then the public download of file "/parent.txt" from inside the last public link shared folder using the new public WebDAV API should fail with HTTP status code "404"
 
-  @issue-ocis-reva-292 @issue-ocis-reva-199
+  @issue-ocis-reva-292 @issue-ocis-reva-199 @Tef031df8
   Scenario: try to download from a public share that has upload only permissions using the public webdav api
     Given user "Alice" has created folder "PARENT"
     And user "Alice" has uploaded file with content "Random data" to "/PARENT/parent.txt"
@@ -361,6 +368,7 @@ Feature: create a public link share
     And the HTTP status code should be "404"
 
 
+  @Tfc41dc3d
   Scenario: Get the size of a file shared by public link
     Given user "Alice" has uploaded file with content "This is a test file" to "test-file.txt"
     And user "Alice" has created a public link share with settings
@@ -371,6 +379,7 @@ Feature: create a public link share
     And the size of the file should be "19"
 
 
+  @T3e75a561
   Scenario Outline: Get the mtime of a file shared by public link
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file "filesForUpload/textfile.txt" to "file.txt" with mtime "Thu, 08 Aug 2019 04:18:13 GMT" using the WebDAV API
@@ -385,6 +394,7 @@ Feature: create a public link share
       | new         |
 
 
+  @Tc75b2738
   Scenario Outline: Get the mtime of a file inside a folder shared by public link
     Given using <dav_version> DAV path
     And user "Alice" has created folder "testFolder"
@@ -400,6 +410,7 @@ Feature: create a public link share
       | new         |
 
 
+  @T5bf6a24e
   Scenario: Get the mtime of a file inside a folder shared by public link using new webDAV version
     Given user "Alice" has created folder "testFolder"
     And user "Alice" has created a public link share with settings
@@ -412,6 +423,7 @@ Feature: create a public link share
     And the mtime of file "file.txt" in the last shared public link using the WebDAV API should be "Thu, 08 Aug 2019 04:18:13 GMT"
 
 
+  @T70ed0590
   Scenario: overwriting a file changes its mtime (new public webDAV API)
     Given user "Alice" has created folder "testFolder"
     When user "Alice" uploads file with content "uploaded content for file name ending with a dot" to "testFolder/file.txt" using the WebDAV API
@@ -424,7 +436,7 @@ Feature: create a public link share
     And as "Alice" the mtime of the file "testFolder/file.txt" should be "Thu, 08 Aug 2019 04:18:13 GMT"
     And the mtime of file "file.txt" in the last shared public link using the WebDAV API should be "Thu, 08 Aug 2019 04:18:13 GMT"
 
-  @issue-4758
+  @issue-4758 @Te6731a2c
   Scenario: check the href of a public link file
     Given using new DAV path
     And user "Alice" has uploaded file with content "Random data" to "/file.txt"

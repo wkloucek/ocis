@@ -1,4 +1,4 @@
-@api @files_sharing-app-required
+@api @files_sharing-app-required @S88d75289
 Feature: accept/decline shares coming from internal users to the Shares folder
   As a user
   I want to have control of which received shares I accept
@@ -15,6 +15,7 @@ Feature: accept/decline shares coming from internal users to the Shares folder
       | Brian    |
 
 
+  @T426c4aba
   Scenario: When accepting a share of a file, the received file is accessible
     Given user "Alice" has uploaded file with content "ownCloud test text file 0" to "textfile0.txt"
     And user "Alice" has shared file "/textfile0.txt" with user "Brian"
@@ -24,6 +25,7 @@ Feature: accept/decline shares coming from internal users to the Shares folder
     And the content of file "/Shares/textfile0.txt" for user "Brian" should be "ownCloud test text file 0"
 
 
+  @Tb9f56dcb
   Scenario: When accepting a share of a folder, the received folder is accessible
     Given user "Alice" has created folder "/PARENT"
     And user "Alice" has uploaded file with content "ownCloud test text file parent" to "PARENT/parent.txt"
@@ -32,6 +34,7 @@ Feature: accept/decline shares coming from internal users to the Shares folder
     Then the content of file "/Shares/PARENT/parent.txt" for user "Brian" should be "ownCloud test text file parent"
 
 
+  @T0c6515f9
   Scenario: When accepting a share of a file, the response is valid
     Given user "Alice" has uploaded file with content "ownCloud test text file 0" to "textfile0.txt"
     And user "Alice" has shared file "/textfile0.txt" with user "Brian"
@@ -53,6 +56,7 @@ Feature: accept/decline shares coming from internal users to the Shares folder
     And the content of file "/Shares/textfile0.txt" for user "Brian" should be "ownCloud test text file 0"
 
 
+  @T4fc1defd
   Scenario: When accepting a share of a folder, the response is valid
     Given user "Alice" has created folder "/PARENT"
     And user "Alice" has uploaded file with content "ownCloud test text file parent" to "PARENT/parent.txt"

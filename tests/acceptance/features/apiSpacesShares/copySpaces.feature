@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @S0a4259d8
 Feature: copy file
   As a user
   I want to be able to copy files
@@ -12,6 +12,7 @@ Feature: copy file
     And using spaces DAV path
 
 
+  @Te17a36db
   Scenario Outline: Copying a file within a same space project with role manager and editor
     Given the administrator has given "Alice" the role "Space Admin" using the settings api
     And user "Alice" has created a space "Project" with the default quota using the GraphApi
@@ -29,6 +30,7 @@ Feature: copy file
       | editor  |
 
 
+  @T6ac37ba4
   Scenario: Copying a file within a same space project with role viewer
     Given the administrator has given "Alice" the role "Space Admin" using the settings api
     And user "Alice" has created a space "Project" with the default quota using the GraphApi
@@ -41,6 +43,7 @@ Feature: copy file
       | /newfolder/insideSpace.txt |
 
 
+  @T66a300bd
   Scenario Outline: User copies a file from a space project with a different role to a space project with the manager role
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created a space "Project1" with the default quota using the GraphApi
@@ -61,6 +64,7 @@ Feature: copy file
       | editor    | editor  |
 
 
+  @Tc75ce2d5
   Scenario Outline: User copies a file from a space project with a different role to a space project with a viewer role
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created a space "Project1" with the default quota using the GraphApi
@@ -78,6 +82,7 @@ Feature: copy file
       | editor  |
 
 
+  @T68bd55a3
   Scenario Outline: User copies a file from space project with different role to space personal
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created a space "Project" with the default quota using the GraphApi
@@ -95,6 +100,7 @@ Feature: copy file
       | viewer  |
 
 
+  @Te152e836
   Scenario Outline: User copies a file from space project with different role to space Shares with editor role
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created a space "Project" with the default quota using the GraphApi
@@ -115,6 +121,7 @@ Feature: copy file
       | viewer  |
 
 
+  @T9fd20df4
   Scenario Outline: User copies a file from space project with different role to Shares with viewer role
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created a space "Project" with the default quota using the GraphApi
@@ -134,6 +141,7 @@ Feature: copy file
       | viewer  |
 
 
+  @T3b7a12a6
   Scenario Outline: User copies a file from space personal to space project with different role
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created a space "Project" with the default quota using the GraphApi
@@ -150,6 +158,7 @@ Feature: copy file
       | editor  |
 
 
+  @T7d00ef42
   Scenario: User copies a file from space personal to space project with role viewer
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created a space "Project" with the default quota using the GraphApi
@@ -161,6 +170,7 @@ Feature: copy file
       | /personal.txt |
 
 
+  @T815a862a
   Scenario: User copies a file from space personal to space Shares with role editor
     Given user "Brian" has created folder "/testshare"
     And user "Brian" has shared folder "/testshare" with user "Alice" with permissions "31"
@@ -173,6 +183,7 @@ Feature: copy file
     And for user "Alice" the content of the file "/testshare/personal.txt" of the space "Shares" should be "personal content"
 
 
+  @T414db720
   Scenario: User copies a file from space personal to space Shares with role viewer
     Given user "Brian" has created folder "/testshare"
     And user "Brian" has shared folder "/testshare" with user "Alice" with permissions "17"
@@ -184,6 +195,7 @@ Feature: copy file
       | /testshare/personal.txt |
 
 
+  @T45dc13b2
   Scenario Outline: User copies a file from space Shares with different role to space personal
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created folder "/testshare"
@@ -201,6 +213,7 @@ Feature: copy file
       | 17          |
 
 
+  @Td15c568d
   Scenario Outline: User copies a file from space Shares with different role to space project with different role
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created a space "Project" with the default quota using the GraphApi
@@ -222,6 +235,7 @@ Feature: copy file
       | editor  | 17          |
 
 
+  @T2d054fa1
   Scenario Outline: User copies a file from space Shares with different role to space project with role viewer
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created a space "Project" with the default quota using the GraphApi
@@ -240,6 +254,7 @@ Feature: copy file
       | 17          |
 
 
+  @T5c299a65
   Scenario Outline: User copies a file from space Shares with different role to space Shares with role editor
     Given user "Brian" has created folder "/testshare1"
     And user "Brian" has created folder "/testshare2"
@@ -262,6 +277,7 @@ Feature: copy file
       | 17          |
 
 
+  @T5c299a65
   Scenario Outline: User copies a file from space Shares with different role to space Shares with role editor
     Given user "Brian" has created folder "/testshare1"
     And user "Brian" has created folder "/testshare2"
@@ -282,6 +298,7 @@ Feature: copy file
       | 17          |
 
 
+  @T1b22cbb0
   Scenario Outline: Copying a folder within the same space project with different role
     Given the administrator has given "Alice" the role "Space Admin" using the settings api
     And user "Alice" has created a space "Project" with the default quota using the GraphApi
@@ -300,6 +317,7 @@ Feature: copy file
       | viewer  | should not  | 403         |
 
 
+  @T7e64d84d
   Scenario Outline: User copies a folder from a space project with different role to a space project with different role
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created a space "Project1" with the default quota using the GraphApi
@@ -323,6 +341,7 @@ Feature: copy file
       | viewer    | viewer  | 403         | should not  |
 
 
+  @T169aed0e
   Scenario Outline: User copies a folder from space project with different role to space personal
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created a space "Project" with the default quota using the GraphApi
@@ -340,6 +359,7 @@ Feature: copy file
       | viewer  |
 
 
+  @T759d2bc1
   Scenario Outline: User copies a folder from space project with different role to space Shares with different role
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created a space "Project" with the default quota using the GraphApi
@@ -363,6 +383,7 @@ Feature: copy file
       | viewer  | should not  | 17          | 403         |
 
 
+  @Te6dc5b20
   Scenario Outline: User copies a folder from space personal to space project with different role
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created a space "Project" with the default quota using the GraphApi
@@ -380,6 +401,7 @@ Feature: copy file
       | viewer  | should not  | 403         |
 
 
+  @Tdbd1eaf3
   Scenario Outline: User copies a folder from space personal to space Shares with different permmissions
     Given user "Brian" has created folder "/testshare"
     And user "Brian" has shared folder "/testshare" with user "Alice" with permissions "<permissions>"
@@ -396,6 +418,7 @@ Feature: copy file
       | 17          | should not  | 403         |
 
 
+  @Tabaf47a4
   Scenario Outline: User copies a folder from space Shares with different role to space personal
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created folder "/testshare"
@@ -413,6 +436,7 @@ Feature: copy file
       | 17          |
 
 
+  @T4c9e8f97
   Scenario Outline: User copies a folder from space Shares with different role to space project with different role
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created a space "Project" with the default quota using the GraphApi
@@ -434,6 +458,7 @@ Feature: copy file
       | editor  | 17          |
 
 
+  @Tbe666ca9
   Scenario Outline: User copies a folder from space Shares with different role to space project with role viewer
     Given the administrator has given "Brian" the role "Space Admin" using the settings api
     And user "Brian" has created a space "Project" with the default quota using the GraphApi
@@ -453,6 +478,7 @@ Feature: copy file
       | 17          |
 
 
+  @Ta1fe3c52
   Scenario: Copying a file to a folder with no permissions
     Given using spaces DAV path
     And user "Brian" has created folder "/testshare"
@@ -468,6 +494,7 @@ Feature: copy file
     And user "Alice" should not be able to download file "/testshare/textfile0.txt" from space "Shares"
 
 
+  @T11be7c5f
   Scenario: Copying a file to overwrite a file into a folder with no permissions
     Given using spaces DAV path
     And user "Brian" has created folder "/testshare"
@@ -484,6 +511,7 @@ Feature: copy file
     And for user "Alice" the content of the file "/testshare/overwritethis.txt" of the space "Shares" should be "ownCloud test text file 1"
 
 
+  @T1f2708b3
   Scenario: copy a file over the top of an existing folder received as a user share
     Given using spaces DAV path
     And user "Alice" has uploaded file with content "ownCloud test text file 1" to "/textfile1.txt"
@@ -498,6 +526,7 @@ Feature: copy file
     And user "Alice" should not have any received shares
 
 
+  @T02c47f16
   Scenario: copy a folder over the top of an existing file received as a user share
     Given using spaces DAV path
     And user "Alice" has created folder "/FOLDER"
@@ -513,6 +542,7 @@ Feature: copy file
     And user "Alice" should not have any received shares
 
 
+  @Tb7f656e3
   Scenario: copy a folder into another folder at different level which is received as a user share
     Given using spaces DAV path
     And user "Brian" has created folder "/BRIAN-FOLDER"
@@ -534,6 +564,7 @@ Feature: copy file
       | file_target | /Shares/BRIAN-FOLDER |
 
 
+  @Tb6889d96
   Scenario: copy a file into a folder at different level received as a user share
     Given using spaces DAV path
     And user "Brian" has created folder "/BRIAN-FOLDER"
@@ -557,6 +588,7 @@ Feature: copy file
       | file_target | /Shares/BRIAN-FOLDER |
 
 
+  @T02a87123
   Scenario: copy a file into a file at different level received as a user share
     Given using spaces DAV path
     And user "Brian" has created folder "/BRIAN-FOLDER"
@@ -579,6 +611,7 @@ Feature: copy file
       | file_target | /Shares/BRIAN-FOLDER |
 
 
+  @T5c502a86
   Scenario: copy a folder into a file at different level received as a user share
     Given using spaces DAV path
     And user "Alice" has created folder "/FOLDER"
@@ -599,6 +632,7 @@ Feature: copy file
       | file_target | /Shares/BRIAN-FOLDER |
 
 
+  @Tc8087baf
   Scenario: copy a folder into another folder at different level which is received as a group share
     Given using spaces DAV path
     And group "grp1" has been created
@@ -621,6 +655,7 @@ Feature: copy file
       | file_target | /Shares/BRIAN-FOLDER |
 
 
+  @T384dd2a2
   Scenario: copy a file into a folder at different level received as a group share
     Given using spaces DAV path
     And group "grp1" has been created
@@ -644,6 +679,7 @@ Feature: copy file
       | file_target | /Shares/BRIAN-FOLDER |
 
 
+  @T136133f9
   Scenario: overwrite a file received as a group share with a file from different level
     Given using spaces DAV path
     And group "grp1" has been created
@@ -668,6 +704,7 @@ Feature: copy file
       | file_target | /Shares/BRIAN-FOLDER |
 
 
+  @Ta3c9f5cd
   Scenario: copy a folder into a file at different level received as a group share
     Given using spaces DAV path
     And group "grp1" has been created
@@ -693,6 +730,7 @@ Feature: copy file
       | file_target | /Shares/BRIAN-FOLDER |
 
 
+  @T1e9a0f79
   Scenario: Copying a file with an option "keep both" inside of the project space
     Given the administrator has given "Alice" the role "Space Admin" using the settings api
     And user "Alice" has created a space "Project" with the default quota using the GraphApi
@@ -707,6 +745,7 @@ Feature: copy file
     And for user "Alice" the content of the file "/newfolder/insideSpace (1).txt" of the space "Project" should be "new content"
 
 
+  @T3d9fec16
   Scenario: Copying a file with an option "replace" inside of the project space
     Given the administrator has given "Alice" the role "Space Admin" using the settings api
     And user "Alice" has created a space "Project" with the default quota using the GraphApi
@@ -726,6 +765,7 @@ Feature: copy file
     And as "Alice" file "insideSpace.txt" should not exist in the trashbin of the space "Project"
 
 
+  @T0461f60b
   Scenario: Copying a file from Personal to Shares with an option "keep both"
     Given the administrator has given "Alice" the role "Space Admin" using the settings api
     And user "Alice" has created a space "Project" with the default quota using the GraphApi
@@ -748,6 +788,7 @@ Feature: copy file
       | newfolder/personal (1).txt |
 
 
+  @T5fac0edb
   Scenario: Copying a file from Personal to Shares with an option "replace"
     Given the administrator has given "Alice" the role "Space Admin" using the settings api
     And user "Alice" has created a space "Project" with the default quota using the GraphApi

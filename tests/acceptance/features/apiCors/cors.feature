@@ -1,12 +1,13 @@
 # NOTE: for running this feature locally, you need to run oCIS with the following env var:
 # CORS_ALLOWED_ORIGINS=https://aphno.badal
-@api @skipOnOcV10
+@api @skipOnOcV10 @S7c4a42c8
 Feature: CORS headers
 
   Background:
     Given user "Alice" has been created with default attributes and without skeleton files
 
 
+  @T747aec90
   Scenario Outline: CORS headers should be returned when setting CORS domain sending Origin header
     Given using OCS API version "<ocs_api_version>"
     When user "Alice" sends HTTP method "GET" to OCS API endpoint "<endpoint>" with headers
@@ -28,6 +29,7 @@ Feature: CORS headers
       | 2               | /apps/files_sharing/api/v1/shares | 200      | 200       |
 
 
+  @T97fe899d
   Scenario Outline: CORS headers should not be returned when CORS domain does not match Origin header
     Given using OCS API version "<ocs_api_version>"
     When user "Alice" sends HTTP method "GET" to OCS API endpoint "<endpoint>" with headers
@@ -49,6 +51,7 @@ Feature: CORS headers
       | 2               | /apps/files_sharing/api/v1/shares | 200      | 200       |
 
 
+  @T96974368
   Scenario Outline: CORS headers should be returned when an invalid password is used
     Given using OCS API version "<ocs_api_version>"
     When user "Alice" sends HTTP method "GET" to OCS API endpoint "<endpoint>" with headers using password "invalid"

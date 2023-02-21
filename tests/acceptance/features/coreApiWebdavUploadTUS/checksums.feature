@@ -1,10 +1,11 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @S56237c60
 Feature: checksums
 
   Background:
     Given user "Alice" has been created with default attributes and without skeleton files
 
 
+  @T6361d7b5
   Scenario Outline: Uploading a file with checksum should work
     Given using <dav_version> DAV path
     And user "Alice" has created a new TUS resource on the WebDAV API with these headers:
@@ -28,6 +29,7 @@ Feature: checksums
       | spaces      | SHA1 8cb2237d0679ca88db6464eac60da96345513964 |
 
 
+  @T07b1894e
   Scenario Outline: Uploading a file with checksum should return the checksum in the propfind
     Given using <dav_version> DAV path
     And user "Alice" has created a new TUS resource on the WebDAV API with these headers:
@@ -49,6 +51,7 @@ Feature: checksums
       | spaces      |
 
 
+  @Te897528a
   Scenario Outline: Uploading a file with checksum should return the checksum in the download header
     Given using <dav_version> DAV path
     And user "Alice" has created a new TUS resource on the WebDAV API with these headers:
@@ -70,6 +73,7 @@ Feature: checksums
       | spaces      |
 
 
+  @T6bc4334b
   Scenario Outline: Uploading a file with incorrect checksum should not work
     Given using <dav_version> DAV path
     And user "Alice" has created a new TUS resource on the WebDAV API with these headers:
@@ -93,6 +97,7 @@ Feature: checksums
       | spaces      | SHA1 8cb2237d0679ca88db6464eac60da96345513963 |
 
 
+  @Tf1c7a41f
   Scenario Outline: Uploading a chunked file with correct checksum should work
     Given using <dav_version> DAV path
     And user "Alice" has created a new TUS resource on the WebDAV API with these headers:
@@ -114,6 +119,7 @@ Feature: checksums
       | spaces      |
 
 
+  @T30acc7f7
   Scenario Outline: Uploading a chunked file with correct checksum should return the checksum in the propfind
     Given using <dav_version> DAV path
     And user "Alice" has created a new TUS resource on the WebDAV API with these headers:
@@ -136,6 +142,7 @@ Feature: checksums
       | spaces      |
 
 
+  @T3b6c046d
   Scenario Outline: Uploading a chunked file with checksum should return the checksum in the download header
     Given using <dav_version> DAV path
     And user "Alice" has created a new TUS resource on the WebDAV API with these headers:
@@ -158,6 +165,7 @@ Feature: checksums
       | spaces      |
 
 
+  @Tac9b7955
   Scenario Outline: Uploading second chunk of file with incorrect checksum should not work
     Given using <dav_version> DAV path
     And user "Alice" has created a new TUS resource on the WebDAV API with these headers:
@@ -179,6 +187,7 @@ Feature: checksums
       | spaces      |
 
 
+  @T59b4f196
   Scenario Outline: Uploading a file with correct checksum and overwriting an existing file should return the checksum for new data in the propfind
     Given using <dav_version> DAV path
     And user "Alice" has created a new TUS resource on the WebDAV API with these headers:
@@ -208,6 +217,7 @@ Feature: checksums
       | spaces      | SHA1 aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d |
 
 
+  @T66d7b2c1
   Scenario Outline: Uploading a file with correct checksum and overwriting an existing file with invalid checksum should not work
     Given using <dav_version> DAV path
     And user "Alice" has created a new TUS resource on the WebDAV API with these headers:
@@ -235,6 +245,7 @@ Feature: checksums
       | spaces      | SHA1 aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434a |
 
 
+  @Te26bee33
   Scenario Outline: Overwriting an existing file with new data and checksum should return the checksum of new data in the propfind
     Given using <dav_version> DAV path
     And user "Alice" has created a new TUS resource on the WebDAV API with these headers:
@@ -264,6 +275,7 @@ Feature: checksums
       | spaces      | SHA1 aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d |
 
 
+  @T8d31649f
   Scenario Outline: Overwriting an existing file with new data and invalid checksum should not work
     Given using <dav_version> DAV path
     And user "Alice" has created a new TUS resource on the WebDAV API with these headers:

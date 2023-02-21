@@ -1,4 +1,4 @@
-@api @files_sharing-app-required @issue-ocis-1289 @issue-ocis-1328
+@api @files_sharing-app-required @issue-ocis-1289 @issue-ocis-1328 @S4e6aef02
 Feature: accept/decline shares coming from internal users
   As a user
   I want to have control of which received shares I accept
@@ -26,7 +26,7 @@ Feature: accept/decline shares coming from internal users
     And user "Brian" has uploaded file "filesForUpload/textfile.txt" to "textfile0.txt"
     And user "Brian" has uploaded file "filesForUpload/textfile.txt" to "PARENT/parent.txt"
 
-  @smokeTest
+  @smokeTest @Tdbd22d39
   Scenario Outline: share a file & folder with another internal group when auto accept is disabled
     Given user "Carol" has created folder "FOLDER"
     And user "Carol" has created folder "PARENT"
@@ -65,6 +65,7 @@ Feature: accept/decline shares coming from internal users
       | /Shares/PARENT/      | /Shares/textfile0.txt |
 
 
+  @T5d7d1a9e
   Scenario Outline: share a file & folder with another internal user when auto accept is disabled
     When user "Alice" shares folder "/PARENT" with user "Brian" using the sharing API
     And user "Alice" shares file "/textfile0.txt" with user "Brian" using the sharing API
@@ -87,7 +88,7 @@ Feature: accept/decline shares coming from internal users
       | pending_share_path_1 | pending_share_path_2  |
       | /Shares/PARENT/      | /Shares/textfile0.txt |
 
-  @smokeTest @issue-ocis-2131
+  @smokeTest @issue-ocis-2131 @T84ea5f71
   Scenario: accept a pending share
     Given user "Alice" has shared folder "/PARENT" with user "Brian"
     And user "Alice" has shared file "/textfile0.txt" with user "Brian"
@@ -128,6 +129,7 @@ Feature: accept/decline shares coming from internal users
       | /Shares/textfile0.txt |
 
 
+  @Tdd429404
   Scenario: accept an accepted share
     Given user "Alice" has created folder "/shared"
     And user "Alice" has shared folder "/shared" with user "Brian"
@@ -140,7 +142,7 @@ Feature: accept/decline shares coming from internal users
       | path            |
       | /Shares/shared/ |
 
-  @smokeTest
+  @smokeTest @T4471a70a
   Scenario Outline: declines a pending share
     Given user "Alice" has shared folder "/PARENT" with user "Brian"
     And user "Alice" has shared file "/textfile0.txt" with user "Brian"
@@ -165,7 +167,7 @@ Feature: accept/decline shares coming from internal users
       | declined_share_path_1 | declined_share_path_2 |
       | /Shares/PARENT/       | /Shares/textfile0.txt |
 
-  @smokeTest @issue-ocis-2128
+  @smokeTest @issue-ocis-2128 @T8a2374f3
   Scenario Outline: decline an accepted share
     Given user "Alice" has shared folder "/PARENT" with user "Brian"
     And user "Alice" has shared file "/textfile0.txt" with user "Brian"
@@ -189,6 +191,7 @@ Feature: accept/decline shares coming from internal users
       | /Shares/PARENT/       | /Shares/textfile0.txt |
 
 
+  @Taef489d9
   Scenario: deleting shares in pending state
     Given user "Alice" has shared folder "/PARENT" with user "Brian"
     And user "Alice" has shared file "/textfile0.txt" with user "Brian"
@@ -198,6 +201,7 @@ Feature: accept/decline shares coming from internal users
     And the sharing API should report that no shares are shared with user "Brian"
 
 
+  @T4a45ee36
   Scenario Outline: only one user in a group accepts a share
     Given user "Alice" has shared folder "/PARENT" with group "grp1"
     And user "Alice" has shared file "/textfile0.txt" with group "grp1"
@@ -226,7 +230,7 @@ Feature: accept/decline shares coming from internal users
       | pending_share_path_1 | pending_share_path_2  |
       | /Shares/PARENT/      | /Shares/textfile0.txt |
 
-  @issue-ocis-2131
+  @issue-ocis-2131 @Tf865190d
   Scenario: receive two shares with identical names from different users, accept one by one
     Given user "Alice" has created folder "/shared"
     And user "Alice" has created folder "/shared/Alice"
@@ -247,6 +251,7 @@ Feature: accept/decline shares coming from internal users
       | /Shares/shared (2)/ |
 
 
+  @Td0725d22
   Scenario Outline: share with a group that you are part of yourself
     When user "Alice" shares folder "/PARENT" with group "grp1" using the sharing API
     Then the OCS status code should be "100"
@@ -261,6 +266,7 @@ Feature: accept/decline shares coming from internal users
       | /Shares/PARENT/    |
 
 
+  @Tbba137ce
   Scenario Outline: user accepts file that was initially accepted from another user and then declined
     Given user "Alice" has uploaded file with content "First file" to "/testfile.txt"
     And user "Brian" has uploaded file with content "Second file" to "/testfile.txt"
@@ -286,6 +292,7 @@ Feature: accept/decline shares coming from internal users
       | /testfile (2).txt   |
 
 
+  @T7ec7714b
   Scenario Outline: user accepts shares received from multiple users with the same name when auto-accept share is disabled
     Given user "David" has been created with default attributes and without skeleton files
     And user "David" has created folder "PARENT"
@@ -316,6 +323,7 @@ Feature: accept/decline shares coming from internal users
       | /PARENT (2)           | /PARENT (2) (2)       |
 
 
+  @Td86c657e
   Scenario: user shares folder with matching folder-name for both user involved in sharing
     Given user "Alice" has uploaded file with content "uploaded content" to "/PARENT/abc.txt"
     And user "Alice" has uploaded file with content "uploaded content" to "/FOLDER/abc.txt"
@@ -339,6 +347,7 @@ Feature: accept/decline shares coming from internal users
     And the content of file "/Shares/FOLDER/abc.txt" for user "Brian" should be "uploaded content"
 
 
+  @T057ed0d3
   Scenario: user shares folder in a group with matching folder-name for every users involved
     Given user "Alice" has uploaded file with content "uploaded content" to "/PARENT/abc.txt"
     And user "Alice" has uploaded file with content "uploaded content" to "/FOLDER/abc.txt"
@@ -378,6 +387,7 @@ Feature: accept/decline shares coming from internal users
     And the content of file "/Shares/FOLDER/abc.txt" for user "Carol" should be "uploaded content"
 
 
+  @T030a2426
   Scenario: user shares files in a group with matching file-names for every users involved in sharing
     Given user "Alice" has uploaded file "filesForUpload/textfile.txt" to "textfile1.txt"
     And user "Brian" has uploaded file "filesForUpload/textfile.txt" to "textfile1.txt"
@@ -403,6 +413,7 @@ Feature: accept/decline shares coming from internal users
       | /Shares/textfile1.txt |
 
 
+  @T41aa2498
   Scenario: user shares resource with matching resource-name with another user when auto accept is disabled
     When user "Alice" shares folder "/PARENT" with user "Brian" using the sharing API
     And user "Alice" shares file "/textfile0.txt" with user "Brian" using the sharing API
@@ -425,6 +436,7 @@ Feature: accept/decline shares coming from internal users
       | /Shares/textfile0.txt |
 
 
+  @T10230fbf
   Scenario: user shares file in a group with matching filename when auto accept is disabled
     Given user "Carol" has uploaded file "filesForUpload/textfile.txt" to "textfile0.txt"
     When user "Alice" shares file "/textfile0.txt" with group "grp1" using the sharing API
@@ -449,7 +461,7 @@ Feature: accept/decline shares coming from internal users
       | /textfile0.txt        |
       | /Shares/textfile0.txt |
 
-  @skipOnLDAP
+  @skipOnLDAP @T4b5b6afa
   Scenario: user shares folder with matching folder name to  a user before that user has logged in
     Given these users have been created without skeleton files and not initialized:
       | username |
@@ -466,7 +478,7 @@ Feature: accept/decline shares coming from internal users
       | /PARENT (2)/ |
     And the content of file "/Shares/PARENT/abc.txt" for user "David" should be "uploaded content"
 
-  @issue-ocis-1123
+  @issue-ocis-1123 @Tf09b6ab3
   Scenario Outline: deleting a share accepted file and folder
     Given user "Alice" has shared folder "/PARENT" with user "Brian"
     And user "Brian" has accepted share "/PARENT" offered by user "Alice"
@@ -480,7 +492,7 @@ Feature: accept/decline shares coming from internal users
       | declined_share_path |
       | /Shares/PARENT      |
 
-  @issue-ocis-765 @issue-ocis-2131
+  @issue-ocis-765 @issue-ocis-2131 @T14758df7
   Scenario: shares exist after restoring already shared file to a previous version
     And user "Alice" has uploaded file with content "Test Content." to "/toShareFile.txt"
     And user "Alice" has uploaded file with content "Content Test Updated." to "/toShareFile.txt"
@@ -491,7 +503,7 @@ Feature: accept/decline shares coming from internal users
     And the content of file "/toShareFile.txt" for user "Alice" should be "Test Content."
     And the content of file "/Shares/toShareFile.txt" for user "Brian" should be "Test Content."
 
-  @issue-ocis-2131
+  @issue-ocis-2131 @T516913ed
   Scenario: a user receives multiple group shares for matching file and folder name
     Given group "grp2" has been created
     And user "Alice" has been added to group "grp2"
@@ -556,7 +568,7 @@ Feature: accept/decline shares coming from internal users
     And the content of file "/Shares/PARENT (2).txt" for user "Brian" should be "from carol to grp1"
     And the content of file "/Shares/parent.txt" for user "Brian" should be "from carol to grp1"
 
-  @issue-ocis-2131
+  @issue-ocis-2131 @Te0b6cffa
   Scenario: a group receives multiple shares from non-member for matching file and folder name
     Given user "Brian" has been removed from group "grp1"
     And user "Alice" has created folder "/PaRent"

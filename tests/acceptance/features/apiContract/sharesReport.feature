@@ -1,4 +1,4 @@
-@api
+@api @S649bb0e1
 Feature: REPORT request to Shares space
   Check that the REPORT response contains all relevant details for Shares
 
@@ -14,6 +14,7 @@ Feature: REPORT request to Shares space
     And user "Brian" has accepted share "/folderMain" offered by user "Alice"
 
 
+  @Tc3f2cc35
   Scenario Outline: Check the REPORT response of the found folder
     Given using <dav_version> DAV path
     When user "Brian" searches for "SubFolder1" using the WebDAV API
@@ -32,6 +33,7 @@ Feature: REPORT request to Shares space
       | new         |
 
 
+  @T93a1e510
   Scenario Outline: Check the REPORT response of the found file
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "Not all those who wander are lost." to "/folderMain/SubFolder1/subFOLDER2/frodo.txt"

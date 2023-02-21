@@ -1,4 +1,4 @@
-@api
+@api @S6418ec7f
 Feature: users cannot move (rename) a file to a blacklisted name
   As an administrator
   I want to be able to prevent users from moving (renaming) files to specified file names
@@ -9,7 +9,7 @@ Feature: users cannot move (rename) a file to a blacklisted name
     And user "Alice" has been created with default attributes and without skeleton files
     And user "Alice" has uploaded file with content "ownCloud test text file 0" to "textfile0.txt"
 
-  @issue-ocis-reva-211
+  @issue-ocis-reva-211 @T6abb66f4
   Scenario Outline: rename a file to a filename that is banned by default
     Given using <dav_version> DAV path
     When user "Alice" moves file "/textfile0.txt" to "/.htaccess" using the WebDAV API
@@ -25,6 +25,7 @@ Feature: users cannot move (rename) a file to a blacklisted name
       | spaces      |
 
 
+  @Tcde2ebbd
   Scenario Outline: rename a file to a banned filename
     Given using <dav_version> DAV path
     And the administrator has updated system config key "blacklisted_files" with value '["blacklisted-file.txt",".htaccess"]' and type "json"
@@ -41,6 +42,7 @@ Feature: users cannot move (rename) a file to a blacklisted name
       | spaces      |
 
 
+  @T813fc589
   Scenario Outline: rename a file to a filename that matches (or not) blacklisted_files_regex
     Given using <dav_version> DAV path
     And user "Alice" has created folder "FOLDER"

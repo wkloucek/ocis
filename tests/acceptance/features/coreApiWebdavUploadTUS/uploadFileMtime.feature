@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @S717371b4
 Feature: upload file
   As a user
   I want the mtime of an uploaded file to be the creation date on upload source not the upload date
@@ -8,6 +8,7 @@ Feature: upload file
     Given user "Alice" has been created with default attributes and without skeleton files
 
 
+  @Tda6b0a3f
   Scenario Outline: upload file with mtime
     Given using <dav_version> DAV path
     When user "Alice" uploads file "filesForUpload/textfile.txt" to "file.txt" with mtime "Thu, 08 Aug 2019 04:18:13 GMT" using the TUS protocol on the WebDAV API
@@ -23,6 +24,7 @@ Feature: upload file
       | spaces      |
 
 
+  @Tffece85a
   Scenario Outline: upload file with future mtime
     Given using <dav_version> DAV path
     When user "Alice" uploads file "filesForUpload/textfile.txt" to "file.txt" with mtime "Thu, 08 Aug 2129 04:18:13 GMT" using the TUS protocol on the WebDAV API
@@ -38,6 +40,7 @@ Feature: upload file
       | spaces      |
 
 
+  @T2051b654
   Scenario Outline: upload a file with mtime in a folder
     Given using <dav_version> DAV path
     And user "Alice" has created folder "testFolder"
@@ -54,6 +57,7 @@ Feature: upload file
       | spaces      |
 
 
+  @T09b509c2
   Scenario Outline: overwriting a file changes its mtime
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "first time upload content" to "file.txt"

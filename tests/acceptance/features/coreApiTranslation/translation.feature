@@ -1,9 +1,10 @@
-@api @skipOnLDAP @skipOnOcis
+@api @skipOnLDAP @skipOnOcis @Sad5b674f
 Feature: translate messages in api response to preferred language
   As a user
   I want response messages to be translated in preferred language
   So that I can see and understand the response messages in my language
 
+  @Tf20ec2b3
   Scenario Outline: user tries to get non existing share and uses some preferred language
     Given these users have been created with default attributes and without skeleton files:
       | username |

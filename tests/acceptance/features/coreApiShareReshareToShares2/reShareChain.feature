@@ -1,4 +1,4 @@
-@api @files_sharing-app-required @issue-ocis-2141
+@api @files_sharing-app-required @issue-ocis-2141 @S2e70efb0
 Feature: resharing can be done on a reshared resource
 
   Background:
@@ -11,7 +11,7 @@ Feature: resharing can be done on a reshared resource
       | Carol    |
       | David    |
 
-  @skipOnOcV10
+  @skipOnOcV10 @Tb9f1f770
   Scenario: Reshared files can be still accessed if a user in the middle removes it.
     Given user "Alice" has uploaded file with content "ownCloud test text file 0" to "/textfile0.txt"
     And user "Alice" has shared file "textfile0.txt" with user "Brian"

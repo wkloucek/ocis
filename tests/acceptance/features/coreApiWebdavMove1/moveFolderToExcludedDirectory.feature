@@ -1,4 +1,4 @@
-@api @issue-ocis-reva-14
+@api @issue-ocis-reva-14 @Sb91d2713
 Feature: users cannot move (rename) a folder to or into an excluded directory
   As an administrator
   I want to be able to exclude directories (folders) from being processed. Any attempt to rename an existing folder to one of those names should be refused.
@@ -9,6 +9,7 @@ Feature: users cannot move (rename) a folder to or into an excluded directory
     And user "Alice" has been created with default attributes and without skeleton files
 
 
+  @T4e5d7b3a
   Scenario Outline: Rename a folder to an excluded directory name
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/testshare"
@@ -28,6 +29,7 @@ Feature: users cannot move (rename) a folder to or into an excluded directory
       | spaces      |
 
 
+  @T95515cd3
   Scenario Outline: Rename a folder to an excluded directory name inside a parent directory
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/testshare"
@@ -48,6 +50,7 @@ Feature: users cannot move (rename) a folder to or into an excluded directory
       | spaces      |
 
 
+  @T6a89e880
   Scenario Outline: rename a folder to a folder name that matches (or not) excluded_directories_regex
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/testshare"

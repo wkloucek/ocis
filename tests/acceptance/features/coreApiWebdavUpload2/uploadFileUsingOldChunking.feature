@@ -1,4 +1,4 @@
-@api @issue-ocis-reva-17
+@api @issue-ocis-reva-17 @S00962c5e
 Feature: upload file using old chunking
   As a user
   I want to be able to upload "large" files in chunks
@@ -9,6 +9,7 @@ Feature: upload file using old chunking
     And user "Alice" has been created with default attributes and without skeleton files
 
 
+  @T62f05bd0
   Scenario Outline: Upload chunked file asc
     Given using <dav_version> DAV path
     When user "Alice" uploads the following "3" chunks to "/myChunkedFile.txt" with old chunking and using the WebDAV API
@@ -31,6 +32,7 @@ Feature: upload file using old chunking
       | spaces      |
 
 
+  @Tdff4f313
   Scenario Outline: Upload chunked file desc
     Given using <dav_version> DAV path
     When user "Alice" uploads the following "3" chunks to "/myChunkedFile.txt" with old chunking and using the WebDAV API
@@ -51,6 +53,7 @@ Feature: upload file using old chunking
       | spaces      |
 
 
+  @T8a335f72
   Scenario Outline: Upload chunked file random
     Given using <dav_version> DAV path
     When user "Alice" uploads the following "3" chunks to "/myChunkedFile.txt" with old chunking and using the WebDAV API
@@ -71,6 +74,7 @@ Feature: upload file using old chunking
       | spaces      |
 
 
+  @T0e5632c5
   Scenario Outline: Checking file id after a move overwrite using old chunking endpoint
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file "filesForUpload/textfile.txt" to "textfile0.txt"
@@ -99,7 +103,7 @@ Feature: upload file using old chunking
       | dav_version |
       | spaces      |
 
-  @smokeTest
+  @smokeTest @Tf6873ad0
   # This smokeTest scenario does ordinary checks for chunked upload,
   # without adjusting the log level. This allows it to run in test environments
   # where the log level has been fixed and cannot be changed.
@@ -126,7 +130,8 @@ Feature: upload file using old chunking
       | spaces      | 0                               |
 
   # This scenario does extra checks with the log level set to debug.
-  # It does not run in smoke test runs. (see comments in scenario above)
+
+  @T8d2707fc
   Scenario Outline: Chunked upload files with difficult name and check the log
     Given using <dav_version> DAV path
     And the owncloud log level has been set to debug
@@ -163,6 +168,7 @@ Feature: upload file using old chunking
       | spaces      | ?abc=oc #   |
 
 
+  @T3afdf3d1
   Scenario Outline: Upload chunked file with old chunking with lengthy filenames
     Given using <dav_version> DAV path
     Given the owncloud log level has been set to debug

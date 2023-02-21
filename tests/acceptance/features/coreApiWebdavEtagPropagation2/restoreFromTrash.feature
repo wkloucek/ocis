@@ -1,4 +1,4 @@
-@api
+@api @Sf6afabdc
 Feature: propagation of etags when restoring a file or folder from trash
 
   Background:
@@ -6,6 +6,7 @@ Feature: propagation of etags when restoring a file or folder from trash
     And user "Alice" has created folder "/upload"
 
 
+  @T3991b836
   Scenario Outline: restoring a file to its original location changes the etags of all parents
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/upload/sub"
@@ -27,6 +28,7 @@ Feature: propagation of etags when restoring a file or folder from trash
       | new         |
 
 
+  @Tfd0c6720
   Scenario Outline: restoring a file to an other location changes the etags of all parents
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/upload/sub"
@@ -50,6 +52,7 @@ Feature: propagation of etags when restoring a file or folder from trash
       | new         |
 
 
+  @T68a799a4
   Scenario Outline: restoring a folder to its original location changes the etags of all parents
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/upload/sub"
@@ -71,6 +74,7 @@ Feature: propagation of etags when restoring a file or folder from trash
       | new         |
 
 
+  @Ta7349fc3
   Scenario Outline: restoring a folder to an other location changes the etags of all parents
     Given using <dav_version> DAV path
     And user "Alice" has created folder "/upload/sub"

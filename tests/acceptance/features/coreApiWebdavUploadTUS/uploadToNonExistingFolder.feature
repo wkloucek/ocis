@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @Sce48049f
 Feature: upload file
   As a user
   I want to try uploading files to a nonexistent folder
@@ -10,6 +10,7 @@ Feature: upload file
     And user "Alice" has been created with default attributes and without skeleton files
 
 
+  @T66ee421d
   Scenario Outline: attempt to upload a file into a nonexistent folder inside shares
     Given using <dav_version> DAV path
     When user "Alice" uploads file with content "uploaded content" to "/Shares/FOLDER/textfile.txt" using the TUS protocol on the WebDAV API
@@ -21,6 +22,7 @@ Feature: upload file
       | new         |
 
 
+  @T83e08186
   Scenario Outline: attempt to upload a file into a nonexistent folder
     Given using <dav_version> DAV path
     When user "Alice" uploads file with content "uploaded content" to "/nonExistentFolder/textfile.txt" using the TUS protocol on the WebDAV API
@@ -37,6 +39,7 @@ Feature: upload file
       | spaces      |
 
 
+  @T5c9dcfd9
   Scenario Outline: attempt to upload a file into a nonexistent folder within correctly received share
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -52,6 +55,7 @@ Feature: upload file
       | new         |
 
 
+  @Tbdb4bd66
   Scenario Outline: attempt to upload a file into a nonexistent folder within correctly received read only share
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files

@@ -1,4 +1,4 @@
-@api @skipOnOcV10 @S0b31a54c
+@api @skipOnOcV10 @Sa946a5aa
 Feature: Restoring space
   As a manager of space
   I want to be able to restore a disabled space.
@@ -19,14 +19,16 @@ Feature: Restoring space
     And using spaces DAV path
 
 
-  @Tb440d410
+
+  @T8eddee18
   Scenario: An owner can restore a Space via the Graph API
     Given user "Alice" has disabled a space "restore a space"
     When user "Alice" restores a disabled space "restore a space"
     Then the HTTP status code should be "200"
 
 
-  @T17434980
+
+  @Td577ff8a
   Scenario: Participants can see the data after the space is restored
     Given user "Alice" has created a folder "mainFolder" in space "restore a space"
     And user "Alice" has uploaded a file inside space "restore a space" with content "example" to "test.txt"
@@ -45,7 +47,8 @@ Feature: Restoring space
       | mainFolder |
 
 
-  @T280d9b42
+
+  @Tc35dc56a
   Scenario: Participant can create data in the space after restoring
     Given user "Alice" has shared a space "restore a space" to user "Brian" with role "editor"
     And user "Alice" has disabled a space "restore a space"
@@ -57,7 +60,8 @@ Feature: Restoring space
       | mainFolder |
 
 
-  @T6fd323c9
+
+  @Td72f80fc
   Scenario Outline: User without space manager role cannot restore space
     Given user "Alice" has shared a space "restore a space" to user "Brian" with role "<role>"
     And user "Alice" has disabled a space "restore a space"

@@ -1,4 +1,4 @@
-@api @files_sharing-app-required
+@api @files_sharing-app-required @S5b1dff06
 Feature: sharing
 
   Background:
@@ -7,7 +7,7 @@ Feature: sharing
     And using OCS API version "1"
     And user "Alice" has been created with default attributes and without skeleton files
 
-  @smokeTest
+  @smokeTest @T6c7201ba
   Scenario Outline: Allow modification of reshare
     Given using OCS API version "<ocs_api_version>"
     And these users have been created with default attributes and without skeleton files:
@@ -30,7 +30,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @issue-ocis-1289
+  @issue-ocis-1289 @Taaa56823
   Scenario Outline: keep group permissions in sync when the share is renamed by the receiver and then the permissions are updated by sharer
     Given using OCS API version "<ocs_api_version>"
     And user "Brian" has been created with default attributes and without skeleton files
@@ -64,6 +64,7 @@ Feature: sharing
       | 2               | 200             |
 
 
+  @T373bff55
   Scenario Outline: Cannot set permissions to zero
     Given using OCS API version "<ocs_api_version>"
     And group "grp1" has been created
@@ -78,7 +79,7 @@ Feature: sharing
       | 1               | 200              |
       | 2               | 400              |
 
-  @issue-ocis-2173
+  @issue-ocis-2173 @Tacf84784
   Scenario Outline: Cannot update a share of a file with a user to have only create and/or delete permission
     Given using OCS API version "<ocs_api_version>"
     And user "Brian" has been created with default attributes and without skeleton files
@@ -100,7 +101,7 @@ Feature: sharing
       | 1               | 200              | create,delete |
       | 2               | 400              | create,delete |
 
-  @issue-ocis-2173
+  @issue-ocis-2173 @T241c1567
   Scenario Outline: Cannot update a share of a file with a group to have only create and/or delete permission
     Given using OCS API version "<ocs_api_version>"
     And user "Brian" has been created with default attributes and without skeleton files
@@ -124,7 +125,7 @@ Feature: sharing
       | 1               | 200              | create,delete |
       | 2               | 400              | create,delete |
 
-  @skipOnFilesClassifier @issue-files-classifier-291 @toFixOnOCIS @issue-ocis-2201
+  @skipOnFilesClassifier @issue-files-classifier-291 @toFixOnOCIS @issue-ocis-2201 @T14b7656f
   Scenario Outline: Share ownership change after moving a shared file outside of an outer share
     Given these users have been created with default attributes and without skeleton files:
       | username |
@@ -160,6 +161,7 @@ Feature: sharing
       | /folder2           |
 
 
+  @T174dec77
   Scenario Outline: Share ownership change after moving a shared file to another share
     Given these users have been created with default attributes and without skeleton files:
       | username |
@@ -200,7 +202,7 @@ Feature: sharing
       | path          |
       | /Carol-folder |
 
-  @toFixOnOCIS @toFixOnOcV10 @issue-ocis-reva-349 @issue-ocis-reva-350 @issue-ocis-reva-352 @issue-37653
+  @toFixOnOCIS @toFixOnOcV10 @issue-ocis-reva-349 @issue-ocis-reva-350 @issue-ocis-reva-352 @issue-37653 @Tb1a59ccc
   #after fixing all the issues merge this scenario with the one below
   Scenario Outline: API responds with a full set of parameters when owner changes the permission of a share
     Given using OCS API version "<ocs_api_version>"
@@ -248,6 +250,7 @@ Feature: sharing
       | 2               | 200             |
 
 
+  @Teaa37d84
   Scenario Outline: Increasing permissions is allowed for owner
     Given using OCS API version "<ocs_api_version>"
     And user "Brian" has been created with default attributes and without skeleton files
@@ -271,6 +274,7 @@ Feature: sharing
       | 2               | 200             |
 
 
+  @T530b9cfc
   Scenario Outline: Sharer deletes file uploaded with upload-only permission by sharee to a shared folder
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files

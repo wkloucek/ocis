@@ -1,4 +1,4 @@
-@api
+@api @S3498149f
 Feature: refuse access
   As an administrator
   I want to refuse access to unauthenticated and disabled users
@@ -7,7 +7,7 @@ Feature: refuse access
   Background:
     Given using OCS API version "1"
 
-  @smokeTest
+  @smokeTest @T3055d321
   Scenario Outline: Unauthenticated call
     # cannot perform with spaces WebDAV due to the absence of user
     Given using <dav_version> DAV path
@@ -23,6 +23,7 @@ Feature: refuse access
       | new         |
 
 
+  @Te860611b
   Scenario Outline: A disabled user cannot use webdav
     Given using <dav_version> DAV path
     And user "Alice" has been created with default attributes and without skeleton files

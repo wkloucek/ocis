@@ -1,4 +1,4 @@
-@api @files_sharing-app-required
+@api @files_sharing-app-required @S62bb3ad9
 Feature: Sharing resources with different case names with the sharee and checking the coexistence of resources on sharee/receivers side
 
   Background:
@@ -10,6 +10,7 @@ Feature: Sharing resources with different case names with the sharee and checkin
       | Brian    |
 
 
+  @T4f8354e9
   Scenario: sharing files with different case names with an internal user
     Given user "Alice" has uploaded the following files with content "some data"
       | path             |
@@ -55,6 +56,7 @@ Feature: Sharing resources with different case names with the sharee and checkin
       | /Shares/TEXTFILE.xyz.txt |
 
 
+  @T400eb9ce
   Scenario: sharing folders with different case names with an internal user
     Given user "Alice" has created the following folders
       | path    |
@@ -100,6 +102,7 @@ Feature: Sharing resources with different case names with the sharee and checkin
       | /Shares/fo.xyz |
 
 
+  @T66e7640c
   Scenario: sharing files and folders with different case names with an internal user
     Given user "Alice" has uploaded the following files with content "some data"
       | path                  |
@@ -151,6 +154,7 @@ Feature: Sharing resources with different case names with the sharee and checkin
       | /Shares/CASESENSITIVE.xyz |
 
 
+  @T5ce4d382
   Scenario: sharing files with different case names with group members
     Given group "grp1" has been created
     And user "Brian" has been added to group "grp1"
@@ -198,6 +202,7 @@ Feature: Sharing resources with different case names with the sharee and checkin
       | /Shares/TEXTFILE.xyz.txt |
 
 
+  @T84db2a3b
   Scenario: sharing folders with different case names with group members
     Given group "grp1" has been created
     And user "Brian" has been added to group "grp1"
@@ -245,6 +250,7 @@ Feature: Sharing resources with different case names with the sharee and checkin
       | /Shares/fo.xyz |
 
 
+  @T95445593
   Scenario: sharing files and folders with different case names with group members
     Given group "grp1" has been created
     And user "Brian" has been added to group "grp1"

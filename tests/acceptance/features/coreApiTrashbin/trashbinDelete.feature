@@ -1,4 +1,4 @@
-@api @files_trashbin-app-required @issue-ocis-reva-52
+@api @files_trashbin-app-required @issue-ocis-reva-52 @Sa167bd61
 Feature: files and folders can be deleted from the trashbin
   As a user
   I want to delete files and folders from the trashbin
@@ -13,7 +13,7 @@ Feature: files and folders can be deleted from the trashbin
     And user "Alice" has uploaded file with content "to delete" to "/PARENT/parent.txt"
     And user "Alice" has uploaded file with content "to delete" to "/PARENT/CHILD/child.txt"
 
-  @smokeTest
+  @smokeTest @Tb70958ec
   Scenario Outline: Trashbin can be emptied
     Given using <dav-path> DAV path
     And user "Alice" has uploaded file with content "file with comma" to "sample,0.txt"
@@ -35,7 +35,7 @@ Feature: files and folders can be deleted from the trashbin
       | spaces   | textfile0.txt | textfile1.txt |
       | spaces   | sample,0.txt  | sample,1.txt  |
 
-  @smokeTest
+  @smokeTest @T2340bc95
   Scenario Outline: delete a single file from the trashbin
     Given using <dav-path> DAV path
     And user "Alice" has deleted file "/textfile0.txt"
@@ -57,7 +57,7 @@ Feature: files and folders can be deleted from the trashbin
       | dav-path |
       | spaces   |
 
-  @smokeTest
+  @smokeTest @Tff1ec018
   Scenario Outline: delete multiple files from the trashbin and make sure the correct ones are gone
     Given using <dav-path> DAV path
     And user "Alice" has uploaded file "filesForUpload/textfile.txt" to "/PARENT/textfile0.txt"
@@ -85,6 +85,7 @@ Feature: files and folders can be deleted from the trashbin
       | spaces   |
 
 
+  @T64c59256
   Scenario Outline: User tries to delete another user's trashbin
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -109,6 +110,7 @@ Feature: files and folders can be deleted from the trashbin
       | spaces   | 404         |
 
 
+  @Tfce1e475
   Scenario Outline: User tries to delete trashbin file using invalid password
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -132,6 +134,7 @@ Feature: files and folders can be deleted from the trashbin
       | spaces   |
 
 
+  @T067004a3
   Scenario Outline: User tries to delete trashbin file using no password
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -155,6 +158,7 @@ Feature: files and folders can be deleted from the trashbin
       | spaces   |
 
 
+  @T441132ab
   Scenario Outline: delete a folder that contains a file from the trashbin
     Given using <dav-path> DAV path
     And user "Alice" has created folder "FOLDER"
@@ -180,6 +184,7 @@ Feature: files and folders can be deleted from the trashbin
       | spaces   |
 
 
+  @Ta0807254
   Scenario Outline: delete a subfolder from a deleted folder from the trashbin
     Given using <dav-path> DAV path
     And user "Alice" has created folder "FOLDER"
@@ -205,6 +210,7 @@ Feature: files and folders can be deleted from the trashbin
       | spaces   |
 
 
+  @T367c665c
   Scenario Outline: delete files with special characters from the trashbin
     Given using <dav-path> DAV path
     And user "Alice" has uploaded the following files with content "special character file"
@@ -242,6 +248,7 @@ Feature: files and folders can be deleted from the trashbin
       | spaces   |
 
 
+  @T9514d9df
   Scenario Outline: delete folders with special characters from the trashbin
     Given using <dav-path> DAV path
     And user "Alice" has created the following folders
@@ -279,6 +286,7 @@ Feature: files and folders can be deleted from the trashbin
       | spaces   |
 
 
+  @Tb016bb16
   Scenario Outline: delete folders with dot in the name from the trashbin
     Given using <dav-path> DAV path
     And user "Alice" has created the following folders

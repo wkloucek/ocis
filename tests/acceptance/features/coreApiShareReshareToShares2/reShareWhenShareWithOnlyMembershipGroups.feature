@@ -1,4 +1,4 @@
-@api @files_sharing-app-required @issue-ocis-1289 @issue-ocis-reva-194 @issue-ocis-1328 @skipOnOcis
+@api @files_sharing-app-required @issue-ocis-1289 @issue-ocis-reva-194 @issue-ocis-1328 @skipOnOcis @S1dea73e1
 Feature: resharing a resource with an expiration date
 
   Background:
@@ -10,6 +10,7 @@ Feature: resharing a resource with an expiration date
       | Brian    |
 
 
+  @T748e9338
   Scenario Outline: User should not be able to re-share a folder to a group which he/she is not member of when share with only member group is enabled
     Given using OCS API version "<ocs_api_version>"
     And parameter "shareapi_only_share_with_membership_groups" of app "core" has been set to "yes"
@@ -29,6 +30,7 @@ Feature: resharing a resource with an expiration date
       | 2               | 403             | 403              |
 
 
+  @T3dfb4640
   Scenario Outline: User should not be able to re-share a file to a group which he/she is not member of when share with only member group is enabled
     Given using OCS API version "<ocs_api_version>"
     And parameter "shareapi_only_share_with_membership_groups" of app "core" has been set to "yes"

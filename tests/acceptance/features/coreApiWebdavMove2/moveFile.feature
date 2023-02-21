@@ -1,4 +1,4 @@
-@api
+@api @S016fb7be
 Feature: move (rename) file
   As a user
   I want to be able to move and rename files
@@ -8,7 +8,7 @@ Feature: move (rename) file
     Given using OCS API version "1"
     And user "Alice" has been created with default attributes and without skeleton files
 
-  @smokeTest
+  @smokeTest @T9c79221d
   Scenario Outline: Moving a file
     Given using <dav_version> DAV path
     And user "Alice" has created folder "FOLDER"
@@ -28,7 +28,7 @@ Feature: move (rename) file
       | dav_version |
       | spaces      |
 
-  @smokeTest
+  @smokeTest @T79b5b9e9
   Scenario Outline: Moving and overwriting a file
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "ownCloud test text file 0" to "textfile0.txt"
@@ -49,6 +49,7 @@ Feature: move (rename) file
       | spaces      |
 
 
+  @Ta786d753
   Scenario Outline: Moving (renaming) a file to be only different case
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "ownCloud test text file 0" to "textfile0.txt"
@@ -66,7 +67,7 @@ Feature: move (rename) file
       | dav_version |
       | spaces      |
 
-  @smokeTest
+  @smokeTest @T0c8bb0ee
   Scenario Outline: Moving (renaming) a file to a file with only different case to an existing file
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "ownCloud test text file 0" to "textfile0.txt"
@@ -86,6 +87,7 @@ Feature: move (rename) file
       | spaces      |
 
 
+  @Tbc1244fc
   Scenario Outline: Moving (renaming) a file to a file in a folder with only different case to an existing file
     Given using <dav_version> DAV path
     And user "Alice" has created folder "PARENT"
@@ -105,7 +107,7 @@ Feature: move (rename) file
       | dav_version |
       | spaces      |
 
-  @files_sharing-app-required @skipOnOcis
+  @files_sharing-app-required @skipOnOcis @Tca3c3a2d
   Scenario Outline: Moving a file into a shared folder as the sharee and as the sharer
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -128,7 +130,7 @@ Feature: move (rename) file
       | old         | Brian |
       | new         | Brian |
 
-  @files_sharing-app-required @skipOnOcis
+  @files_sharing-app-required @skipOnOcis @T9739be07
   Scenario Outline: Moving a file out of a shared folder as the sharee and as the sharer
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -151,7 +153,7 @@ Feature: move (rename) file
       | old         | Brian |
       | new         | Brian |
 
-  @files_sharing-app-required @skipOnOcis
+  @files_sharing-app-required @skipOnOcis @T0d2c7707
   Scenario Outline: Moving a file to a shared folder with no permissions
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file "filesForUpload/textfile.txt" to "textfile0.txt"
@@ -170,7 +172,7 @@ Feature: move (rename) file
       | old         |
       | new         |
 
-  @files_sharing-app-required @skipOnOcis
+  @files_sharing-app-required @skipOnOcis @T8c74cb6b
   Scenario Outline: Moving a file to overwrite a file in a shared folder with no permissions
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "ownCloud test text file 0" to "textfile0.txt"
@@ -192,6 +194,7 @@ Feature: move (rename) file
       | new         |
 
 
+  @T0d4dc832
   Scenario Outline: move file into a not-existing folder
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file "filesForUpload/textfile.txt" to "fileToMove.txt"
@@ -207,7 +210,7 @@ Feature: move (rename) file
       | dav_version |
       | spaces      |
 
-  @issue-ocis-reva-211
+  @issue-ocis-reva-211 @T9659542f
   Scenario Outline: rename a file into an invalid filename
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file "filesForUpload/textfile.txt" to "fileToRename.txt"
@@ -224,6 +227,7 @@ Feature: move (rename) file
       | spaces      |
 
 
+  @T10086ca6
   Scenario Outline: Checking file id after a move
     Given using <dav_version> DAV path
     And user "Alice" has created folder "FOLDER"
@@ -244,7 +248,7 @@ Feature: move (rename) file
       | dav_version |
       | spaces      |
 
-  @files_sharing-app-required @skipOnOcis
+  @files_sharing-app-required @skipOnOcis @Tb7bfc0eb
   Scenario Outline: Checking file id after a move between received shares
     Given using <dav_version> DAV path
     And user "Brian" has been created with default attributes and without skeleton files
@@ -269,7 +273,7 @@ Feature: move (rename) file
       | old         |
       | new         |
 
-  @issue-ocis-reva-211
+  @issue-ocis-reva-211 @T998ce804
   Scenario Outline: Renaming a file to a path with extension .part should not be possible
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file "filesForUpload/textfile.txt" to "fileToRename.txt"
@@ -292,7 +296,7 @@ Feature: move (rename) file
       | dav_version |
       | spaces      |
 
-  @sqliteDB
+  @sqliteDB @T64370219
   Scenario Outline: renaming to a file with special characters
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file with content "ownCloud test text file 0" to "textfile0.txt"
@@ -320,7 +324,7 @@ Feature: move (rename) file
       | dav_version |
       | spaces      |
 
-  @issue-ocis-reva-265
+  @issue-ocis-reva-265 @T65ecd152
   #after fixing the issues merge this Scenario into the one above
   Scenario Outline: renaming to a file with question mark in its name
     Given using <dav_version> DAV path
@@ -339,6 +343,7 @@ Feature: move (rename) file
       | spaces      | #oc ab?cd=ef# |
 
 
+  @T95b31369
   Scenario Outline: renaming file with dots in the path
     Given using <dav_version> DAV path
     And user "Alice" has created folder "<folder_name>"
@@ -371,7 +376,7 @@ Feature: move (rename) file
       | spaces      | /...          | abcd.txt    |
       | spaces      | /...          | ...         |
 
-  @smokeTest
+  @smokeTest @T6a825669
   Scenario Outline: user tries to move a file that doesnt exist into a folder
     Given using <dav_version> DAV path
     And user "Alice" has created folder "FOLDER"
@@ -388,7 +393,7 @@ Feature: move (rename) file
       | dav_version |
       | spaces      |
 
-  @smokeTest
+  @smokeTest @T42b3a842
   Scenario Outline: user tries to rename a file that doesnt exist
     Given using <dav_version> DAV path
     When user "Alice" moves file "/doesNotExist.txt" to "/exist.txt" using the WebDAV API
@@ -405,6 +410,7 @@ Feature: move (rename) file
       | spaces      |
 
 
+  @Tf2dee35b
   Scenario Outline: Moving a hidden file
     Given using <dav_version> DAV path
     And user "Alice" has created folder "FOLDER"
@@ -436,6 +442,7 @@ Feature: move (rename) file
       | spaces      |
 
 
+  @T2237891e
   Scenario Outline: Renaming to/from a hidden file
     Given using <dav_version> DAV path
     And user "Alice" has uploaded the following files with content "hidden file"
@@ -466,6 +473,7 @@ Feature: move (rename) file
       | spaces      |
 
 
+  @Tebaba269
   Scenario Outline: Moving a file (deep moves with various folder and file names)
     Given using <dav_version> DAV path
     And user "Alice" has created folder "<source_folder>"
@@ -508,6 +516,7 @@ Feature: move (rename) file
       | spaces      | texta         | file.txt    | textb         | 1           |
 
 
+  @Tb5457913
   Scenario Outline: Moving a file from a folder to the root
     Given using <dav_version> DAV path
     And user "Alice" has created folder "<source_folder>"
@@ -543,6 +552,7 @@ Feature: move (rename) file
       | spaces      | texta         | file.txt    | 0           |
 
 
+  @T421afdd9
   Scenario Outline: move a file of size zero byte
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file "filesForUpload/zerobyte.txt" to "/zerobyte.txt"
@@ -562,6 +572,7 @@ Feature: move (rename) file
       | spaces      |
 
 
+  @Tbe451034
   Scenario Outline: rename a file of size zero byte
     Given using <dav_version> DAV path
     And user "Alice" has uploaded file "filesForUpload/zerobyte.txt" to "/zerobyte.txt"

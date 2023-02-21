@@ -1,4 +1,4 @@
-@api @files_sharing-app-required @issue-ocis-reva-34
+@api @files_sharing-app-required @issue-ocis-reva-34 @Sd82b0e1a
 Feature: sharees
 
   Background:
@@ -10,7 +10,7 @@ Feature: sharees
     And group "ShareeGroup2" has been created
     And user "Alice" has been added to group "ShareeGroup2"
 
-  @smokeTest
+  @smokeTest @T51a6e9ed
   Scenario Outline: Search without exact match
     Given using OCS API version "<ocs-api-version>"
     When user "Alice" gets the sharees using the sharing API with parameters
@@ -33,6 +33,7 @@ Feature: sharees
       | 2               | 200        | 200         |
 
 
+  @T8b263269
   Scenario Outline: Search without exact match not-exact casing
     Given using OCS API version "<ocs-api-version>"
     When user "Alice" gets the sharees using the sharing API with parameters
@@ -54,7 +55,7 @@ Feature: sharees
       | 1               | 100        | 200         |
       | 2               | 200        | 200         |
 
-  @skipOnLDAP
+  @skipOnLDAP @T21a540d4
   Scenario Outline: Search only with group members - allowed
     Given using OCS API version "<ocs-api-version>"
     And parameter "shareapi_only_share_with_group_members" of app "core" has been set to "yes"
@@ -79,6 +80,7 @@ Feature: sharees
       | 2               | 200        | 200         |
 
 
+  @T9663521f
   Scenario Outline: Search with exact match
     Given using OCS API version "<ocs-api-version>"
     When user "Alice" gets the sharees using the sharing API with parameters
@@ -99,6 +101,7 @@ Feature: sharees
       | 2               | 200        | 200         |
 
 
+  @T5ff3d44e
   Scenario Outline: Search with exact match not-exact casing
     Given using OCS API version "<ocs-api-version>"
     When user "Alice" gets the sharees using the sharing API with parameters
@@ -119,6 +122,7 @@ Feature: sharees
       | 2               | 200        | 200         |
 
 
+  @T6358ef7f
   Scenario Outline: Search with exact match not-exact casing group
     Given using OCS API version "<ocs-api-version>"
     When user "Alice" gets the sharees using the sharing API with parameters
@@ -139,6 +143,7 @@ Feature: sharees
       | 2               | 200        | 200         |
 
 
+  @T3778ea9a
   Scenario Outline: Search with "self"
     Given using OCS API version "<ocs-api-version>"
     When user "Sharee1" gets the sharees using the sharing API with parameters
@@ -159,6 +164,7 @@ Feature: sharees
       | 2               | 200        | 200         |
 
 
+  @T1e3bc652
   Scenario Outline: Federated sharee for files
     Given using OCS API version "<ocs-api-version>"
     When user "Alice" gets the sharees using the sharing API with parameters
@@ -179,6 +185,7 @@ Feature: sharees
       | 2               | 200        | 200         |
 
 
+  @T7c60238f
   Scenario Outline: Federated sharee for calendars not allowed
     Given using OCS API version "<ocs-api-version>"
     When user "Alice" gets the sharees using the sharing API with parameters
@@ -197,7 +204,7 @@ Feature: sharees
       | 1               | 100        | 200         |
       | 2               | 200        | 200         |
 
-  @skipOnLDAP
+  @skipOnLDAP @Tf73b5fd0
   Scenario Outline: Enumerate only group members - only show partial results from member of groups
     Given using OCS API version "<ocs-api-version>"
     And these users have been created with default attributes and without skeleton files:
@@ -223,6 +230,7 @@ Feature: sharees
       | 2               | 200        | 200         |
 
 
+  @Tb2437d25
   Scenario Outline: Search without exact match such that the search string matches the user getting the sharees
     Given user "sharee2" has been created with default attributes and without skeleton files
     And using OCS API version "<ocs-api-version>"
@@ -247,6 +255,7 @@ Feature: sharees
       | 2               | 200        | 200         |
 
 
+  @Te2517d8e
   Scenario Outline: search for sharees when search min length is set to 2
     Given the administrator has updated system config key "user.search_min_length" with value "2"
     And user "sharee2" has been created with default attributes and without skeleton files
@@ -272,6 +281,7 @@ Feature: sharees
       | 2               | 200        | 200         |
 
 
+  @Tc8ba0236
   Scenario Outline: search for sharees with long name when search min length is set to 2
     Given the administrator has updated system config key "user.search_min_length" with value "2"
     And user "sharee2" has been created with default attributes and without skeleton files

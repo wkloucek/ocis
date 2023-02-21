@@ -1,4 +1,4 @@
-@api @issue-ocis-reva-172 @files_sharing-app-required
+@api @issue-ocis-reva-172 @files_sharing-app-required @Scfe29522
 Feature: UNLOCK locked items (sharing)
 
   Background:
@@ -12,6 +12,7 @@ Feature: UNLOCK locked items (sharing)
     And user "Alice" has uploaded file "filesForUpload/textfile.txt" to "PARENT/parent.txt"
 
 
+  @Tf93a17ed
   Scenario Outline: as share receiver unlocking a shared file locked by the file owner is not possible. To unlock use the owners locktoken
     Given using <dav-path> DAV path
     And user "Alice" has locked file "PARENT/parent.txt" setting the following properties
@@ -36,6 +37,7 @@ Feature: UNLOCK locked items (sharing)
       | spaces   | exclusive  | /parent.txt        |
 
 
+  @Tb8edf7b6
   Scenario Outline: as share receiver unlocking a file in a share locked by the file owner is not possible. To unlock use the owners locktoken
     Given using <dav-path> DAV path
     And user "Alice" has locked file "PARENT/parent.txt" setting the following properties
@@ -60,6 +62,7 @@ Feature: UNLOCK locked items (sharing)
       | spaces   | exclusive  |
 
 
+  @T6266fa22
   Scenario Outline: as share receiver unlock a shared file
     Given using <dav-path> DAV path
     And user "Alice" has shared file "PARENT/parent.txt" with user "Brian"
@@ -84,6 +87,7 @@ Feature: UNLOCK locked items (sharing)
       | spaces   | exclusive  | /parent.txt        |
 
 
+  @T9612860b
   Scenario Outline: as owner unlocking a shared file locked by the receiver is not possible. To unlock use the receivers locktoken
     Given using <dav-path> DAV path
     And user "Alice" has shared file "PARENT/parent.txt" with user "Brian"
@@ -108,6 +112,7 @@ Feature: UNLOCK locked items (sharing)
       | spaces   | exclusive  | /parent.txt        |
 
 
+  @Tfc8e890e
   Scenario Outline: as owner unlocking a file in a share that was locked by the share receiver is not possible. To unlock use the receivers locktoken
     Given using <dav-path> DAV path
     And user "Alice" has shared folder "PARENT" with user "Brian"

@@ -1,4 +1,4 @@
-@api
+@api @S090a6b61
 Feature: check etag propagation after different file alterations
 
   Background:
@@ -10,6 +10,7 @@ Feature: check etag propagation after different file alterations
     And user "Alice" has created folder "/upload"
 
 
+  @T0acb1821
   Scenario: copying a file inside a folder as a share receiver changes its etag for all collaborators
     Given user "Alice" has uploaded file with content "uploaded content" to "/upload/file.txt"
     And user "Alice" has shared folder "/upload" with user "Brian"
@@ -38,6 +39,7 @@ Feature: check etag propagation after different file alterations
       | Brian | /upload/file.txt | Shares |
 
 
+  @T012d0a1c
   Scenario: copying a file inside a folder as a sharer changes its etag for all collaborators
     Given user "Alice" has uploaded file with content "uploaded content" to "/upload/file.txt"
     And user "Alice" has shared folder "/upload" with user "Brian"
@@ -66,6 +68,7 @@ Feature: check etag propagation after different file alterations
       | Brian | /upload/file.txt | Shares |
 
 
+  @T31482658
   Scenario: as share receiver renaming a file inside a folder changes its etag for all collaborators
     Given user "Alice" has uploaded file with content "uploaded content" to "/upload/file.txt"
     And user "Alice" has shared folder "/upload" with user "Brian"
@@ -90,6 +93,7 @@ Feature: check etag propagation after different file alterations
       | Brian | /upload/renamed.txt | Shares |
 
 
+  @Td43e5d2e
   Scenario: as sharer renaming a file inside a folder changes its etag for all collaborators
     Given user "Alice" has uploaded file with content "uploaded content" to "/upload/file.txt"
     And user "Alice" has shared folder "/upload" with user "Brian"
@@ -114,6 +118,7 @@ Feature: check etag propagation after different file alterations
       | Brian | /upload/renamed.txt | Shares |
 
 
+  @Tbf3007a2
   Scenario: as sharer moving a file from one folder to an other changes the etags of both folders for all collaborators
     Given user "Alice" has created folder "/dst"
     And user "Alice" has uploaded file with content "uploaded content" to "/upload/file.txt"
@@ -140,6 +145,7 @@ Feature: check etag propagation after different file alterations
       | Brian | /dst        | Shares |
 
 
+  @Tdbee9c60
   Scenario: as share receiver moving a file from one folder to an other changes the etags of both folders for all collaborators
     Given user "Alice" has created folder "/dst"
     And user "Alice" has uploaded file with content "uploaded content" to "/upload/file.txt"
@@ -165,6 +171,7 @@ Feature: check etag propagation after different file alterations
       | Brian | /dst        | Shares |
 
 
+  @Td8403918
   Scenario: as sharer moving a folder from one folder to an other changes the etags of both folders for all collaborators
     Given user "Alice" has created folder "/dst"
     And user "Alice" has created folder "/upload/toMove"
@@ -190,6 +197,7 @@ Feature: check etag propagation after different file alterations
       | Brian | /dst        | Shares |
 
 
+  @T59402c4f
   Scenario: as share reciever moving a folder from one folder to an other changes the etags of both folders for all collaborators
     Given user "Alice" has created folder "/dst"
     And user "Alice" has created folder "/upload/toMove"
@@ -215,6 +223,7 @@ Feature: check etag propagation after different file alterations
       | Brian | /dst        | Shares |
 
 
+  @T3f64e463
   Scenario: as share receiver creating a folder inside a folder received as a share changes its etag for all collaborators
     Given user "Alice" has shared folder "/upload" with user "Brian"
     And user "Brian" has accepted share "/upload" offered by user "Alice"
@@ -232,6 +241,7 @@ Feature: check etag propagation after different file alterations
       | Brian | /upload        | Shares |
 
 
+  @T977605cd
   Scenario: as sharer creating a folder inside a shared folder changes etag for all collaborators
     Given user "Alice" has shared folder "/upload" with user "Brian"
     And user "Brian" has accepted share "/upload" offered by user "Alice"
@@ -249,6 +259,7 @@ Feature: check etag propagation after different file alterations
       | Brian | /upload        | Shares |
 
 
+  @Tff08859a
   Scenario: as share receiver uploading a file inside a folder received as a share changes its etag for all collaborators
     Given user "Alice" has shared folder "/upload" with user "Brian"
     And user "Brian" has accepted share "/upload" offered by user "Alice"
@@ -266,6 +277,7 @@ Feature: check etag propagation after different file alterations
       | Brian | /upload        | Shares |
 
 
+  @T1cb9c37e
   Scenario: as sharer uploading a file inside a shared folder should update etags for all collaborators
     Given user "Alice" has shared folder "/upload" with user "Brian"
     And user "Brian" has accepted share "/upload" offered by user "Alice"
@@ -283,6 +295,7 @@ Feature: check etag propagation after different file alterations
       | Brian | /upload        | Shares |
 
 
+  @T08c1eeeb
   Scenario: as share receiver overwriting a file inside a received shared folder should update etags for all collaborators
     Given user "Alice" has uploaded file with content "uploaded content" to "/upload/file.txt"
     And user "Alice" has shared folder "/upload" with user "Brian"
@@ -301,6 +314,7 @@ Feature: check etag propagation after different file alterations
       | Brian | /upload        | Shares |
 
 
+  @Tb025267e
   Scenario: as sharer overwriting a file inside a shared folder should update etags for all collaborators
     Given user "Alice" has uploaded file with content "uploaded content" to "/upload/file.txt"
     And user "Alice" has shared folder "/upload" with user "Brian"
@@ -319,6 +333,7 @@ Feature: check etag propagation after different file alterations
       | Brian | /upload        | Shares |
 
 
+  @Teeb3831f
   Scenario: As share receiver deleting (removing) a file changes the etags of all parents for all collaborators
     Given user "Alice" has created folder "/upload/sub"
     And user "Alice" has uploaded file with content "uploaded content" to "/upload/sub/file.txt"
@@ -346,6 +361,7 @@ Feature: check etag propagation after different file alterations
       | Brian | /    | Personal |
 
 
+  @Tccb64e9b
   Scenario: As sharer deleting (removing) a file changes the etags of all parents for all collaborators
     Given user "Alice" has created folder "/upload/sub"
     And user "Alice" has uploaded file with content "uploaded content" to "/upload/sub/file.txt"
@@ -373,6 +389,7 @@ Feature: check etag propagation after different file alterations
       | Brian | /    | Personal |
 
 
+  @Td38cd3d3
   Scenario: As share receiver deleting (removing) a folder changes the etags of all parents for all collaborators
     Given user "Alice" has created folder "/upload/sub"
     And user "Alice" has created folder "/upload/sub/toDelete"
@@ -400,6 +417,7 @@ Feature: check etag propagation after different file alterations
       | Brian | /    | Personal |
 
 
+  @Tfe9b0047
   Scenario: As sharer deleting (removing) a folder changes the etags of all parents for all collaborators
     Given user "Alice" has created folder "/upload/sub"
     And user "Alice" has created folder "/upload/sub/toDelete"

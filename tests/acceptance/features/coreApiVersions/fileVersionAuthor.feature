@@ -1,4 +1,4 @@
-@api @issue-2914
+@api @issue-2914 @Sb291082c
 Feature: file versions remember the author of each version
 
   Background:
@@ -10,6 +10,7 @@ Feature: file versions remember the author of each version
     And the administrator has enabled the file version storage feature
 
 
+  @T2be52e7e
   Scenario: enable file versioning and check the history of changes from multiple users
     Given user "David" has been created with default attributes and without skeleton files
     And user "Alice" has created folder "/test"
@@ -41,6 +42,7 @@ Feature: file versions remember the author of each version
       | 3     | Alice  |
 
 
+  @T42b08fcc
   Scenario: enable file versioning and check the history of changes from multiple users for shared folder in the group
     Given user "Alice" has created folder "/test"
     And group "grp1" has been created
@@ -68,6 +70,7 @@ Feature: file versions remember the author of each version
       | 2     | Alice  |
 
 
+  @Tea5c5fc4
   Scenario: enable file versioning and check the history of changes from multiple users for shared file in the group
     Given group "grp1" has been created
     And user "Alice" has been added to group "grp1"
@@ -94,6 +97,7 @@ Feature: file versions remember the author of each version
       | 2     | Alice  |
 
 
+  @T33efeaf0
   Scenario: enable file versioning and check the history of changes from multiple users while moving file in/out of a subfolder
     Given user "Alice" has created folder "/test"
     And group "grp1" has been created
@@ -127,6 +131,7 @@ Feature: file versions remember the author of each version
       | 3     | Alice  |
 
 
+  @T9b7399f0
   Scenario: enable file versioning and check the history of changes from multiple users after renaming file by sharer
     Given group "grp1" has been created
     And user "Alice" has been added to group "grp1"
@@ -154,6 +159,7 @@ Feature: file versions remember the author of each version
       | 2     | Alice  |
 
 
+  @T26e8e993
   Scenario: enable file versioning and check the history of changes in sharer after renaming file by sharee
     Given group "grp1" has been created
     And user "Alice" has been added to group "grp1"
@@ -185,6 +191,7 @@ Feature: file versions remember the author of each version
       | 2     | Alice  |
 
 
+  @Tca4483ce
   Scenario: enable file versioning and check the history of changes from multiple users when reshared after unshared by sharer
     Given user "Alice" has created folder "/test"
     And group "grp1" has been created
@@ -220,6 +227,7 @@ Feature: file versions remember the author of each version
       | 3     | Alice  |
 
 
+  @T42037ff5
   Scenario: enable file versioning and check the history of changes from multiple users who have a matching folder/file
     Given user "David" has been created with default attributes and without skeleton files
     And user "Brian" has created folder "/test"
@@ -272,6 +280,7 @@ Feature: file versions remember the author of each version
     And the number of versions should be "0"
 
 
+  @T6d8481f1
   Scenario: enable file versioning and check the history of changes from multiple users who have a matching file
     Given user "David" has been created with default attributes and without skeleton files
     And user "Brian" has uploaded file with content "duplicate brian" to "/textfile0.txt"
@@ -321,6 +330,7 @@ Feature: file versions remember the author of each version
     And the number of versions should be "0"
 
 
+  @T9de13412
   Scenario: enable file versioning and check the version author after restoring a version of a file inside a folder
     Given user "Alice" has created folder "/test"
     And user "Alice" has shared folder "/test" with user "Brian" with permissions "all"
@@ -342,6 +352,7 @@ Feature: file versions remember the author of each version
       | 2     | Alice  |
 
 
+  @T9fe9a491
   Scenario: enable file versioning and check the version author after restoring a version of a file
     Given user "Alice" has uploaded file with content "uploaded content alice" to "/textfile0.txt"
     And user "Alice" has shared file "/textfile0.txt" with user "Brian"
@@ -362,6 +373,7 @@ Feature: file versions remember the author of each version
       | 2     | Alice  |
 
 
+  @T4e0fa857
   Scenario: check the author of the file version which was created before enabling the version storage
     Given the administrator has disabled the file version storage feature
     And user "Alice" has uploaded file with content "uploaded content alice" to "/textfile0.txt"
@@ -387,6 +399,7 @@ Feature: file versions remember the author of each version
       | 1     |        |
 
 
+  @T2b3255bf
   Scenario: check the author of the file version (inside a folder) which was created before enabling the version storage
     Given user "Alice" has created folder "/test"
     And the administrator has disabled the file version storage feature

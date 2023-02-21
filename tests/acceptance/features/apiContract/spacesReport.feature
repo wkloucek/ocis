@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @Sc3928b08
 Feature: Report test
   check that the REPORT response contains all the relevant value
 
@@ -18,6 +18,7 @@ Feature: Report test
     And using new DAV path
 
 
+  @Te43352c8
   Scenario: check the response of the found folder
     Given user "Alice" has created a share inside of space "find data" with settings:
       | path      | folderMain |
@@ -37,6 +38,7 @@ Feature: Report test
       | oc:size          | 12                   |
 
 
+  @T76bce690
   Scenario: check the response of the found file
     Given user "Alice" has created a share inside of space "find data" with settings:
       | path      | folderMain |

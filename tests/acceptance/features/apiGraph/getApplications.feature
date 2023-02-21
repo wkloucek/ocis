@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @S52a82e31
 Feature: get applications
   As an user
   I want to be able to get applications information with existings roles
@@ -7,6 +7,7 @@ Feature: get applications
     Given user "Alice" has been created with default attributes and without skeleton files
 
 
+  @T4031f06c
   Scenario Outline: admin user lists all the groups
     Given the administrator has given "Alice" the role "<role>" using the settings api
     When user "Alice" gets all applications using the Graph API

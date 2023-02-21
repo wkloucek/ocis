@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @S2e9edb76
 Feature: download multiple resources bundled into an archive
   As a user
   I want to be able to download multiple items at once
@@ -12,6 +12,7 @@ Feature: download multiple resources bundled into an archive
     Given user "Alice" has been created with default attributes and without skeleton files
 
 
+  @T21371216
   Scenario Outline: download a single file
     Given user "Alice" has uploaded file with content "some data" to "/textfile0.txt"
     When user "Alice" downloads the archive of "/textfile0.txt" using the resource id and setting these headers
@@ -27,6 +28,7 @@ Feature: download multiple resources bundled into an archive
       | Windows NT | zip          |
 
 
+  @T808f5d92
   Scenario Outline: download a single folder
     Given user "Alice" has created folder "my_data"
     And user "Alice" has uploaded file with content "some data" to "/my_data/textfile0.txt"
@@ -45,6 +47,7 @@ Feature: download multiple resources bundled into an archive
       | Windows NT | zip          |
 
 
+  @Tce9ffa4a
   Scenario: download multiple files and folders
     Given user "Alice" has uploaded file with content "some data" to "/textfile0.txt"
     And user "Alice" has uploaded file with content "other data" to "/textfile1.txt"
@@ -66,6 +69,7 @@ Feature: download multiple resources bundled into an archive
       | more_data/an_other_file.txt | more data  |
 
 
+  @T4ea77635
   Scenario: download a single file as different user
     Given user "Brian" has been created with default attributes and without skeleton files
     And user "Alice" has uploaded file with content "some data" to "/textfile0.txt"
@@ -73,6 +77,7 @@ Feature: download multiple resources bundled into an archive
     Then the HTTP status code should be "404"
 
 
+  @T7da58026
   Scenario: download multiple shared items as share receiver
     Given user "Brian" has been created with default attributes and without skeleton files
     And user "Alice" has uploaded file with content "some data" to "/textfile0.txt"
@@ -103,6 +108,7 @@ Feature: download multiple resources bundled into an archive
       | more_data/an_other_file.txt | more data  |
 
 
+  @Td8054053
   Scenario Outline: download the Shares folder as share receiver
     Given user "Brian" has been created with default attributes and without skeleton files
     And user "Alice" has uploaded file with content "some data" to "/textfile0.txt"

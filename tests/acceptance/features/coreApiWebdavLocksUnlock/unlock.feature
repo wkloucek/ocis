@@ -1,10 +1,11 @@
-@api @issue-ocis-reva-172
+@api @issue-ocis-reva-172 @S70edd0e2
 Feature: UNLOCK locked items
 
   Background:
     Given user "Alice" has been created with default attributes and without skeleton files
 
 
+  @T161cd703
   Scenario Outline: unlock one of multiple locks set by the user itself
     Given using <dav-path> DAV path
     And user "Alice" has uploaded file "filesForUpload/textfile.txt" to "textfile0.txt"
@@ -25,7 +26,7 @@ Feature: UNLOCK locked items
       | dav-path |
       | spaces   |
 
-  @files_sharing-app-required
+  @files_sharing-app-required @T0060c9e5
   Scenario Outline: as public unlocking a file in a share that was locked by the file owner is not possible. To unlock use the owners locktoken
     Given user "Alice" has created folder "PARENT"
     And user "Alice" has uploaded file "filesForUpload/textfile.txt" to "PARENT/parent.txt"
@@ -41,6 +42,7 @@ Feature: UNLOCK locked items
       | exclusive  |
 
 
+  @T04b9dbdf
   Scenario Outline: unlocking a file or folder does not unlock another file with the same name in another part of the file system
     Given using <dav-path> DAV path
     And user "Alice" has created folder "locked"

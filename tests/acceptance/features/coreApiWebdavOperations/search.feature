@@ -1,4 +1,4 @@
-@api @issue-ocis-reva-39
+@api @issue-ocis-reva-39 @S75984325
 Feature: Search
   As a user
   I would like to be able to search for files
@@ -21,7 +21,7 @@ Feature: Search
     And user "Alice" has uploaded file with content "does-not-matter" to "/upload😀 😁/upload😀 😁.txt"
     And user "Alice" has uploaded file with content "file with comma in filename" to "/upload😀 😁/upload,1.txt"
 
-  @smokeTest
+  @smokeTest @Te0d356b8
   Scenario Outline: search for entry by pattern
     Given using <dav_version> DAV path
     When user "Alice" searches for "upload" using the WebDAV API
@@ -48,6 +48,7 @@ Feature: Search
       | spaces      |
 
 
+  @Tcfd2b97d
   Scenario Outline: search for entries by only some letters from the middle of the entry name
     Given using <dav_version> DAV path
     And user "Alice" has created folder "FOLDER"
@@ -70,6 +71,7 @@ Feature: Search
       | spaces      |
 
 
+  @Tbde02fab
   Scenario Outline: search for files by extension
     Given using <dav_version> DAV path
     When user "Alice" searches for "png" using the WebDAV API
@@ -93,6 +95,7 @@ Feature: Search
       | spaces      |
 
 
+  @T7671b8e6
   Scenario Outline: search with empty field
     Given using <dav_version> DAV path
     When user "Alice" searches for "" using the WebDAV API
@@ -108,6 +111,7 @@ Feature: Search
       | spaces      |
 
 
+  @T326ea28c
   Scenario Outline: limit returned search entries
     Given using <dav_version> DAV path
     When user "Alice" searches for "upload" and limits the results to "3" items using the WebDAV API
@@ -132,6 +136,7 @@ Feature: Search
       | spaces      |
 
 
+  @Te7123fb3
   Scenario Outline: limit returned search entries to only 1 entry
     Given using <dav_version> DAV path
     When user "Alice" searches for "upload" and limits the results to "1" items using the WebDAV API
@@ -156,6 +161,7 @@ Feature: Search
       | spaces      |
 
 
+  @Tb8b778b2
   Scenario Outline: limit returned search entries to more entires than there are
     Given using <dav_version> DAV path
     When user "Alice" searches for "upload" and limits the results to "100" items using the WebDAV API
@@ -180,7 +186,7 @@ Feature: Search
       | dav_version |
       | spaces      |
 
-  @issue-ocis-4712
+  @issue-ocis-4712 @T3bc388fb
   Scenario Outline: report extra properties in search entries for a file
     Given using <dav_version> DAV path
     When user "Alice" searches for "upload" using the WebDAV API requesting these properties:
@@ -213,7 +219,7 @@ Feature: Search
       | dav_version |
       | spaces      |
 
-  @issue-ocis-4712
+  @issue-ocis-4712 @T3303fbeb
   Scenario Outline: report extra properties in search entries for a folder
     Given using <dav_version> DAV path
     When user "Alice" searches for "upload" using the WebDAV API requesting these properties:
@@ -246,6 +252,7 @@ Feature: Search
       | spaces      |
 
 
+  @T09d48ca2
   Scenario Outline: search for entry with emoji by pattern
     Given using <dav_version> DAV path
     When user "Alice" searches for "😀 😁" using the WebDAV API

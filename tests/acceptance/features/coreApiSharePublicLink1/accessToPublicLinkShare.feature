@@ -1,4 +1,4 @@
-@api @public_link_share-feature-required @files_sharing-app-required @issue-ocis-reva-282
+@api @public_link_share-feature-required @files_sharing-app-required @issue-ocis-reva-282 @S2ee960c2
 Feature: accessing a public link share
 
   Background:
@@ -7,6 +7,7 @@ Feature: accessing a public link share
       | Alice    |
 
 
+  @T04b53d26
   Scenario: Access to the preview of password protected public link without providing the password is not allowed
     Given user "Alice" has uploaded file "filesForUpload/testavatar.jpg" to "testavatar.jpg"
     And user "Alice" has created a public link share with settings
@@ -17,6 +18,7 @@ Feature: accessing a public link share
     Then the HTTP status code should be "404"
 
 
+  @Tfd0dd6d9
   Scenario: Access to the preview of public shared file without password
     Given user "Alice" has uploaded file "filesForUpload/testavatar.jpg" to "testavatar.jpg"
     And user "Alice" has created a public link share with settings
@@ -26,6 +28,7 @@ Feature: accessing a public link share
     Then the HTTP status code should be "200"
 
 
+  @T2f48cb7b
   Scenario: Access to the preview of password protected public shared file inside a folder without providing the password is not allowed
     Given user "Alice" has created folder "FOLDER"
     And user "Alice" has uploaded file "filesForUpload/testavatar.jpg" to "FOLDER/testavatar.jpg"
@@ -41,6 +44,7 @@ Feature: accessing a public link share
     Then the HTTP status code of responses on all endpoints should be "404"
 
 
+  @T460f0d51
   Scenario: Access to the preview of public shared file inside a folder without password
     Given user "Alice" has created folder "FOLDER"
     And user "Alice" has uploaded file "filesForUpload/testavatar.jpg" to "FOLDER/testavatar.jpg"

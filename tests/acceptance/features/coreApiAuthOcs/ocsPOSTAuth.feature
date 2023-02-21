@@ -1,10 +1,10 @@
-@api @files_sharing-app-required
+@api @files_sharing-app-required @S394bc26c
 Feature: auth
 
   Background:
     Given user "Alice" has been created with default attributes and without skeleton files
 
-  @issue-ocis-reva-30 @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112
+  @issue-ocis-reva-30 @smokeTest @skipOnBruteForceProtection @issue-brute_force_protection-112 @T342b1774
   Scenario: send POST requests to OCS endpoints as normal user with wrong password
     When user "Alice" requests these endpoints with "POST" including body "doesnotmatter" using password "invalid" about user "Alice"
       | endpoint                                                        |

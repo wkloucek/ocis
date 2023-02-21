@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @Scaac5c35
 Feature: Share spaces via link
   As the manager of a space
   I want to be able to share a space via public link
@@ -17,6 +17,7 @@ Feature: Share spaces via link
     And user "Alice" has uploaded a file inside space "share space" with content "some content" to "test.txt"
 
 
+  @T202ecfcb
   Scenario Outline: A manager can share a space to public via link with different permissions
     When user "Alice" creates a public link share of the space "share space" with settings:
       | permissions | <permissions> |
@@ -46,6 +47,7 @@ Feature: Share spaces via link
       | 15          | read,update,create,delete | d*V^o*Y03R9n8Z | link     |                          |
 
 
+  @T13281b81
   Scenario: An uploader should be able to upload a file
     When user "Alice" creates a public link share of the space "share space" with settings:
       | permissions | 4                        |
@@ -70,6 +72,7 @@ Feature: Share spaces via link
       | lorem.txt |
 
 
+  @Tb3ea6175
   Scenario Outline: An user without manager role cannot share a space to public via link
     Given user "Alice" has shared a space "share space" to user "Brian" with role "<role>"
     When user "Brian" creates a public link share of the space "share space" with settings:
@@ -84,6 +87,7 @@ Feature: Share spaces via link
       | editor |
 
 
+  @T21fece35
   Scenario: An user with manager role can share a space to public via link
     Given user "Alice" has shared a space "share space" to user "Brian" with role "manager"
     When user "Brian" creates a public link share of the space "share space" with settings:
@@ -93,6 +97,7 @@ Feature: Share spaces via link
     And for user "Alice" the space "share space" should contain the last created public link
 
 
+  @T99169b98
   Scenario: A user cannot share a disabled space to public via link
     Given user "Alice" has disabled a space "share space"
     When user "Alice" creates a public link share of the space "share space" with settings:

@@ -1,4 +1,4 @@
-@api @skipOnOcV10 @Sab22ec7e
+@api @skipOnOcV10 @Sc0e1ebb9
 Feature: public link for a space
 
   Background:
@@ -12,33 +12,38 @@ Feature: public link for a space
       | permissions | 1 |
 
 
-  @T14cbe301
+
+  @T75cac203
   Scenario: public tries to upload a file in the public space
     When the public uploads file "test.txt" with content "test" using the new public WebDAV API
     And the HTTP status code should be "403"
 
 
-  @T4e086488
+
+  @Tada537fe
   Scenario: public tries to create a folder in the public space
     When the public creates folder "created-by-public" using the new public WebDAV API
     And the HTTP status code should be "403"
 
 
-  @Ta681d66b
+
+  @T42227384
   Scenario: public tries to delete a file in the public space
     Given user "Alice" has uploaded a file inside space "public space" with content "some content" to "test.txt"
     When the public deletes file "test.txt" from the last public link share using the new public WebDAV API
     And the HTTP status code should be "403"
 
 
-  @T9b1070a8
+
+  @Taef85743
   Scenario: public tries to delete a folder in the public space
     And user "Alice" has created a folder "/public-folder" in space "public space"
     When the public deletes folder "public-folder" from the last public link share using the new public WebDAV API
     And the HTTP status code should be "403"
 
 
-  @T96d46072
+
+  @T09159ae0
   Scenario: public tries to change content of a resources in the public space
     Given user "Alice" has uploaded a file inside space "public space" with content "some content" to "test.txt"
     When the public overwrites file "test.txt" with content "public content" using the new WebDAV API

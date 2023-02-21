@@ -1,4 +1,4 @@
-@api @skipOnOcV10 @Sce7059a3
+@api @skipOnOcV10 @S2e21287a
 Feature: Search
   It is possible to search files in the Shares and the project space
 
@@ -18,7 +18,8 @@ Feature: Search
     And using new DAV path
 
 
-  @T9dd96b32
+
+  @Td08d18f4
   Scenario: Alice can find data from the project space
     When user "Alice" searches for "fol" using the WebDAV API
     Then the HTTP status code should be "207"
@@ -30,7 +31,8 @@ Feature: Search
       | /folderMain/SubFolder1/subFOLDER2/insideTheFolder.txt |
 
 
-  @T9dd96b32
+
+  @Td08d18f4
   Scenario: Alice can find data from the project space
     When user "Alice" searches for "SUB" using the WebDAV API
     Then the HTTP status code should be "207"
@@ -43,7 +45,8 @@ Feature: Search
       | /folderMain/SubFolder1/subFOLDER2/insideTheFolder.txt |
 
 
-  @T050f7185
+
+  @T7e4acb5b
   Scenario: Brian can find data from the Shares
     Given user "Alice" has created a share inside of space "find data" with settings:
       | path      | folderMain |
@@ -60,7 +63,8 @@ Feature: Search
     And for user "Brian" the search result should contain space "mountpoint/folderMain"
 
 
-  @Td0500640
+
+  @Teac2b8d7
   Scenario: User can find hidden file
     Given user "Alice" has created a folder ".space" in space "find data"
     When user "Alice" searches for ".sp" using the WebDAV API
@@ -70,7 +74,8 @@ Feature: Search
       | /.space |
 
 
-  @Tfdc2b19c
+
+  @T650b7be6
   Scenario: User cannot find pending folder
     Given user "Alice" has created a share inside of space "find data" with settings:
       | path      | folderMain |
@@ -85,7 +90,8 @@ Feature: Search
       | /SubFolder1/subFOLDER2/insideTheFolder.txt |
 
 
-  @T4ae9fa40
+
+  @Teb4941be
   Scenario: User cannot find declined folder
     Given user "Alice" has created a share inside of space "find data" with settings:
       | path      | folderMain |
@@ -101,7 +107,8 @@ Feature: Search
       | /SubFolder1/subFOLDER2/insideTheFolder.txt |
 
 
-  @Te2f2392c
+
+  @T5847e949
   Scenario: User cannot find deleted folder
     Given user "Alice" has removed the folder "folderMain" from space "find data"
     When user "Alice" searches for "folderMain" using the WebDAV API
@@ -109,7 +116,8 @@ Feature: Search
     And the search result should contain "0" entries
 
 
-  @T404f23c8
+
+  @T8256f5e4
   Scenario: User can find project space by name
     When user "Alice" searches for "find data" using the WebDAV API
     Then the HTTP status code should be "207"

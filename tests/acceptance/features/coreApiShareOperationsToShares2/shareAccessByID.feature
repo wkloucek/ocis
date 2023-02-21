@@ -1,4 +1,4 @@
-@api @files_sharing-app-required
+@api @files_sharing-app-required @S7c9d6d91
 Feature: share access by ID
 
   Background:
@@ -10,6 +10,7 @@ Feature: share access by ID
       | Brian    |
 
 
+  @Td446ce5c
   Scenario Outline: Get a share with a valid share ID
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file with content "ownCloud test text file 0" to "/textfile0.txt"
@@ -37,6 +38,7 @@ Feature: share access by ID
       | 2               | 200             |
 
 
+  @T704b4f5c
   Scenario Outline: Get a share with an invalid share id
     Given using OCS API version "<ocs_api_version>"
     When user "Alice" gets share with id "<share_id>" using the sharing API
@@ -55,6 +57,7 @@ Feature: share access by ID
       | 2               | 0          | 404              |
 
 
+  @T0c607245
   Scenario Outline: accept a share using the share Id
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file with content "ownCloud test text file 0" to "/textfile0.txt"
@@ -73,6 +76,7 @@ Feature: share access by ID
       | 2               | 200             |
 
 
+  @T1333e7b7
   Scenario Outline: accept a share using the invalid share Id
     Given parameter "shareapi_auto_accept_share" of app "core" has been set to "yes"
     And using OCS API version "<ocs_api_version>"
@@ -92,6 +96,7 @@ Feature: share access by ID
       | 2               | 0          | 404              |
 
 
+  @Tcdb3ace5
   Scenario Outline: accept a share using empty share Id
     Given parameter "shareapi_auto_accept_share" of app "core" has been set to "yes"
     And using OCS API version "<ocs_api_version>"
@@ -105,6 +110,7 @@ Feature: share access by ID
       | 2               | 500              | 500             |
 
 
+  @T843a2020
   Scenario Outline: decline a share using the share Id
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has uploaded file with content "ownCloud test text file 0" to "/textfile0.txt"
@@ -124,6 +130,7 @@ Feature: share access by ID
       | 2               | 200             | /Shares/textfile0.txt |
 
 
+  @Td3978a3a
   Scenario Outline: decline a share using a invalid share Id
     Given parameter "shareapi_auto_accept_share" of app "core" has been set to "yes"
     And using OCS API version "<ocs_api_version>"
@@ -143,6 +150,7 @@ Feature: share access by ID
       | 2               | 0          | 404              |
 
 
+  @T51512036
   Scenario Outline: decline a share using empty share Id
     Given parameter "shareapi_auto_accept_share" of app "core" has been set to "yes"
     And using OCS API version "<ocs_api_version>"

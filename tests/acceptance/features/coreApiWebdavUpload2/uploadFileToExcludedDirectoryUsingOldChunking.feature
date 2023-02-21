@@ -1,4 +1,4 @@
-@api @issue-ocis-reva-15
+@api @issue-ocis-reva-15 @Sbf069b2b
 Feature: users cannot upload a file to or into an excluded directory using old chunking
   As an administrator
   I want to be able to exclude directories (folders) from being processed. Any attempt to upload a file to one of those names should be refused.
@@ -10,6 +10,7 @@ Feature: users cannot upload a file to or into an excluded directory using old c
     And user "Alice" has been created with default attributes and without skeleton files
 
 
+  @Tfe9f16d8
   Scenario: Upload a file to an excluded directory name using old chunking
     Given the administrator has updated system config key "excluded_directories" with value '[".github"]' and type "json"
     When user "Alice" uploads file "filesForUpload/textfile.txt" to "/.github" in 3 chunks using the WebDAV API
@@ -17,6 +18,7 @@ Feature: users cannot upload a file to or into an excluded directory using old c
     And as "Alice" file ".github" should not exist
 
 
+  @T40bbe910
   Scenario: Upload a file to an excluded directory name inside a parent directory using old chunking
     Given user "Alice" has created folder "FOLDER"
     And the administrator has updated system config key "excluded_directories" with value '[".github"]' and type "json"
@@ -26,6 +28,7 @@ Feature: users cannot upload a file to or into an excluded directory using old c
     But as "Alice" file "/FOLDER/.github" should not exist
 
 
+  @T9d0bc2da
   Scenario Outline: upload a file to a filename that matches excluded_directories_regex using old chunking
     # Note: we have to write JSON for the value, and to get a backslash in the double-quotes we have to escape it
     # The actual regular expressions end up being endswith\.bad$ and ^\.git
@@ -40,6 +43,7 @@ Feature: users cannot upload a file to or into an excluded directory using old c
       | this-containsvirusinthename.txt | 403         |
 
 
+  @T2ad0513f
   Scenario: upload a file to a filename that does not match excluded_directories_regex using old chunking
     # Note: we have to write JSON for the value, and to get a backslash in the double-quotes we have to escape it
     # The actual regular expressions end up being endswith\.bad$ and ^\.git

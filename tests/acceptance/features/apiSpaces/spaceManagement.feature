@@ -1,4 +1,4 @@
-@api @skipOnOcV10 @S93dfe1f1
+@api @skipOnOcV10 @Sb1704539
 Feature: Space management
   As a user with space admin permission
   I want to be able to manage all existing project space
@@ -21,7 +21,8 @@ Feature: Space management
     And user "Alice" has created a space "Project" of type "project" with quota "10"
 
 
-  @Td0f0921e
+
+  @Tdc09858d
   Scenario: The space admin user can see another project space even if he is not member of the space
     When user "Brian" lists all spaces via the GraphApi with query "$filter=driveType eq 'project'"
     Then the HTTP status code should be "200"
@@ -33,7 +34,8 @@ Feature: Space management
     And the json responded should not contain a space with name "Alice Hansen"
 
 
-  @Tb99515a7
+
+  @T317a24f7
   Scenario: The space admin user can see another personal spaces
     When user "Brian" lists all spaces via the GraphApi with query "$filter=driveType eq 'personal'"
     Then the HTTP status code should be "200"
@@ -45,7 +47,8 @@ Feature: Space management
     And the json responded should not contain a space with name "Project"
 
 
-  @T7a07c439
+
+  @T615acdd5
   Scenario: The user without space admin permissions cannot see another spaces
     When user "Carol" tries to list all spaces via the GraphApi
     Then the HTTP status code should be "200"
@@ -53,7 +56,8 @@ Feature: Space management
     And the json responded should not contain a space with name "Alice Hansen"
 
 
-  @Tf52d8296
+
+  @T178b310c
   Scenario: The space admin user changes the quota of the project space
     When user "Brian" changes the quota of the "Project" space to "20" owned by user "Alice"
     Then the HTTP status code should be "200"
@@ -62,7 +66,8 @@ Feature: Space management
       | quota@@@total | 20    |
 
 
-  @T3611043d
+
+  @T542f5057
   Scenario: The user without space admin permissions tries to change the quota of the project space
     When user "Carol" tries to change the quota of the "Project" space to "20" owned by user "Alice"
     Then the HTTP status code should be "401"
@@ -71,7 +76,8 @@ Feature: Space management
       | quota@@@total | 10    |
 
 
-  @T341d5caf
+
+  @T2bf43503
   Scenario: The space admin user tries to change the quota of the personal space
     When user "Brian" tries to change the quota of the "Alice Hansen" space to "20" owned by user "Alice"
     Then the HTTP status code should be "401"
@@ -80,7 +86,8 @@ Feature: Space management
       | quota@@@total | 10    |
 
 
-  @T4e71947d
+
+  @T3069ddd8
   Scenario: The user without space admin permissions tries to change the quota of the personal space
     When user "Carol" tries to change the quota of the "Alice Hansen" space to "20" owned by user "Alice"
     Then the HTTP status code should be "401"
@@ -89,7 +96,8 @@ Feature: Space management
       | quota@@@total | 10    |
 
 
-  @Tcf25941d
+
+  @T48687f43
   Scenario: The space admin user changes the name of the project space
     When user "Brian" changes the name of the "Project" space to "New Name" owned by user "Alice"
     Then the HTTP status code should be "200"
@@ -98,7 +106,8 @@ Feature: Space management
       | name | New Name |
 
 
-  @T94d79e63
+
+  @Tf8270a32
   Scenario: The user without space admin permissions tries to change the name of the project space
     When user "Carol" tries to change the name of the "Project" space to "New Name" owned by user "Alice"
     Then the HTTP status code should be "403"
@@ -107,7 +116,8 @@ Feature: Space management
       | name | Project |
 
 
-  @Tf3220334
+
+  @Tb26856d4
   Scenario: The space admin user changes the description of the project space
     When user "Brian" changes the description of the "Project" space to "New description" owned by user "Alice"
     Then the HTTP status code should be "200"
@@ -116,7 +126,8 @@ Feature: Space management
       | description | New description |
 
 
-  @T14ee2390
+
+  @Tc572ec1d
   Scenario: The user without space admin permissions tries to change the description of the project space
     Given user "Alice" has changed the description of the "Project" space to "old description"
     When user "Carol" tries to change the description of the "Project" space to "New description" owned by user "Alice"
@@ -126,7 +137,8 @@ Feature: Space management
       | description | old description |
 
 
-  @T2cf7435a
+
+  @Td1390805
   Scenario: The space admin user disables the project space
     When user "Brian" disables a space "Project" owned by user "Alice"
     Then the HTTP status code should be "204"
@@ -136,13 +148,15 @@ Feature: Space management
       | root@@@deleted@@@state | trashed |
 
 
-  @T3168431d
+
+  @Tcc1e55a8
   Scenario: The user without space admin permissions tries to disable the project space
     When user "Carol" tries to disable a space "Project" owned by user "Alice"
     Then the HTTP status code should be "403"
 
 
-  @T1901a04d
+
+  @Tb8f02a29
   Scenario Outline: The space admin user tries to disable the personal space
     When user "<user>" disables a space "Alice Hansen" owned by user "Alice"
     Then the HTTP status code should be "403"
@@ -152,7 +166,8 @@ Feature: Space management
       | Carol |
 
 
-  @T2ef7f1dc
+
+  @T669c7e63
   Scenario: The space admin user deletes the project space
     Given user "Alice" has disabled a space "Project"
     When user "Brian" deletes a space "Project" owned by user "Alice"
@@ -160,7 +175,8 @@ Feature: Space management
     And the user "Alice" should not have a space called "Project"
 
 
-  @Ta231e97d
+
+  @Ta5687a62
   Scenario: The user without space admin permissions tries to delete the project space
     Given user "Alice" has disabled a space "Project"
     When user "Carol" tries to delete a space "Project" owned by user "Alice"
@@ -171,14 +187,16 @@ Feature: Space management
       | root@@@deleted@@@state | trashed |
 
 
-  @Te8066726
+
+  @Tf2c36948
   Scenario: The space admin user enables the project space
     Given user "Alice" has disabled a space "Project"
     When user "Brian" restores a disabled space "Project" owned by user "Alice"
     Then the HTTP status code should be "200"
 
 
-  @Tc3ca7386
+
+  @Tca0a8b6a
   Scenario: The user without space admin permissions tries to enable the project space
     Given user "Alice" has disabled a space "Project"
     When user "Carol" tries to restore a disabled space "Project" owned by user "Alice"

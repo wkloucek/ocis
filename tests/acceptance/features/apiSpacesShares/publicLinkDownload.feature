@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @S326e6529
 Feature: Public can download folders from project space public link
   As a public
   I want to be able to download folder from public link
@@ -14,6 +14,7 @@ Feature: Public can download folders from project space public link
     And user "Alice" has created a space "new-space" with the default quota using the GraphApi
 
 
+  @Tde465e97
   Scenario: download a folder from public link of a space
     Given user "Alice" has created a folder "NewFolder" in space "new-space"
     And user "Alice" has uploaded a file inside space "new-space" with content "some content" to "NewFolder/test.txt"
@@ -26,7 +27,7 @@ Feature: Public can download folders from project space public link
       | name               | content      |
       | NewFolder/test.txt | some content |
 
-  @issue-5229
+  @issue-5229 @T6de3239d
   Scenario: download a folder from public link of a folder inside a space
     Given user "Alice" has created a folder "NewFolder" in space "new-space"
     And user "Alice" has created a folder "NewFolder/folder" in space "new-space"

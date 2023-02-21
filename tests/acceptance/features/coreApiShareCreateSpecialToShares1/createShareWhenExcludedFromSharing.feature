@@ -1,4 +1,4 @@
-@api @files_sharing-app-required @issue-ocis-reva-41 @skipOnOcis
+@api @files_sharing-app-required @issue-ocis-reva-41 @skipOnOcis @S60346f8c
 Feature: cannot share resources when in a group that is excluded from sharing
 
   Background:
@@ -10,6 +10,7 @@ Feature: cannot share resources when in a group that is excluded from sharing
     And user "Brian" has been added to group "grp1"
 
 
+  @T1c968dae
   Scenario Outline: user who is excluded from sharing tries to share a file with another user
     Given using OCS API version "<ocs_api_version>"
     And parameter "shareapi_exclude_groups" of app "core" has been set to "yes"
@@ -27,6 +28,7 @@ Feature: cannot share resources when in a group that is excluded from sharing
       | 2               | 403              |
 
 
+  @Td7e8ba85
   Scenario Outline: user who is excluded from sharing tries to share a file with a group
     Given using OCS API version "<ocs_api_version>"
     And user "Carol" has been created with default attributes and without skeleton files
@@ -47,6 +49,7 @@ Feature: cannot share resources when in a group that is excluded from sharing
       | 2               | 403              |
 
 
+  @T274b1890
   Scenario Outline: user who is excluded from sharing tries to share a folder with another user
     Given using OCS API version "<ocs_api_version>"
     And parameter "shareapi_exclude_groups" of app "core" has been set to "yes"
@@ -64,6 +67,7 @@ Feature: cannot share resources when in a group that is excluded from sharing
       | 2               | 403              |
 
 
+  @T150b79c9
   Scenario Outline: user who is excluded from sharing tries to share a folder with a group
     Given using OCS API version "<ocs_api_version>"
     And group "grp0" has been created

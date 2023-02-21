@@ -1,10 +1,10 @@
-@api @issue-ocis-reva-172
+@api @issue-ocis-reva-172 @Sd37feea3
 Feature: actions on a locked item are possible if the token is sent with the request
 
   Background:
     Given user "Alice" has been created with default attributes and without skeleton files
 
-  @files_sharing-app-required
+  @files_sharing-app-required @Tb12d6d12
   Scenario Outline: two users having both a shared lock can use the resource
     Given using <dav-path> DAV path
     And user "Brian" has been created with default attributes and without skeleton files

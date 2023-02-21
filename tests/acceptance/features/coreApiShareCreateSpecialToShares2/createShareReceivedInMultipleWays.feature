@@ -1,4 +1,4 @@
-@api @files_sharing-app-required
+@api @files_sharing-app-required @S3e126bef
 Feature: share resources where the sharee receives the share in multiple ways
 
   Background:
@@ -10,6 +10,7 @@ Feature: share resources where the sharee receives the share in multiple ways
       | Brian    |
 
 
+  @T1b66ecfb
   Scenario Outline: creating and accepting a new share with user who already received a share through their group
     Given using OCS API version "<ocs_api_version>"
     And group "grp1" has been created
@@ -45,7 +46,7 @@ Feature: share resources where the sharee receives the share in multiple ways
       | 1               | 100             | /textfile0 (2).txt |
       | 2               | 200             | /textfile0 (2).txt |
 
-  @issue-ocis-1289
+  @issue-ocis-1289 @Tfa22ed9a
   Scenario Outline: Share of folder and sub-folder to same user
     Given using OCS API version "<ocs_api_version>"
     And group "grp4" has been created
@@ -70,7 +71,7 @@ Feature: share resources where the sharee receives the share in multiple ways
       | 1               | 100             | /CHILD                 |
       | 2               | 200             | /CHILD                 |
 
-  @issue-ocis-2021
+  @issue-ocis-2021 @T6d70f7be
   Scenario Outline: sharing subfolder when parent already shared
     Given using OCS API version "<ocs_api_version>"
     And group "grp1" has been created
@@ -87,7 +88,7 @@ Feature: share resources where the sharee receives the share in multiple ways
       | 1               | 100             | /sub               |
       | 2               | 200             | /sub               |
 
-  @issue-ocis-2021
+  @issue-ocis-2021 @T30314ce4
   Scenario Outline: sharing subfolder when parent already shared with group of sharer
     Given using OCS API version "<ocs_api_version>"
     And group "grp0" has been created
@@ -106,6 +107,7 @@ Feature: share resources where the sharee receives the share in multiple ways
       | 2               | 200             | /sub               |
 
 
+  @T8bce0639
   Scenario Outline: multiple users share a file with the same name but different permissions to a user
     Given using OCS API version "<ocs_api_version>"
     And user "Carol" has been created with default attributes and without skeleton files
@@ -142,6 +144,7 @@ Feature: share resources where the sharee receives the share in multiple ways
       | 2               | /randomfile.txt | /randomfile (2).txt |
 
 
+  @Td37c17fc
   Scenario Outline: multiple users share a folder with the same name to a user
     Given using OCS API version "<ocs_api_version>"
     And user "Carol" has been created with default attributes and without skeleton files
@@ -181,7 +184,7 @@ Feature: share resources where the sharee receives the share in multiple ways
       | 1               | /zzzfolder    | /zzzfolder (2) | 100             |
       | 2               | /zzzfolder    | /zzzfolder (2) | 200             |
 
-  @skipOnEncryptionType:user-keys @encryption-issue-132 @skipOnLDAP @skipOnGraph
+  @skipOnEncryptionType:user-keys @encryption-issue-132 @skipOnLDAP @skipOnGraph @Te9bdf0e2
   Scenario Outline: share with a group and then add a user to that group that already has a file with the shared name
     Given using OCS API version "<ocs_api_version>"
     And user "Carol" has been created with default attributes and without skeleton files
@@ -209,6 +212,7 @@ Feature: share resources where the sharee receives the share in multiple ways
       | 2               | 200             |
 
 
+  @T885e0c6d
   Scenario Outline: Sharing parent folder to user with all permissions and its child folder to group with read permission then check create operation
     Given group "grp1" has been created
     And user "Carol" has been created with default attributes and without skeleton files
@@ -243,6 +247,7 @@ Feature: share resources where the sharee receives the share in multiple ways
       | /child1 |
 
 
+  @T7a802d23
   Scenario Outline: Sharing parent folder to user with all permissions and its child folder to group with read permission then check rename operation
     Given group "grp1" has been created
     And user "Carol" has been created with default attributes and without skeleton files
@@ -278,6 +283,7 @@ Feature: share resources where the sharee receives the share in multiple ways
       | /child1 |
 
 
+  @Tf36b602f
   Scenario Outline: Sharing parent folder to user with all permissions and its child folder to group with read permission then check delete operation
     Given group "grp1" has been created
     And user "Carol" has been created with default attributes and without skeleton files
@@ -313,6 +319,7 @@ Feature: share resources where the sharee receives the share in multiple ways
       | /child1 |
 
 
+  @Tbe718d72
   Scenario Outline: Sharing parent folder to user with all permissions and its child folder to group with read permission then check reshare operation
     Given group "grp1" has been created
     And user "Carol" has been created with default attributes and without skeleton files
@@ -352,6 +359,7 @@ Feature: share resources where the sharee receives the share in multiple ways
       | /child1 |
 
 
+  @T677b605f
   Scenario Outline: Sharing parent folder to group with read permission and its child folder to user with all permissions then check create operation
     Given group "grp1" has been created
     And user "Carol" has been created with default attributes and without skeleton files
@@ -387,6 +395,7 @@ Feature: share resources where the sharee receives the share in multiple ways
       | /child1 |
 
 
+  @T4069dcec
   Scenario Outline: Sharing parent folder to group with read permission and its child folder to user with all permissions then check rename operation
     Given group "grp1" has been created
     And user "Carol" has been created with default attributes and without skeleton files
@@ -422,6 +431,7 @@ Feature: share resources where the sharee receives the share in multiple ways
       | /child1 |
 
 
+  @Te8d8e4e0
   Scenario Outline: Sharing parent folder to group with read permission and its child folder to user with all permissions then check delete operation
     Given group "grp1" has been created
     And user "Carol" has been created with default attributes and without skeleton files
@@ -457,6 +467,7 @@ Feature: share resources where the sharee receives the share in multiple ways
       | /child1 |
 
 
+  @T5817a9b9
   Scenario Outline: Sharing parent folder to group with read permission and its child folder to user with all permissions then check reshare operation
     Given group "grp1" has been created
     And user "Carol" has been created with default attributes and without skeleton files
@@ -492,6 +503,7 @@ Feature: share resources where the sharee receives the share in multiple ways
       | /child1 |
 
 
+  @Tbe24a1c9
   Scenario Outline: Sharing parent folder to one group with all permissions and its child folder to another group with read permission
     Given these groups have been created:
       | groupname |
@@ -537,6 +549,7 @@ Feature: share resources where the sharee receives the share in multiple ways
       | /child1 |
 
 
+  @T699f9eda
   Scenario Outline: Share receiver renames the received group share and shares same folder through user share again
     Given using OCS API version "<ocs_api_version>"
     And group "grp" has been created
@@ -568,6 +581,7 @@ Feature: share resources where the sharee receives the share in multiple ways
       | 2               | 200             |
 
 
+  @T359c0ae7
   Scenario Outline: Share receiver renames a group share and receives same resource through user share with additional permissions
     Given using OCS API version "<ocs_api_version>"
     And group "grp" has been created
@@ -597,6 +611,7 @@ Feature: share resources where the sharee receives the share in multiple ways
       | 2               |
 
 
+  @Tc82f6b63
   Scenario Outline: Share receiver renames a group share and receives same resource through user share with less permissions
     Given using OCS API version "<ocs_api_version>"
     And group "grp" has been created

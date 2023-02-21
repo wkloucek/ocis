@@ -1,10 +1,11 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @S4cf1ee70
 Feature: tests of the creation extension see https://tus.io/protocols/resumable-upload.html#creation-with-upload
 
   Background:
     Given user "Alice" has been created with default attributes and without skeleton files
 
 
+  @T0a172d70
   Scenario Outline: creating a new upload resource using creation with upload extension
     Given using <dav_version> DAV path
     When user "Alice" creates a new TUS resource with content "uploaded content" on the WebDAV API with these headers:
@@ -31,6 +32,7 @@ Feature: tests of the creation extension see https://tus.io/protocols/resumable-
       | spaces      |
 
 
+  @Td3e61f10
   Scenario Outline: creating a new resource and upload data in multiple bytes using creation with upload extension
     Given using <dav_version> DAV path
     When user "Alice" creates file "textFile.txt" and uploads content "12345" in the same request using the TUS protocol on the WebDAV API

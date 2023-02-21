@@ -1,4 +1,4 @@
-@api @files_sharing-app-required
+@api @files_sharing-app-required @S5640138d
 Feature: get the received shares filtered by type (user, group etc)
   As a user
   I want to be able to know the shares that I have received of a particular type (user, group etc)
@@ -21,6 +21,7 @@ Feature: get the received shares filtered by type (user, group etc)
     And user "Alice" has uploaded file with content "file to share with public" to "/fileToShareWithPublic.txt"
 
 
+  @T603efe6c
   Scenario Outline: getting shares received from users when there are none
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has shared folder "/folderToShareWithGroup" with group "grp1"
@@ -43,6 +44,7 @@ Feature: get the received shares filtered by type (user, group etc)
       | 2               | 200             |
 
 
+  @Tb590b01d
   Scenario Outline: getting shares received from groups when there are none
     Given using OCS API version "<ocs_api_version>"
     And user "Alice" has shared folder "/folderToShareWithUser" with user "Brian"
@@ -65,6 +67,7 @@ Feature: get the received shares filtered by type (user, group etc)
       | 2               | 200             |
 
 
+  @T593b5c23
   Scenario Outline: getting shares received from public links when there are none
     # Note: public links are purposely created in this scenario
     #       users do not receive public links, so asking for a list of public links

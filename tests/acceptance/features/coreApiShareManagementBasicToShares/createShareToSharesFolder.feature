@@ -1,4 +1,4 @@
-@api @files_sharing-app-required
+@api @files_sharing-app-required @Sf649884e
 Feature: sharing
 
   Background:
@@ -6,7 +6,7 @@ Feature: sharing
     And auto-accept shares has been disabled
     And user "Alice" has been created with default attributes and without skeleton files
 
-  @smokeTest @skipOnEncryptionType:user-keys @issue-32322
+  @smokeTest @skipOnEncryptionType:user-keys @issue-32322 @Te545013d
   Scenario Outline: Creating a share of a file with a user, the default permissions are read(1)+update(2)+can-share(16)
     Given using OCS API version "<ocs_api_version>"
     And user "Brian" has been created with default attributes and without skeleton files
@@ -36,7 +36,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @smokeTest @skipOnEncryptionType:user-keys @issue-32322 @issue-ocis-2133
+  @smokeTest @skipOnEncryptionType:user-keys @issue-32322 @issue-ocis-2133 @T51c76118
   Scenario Outline: Creating a share of a file containing commas in the filename, with a user, the default permissions are read(1)+update(2)+can-share(16)
     Given using OCS API version "<ocs_api_version>"
     And user "Brian" has been created with default attributes and without skeleton files
@@ -65,7 +65,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @issue-ocis-2133 @issue-ocis-reva-301 @issue-ocis-reva-302
+  @issue-ocis-2133 @issue-ocis-reva-301 @issue-ocis-reva-302 @Tb9c39e8a
   Scenario Outline: Creating a share of a file with a user and asking for various permission combinations
     Given using OCS API version "<ocs_api_version>"
     And user "Brian" has been created with default attributes and without skeleton files
@@ -101,6 +101,7 @@ Feature: sharing
       | 2               | 2                     | 2                   | 200             |
 
 
+  @T33601bc0
   Scenario Outline: Creating a share of a file with no permissions should fail
     Given using OCS API version "<ocs_api_version>"
     And user "Brian" has been created with default attributes and without skeleton files
@@ -117,6 +118,7 @@ Feature: sharing
       | 2               | 400              |
 
 
+  @T54cfe8f0
   Scenario Outline: Creating a share of a folder with no permissions should fail
     Given using OCS API version "<ocs_api_version>"
     And user "Brian" has been created with default attributes and without skeleton files
@@ -132,7 +134,7 @@ Feature: sharing
       | 1               | 200              |
       | 2               | 400              |
 
-  @issue-ocis-2133
+  @issue-ocis-2133 @T7eda6237
   Scenario Outline: Creating a share of a folder with a user, the default permissions are all permissions(31)
     Given using OCS API version "<ocs_api_version>"
     And user "Brian" has been created with default attributes and without skeleton files
@@ -157,7 +159,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @issue-ocis-reva-34
+  @issue-ocis-reva-34 @T6e1cba4a
   Scenario Outline: Creating a share of a file with a group, the default permissions are read(1)+update(2)+can-share(16)
     Given using OCS API version "<ocs_api_version>"
     And group "grp1" has been created
@@ -182,7 +184,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @issue-ocis-reva-34
+  @issue-ocis-reva-34 @T4dff3187
   Scenario Outline: Creating a share of a folder with a group, the default permissions are all permissions(31)
     Given using OCS API version "<ocs_api_version>"
     And group "grp1" has been created
@@ -207,7 +209,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @smokeTest
+  @smokeTest @Te3115170
   Scenario Outline: Share of folder to a group
     Given using OCS API version "<ocs_api_version>"
     And these users have been created with default attributes and without skeleton files:
@@ -252,7 +254,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @smokeTest
+  @smokeTest @T49c7c63e
   Scenario Outline: user included in multiple groups, shares a folder with a group
     Given using OCS API version "<ocs_api_version>"
     And these users have been created with default attributes and without skeleton files:
@@ -274,7 +276,8 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
- 
+
+  @T3cbe6e7f
   Scenario Outline: sharing again an own file while belonging to a group
     Given using OCS API version "<ocs_api_version>"
     And user "Brian" has been created with default attributes and without skeleton files
@@ -294,7 +297,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @issue-ocis-2201
+  @issue-ocis-2201 @T46c104e8
   Scenario Outline: sharing subfolder of already shared folder, GET result is correct
     Given using OCS API version "<ocs_api_version>"
     And these users have been created with default attributes and without skeleton files:
@@ -326,7 +329,8 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
- 
+
+  @T678df224
   Scenario Outline: user shares a file with file name longer than 64 chars to another user
     Given using OCS API version "<ocs_api_version>"
     And user "Brian" has been created with default attributes and without skeleton files
@@ -342,7 +346,8 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
- 
+
+  @Tc6cfa857
   Scenario Outline: user shares a file with file name longer than 64 chars to a group
     Given using OCS API version "<ocs_api_version>"
     And group "grp1" has been created
@@ -360,7 +365,8 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
- 
+
+  @T8872064b
   Scenario Outline: user shares a folder with folder name longer than 64 chars to another user
     Given using OCS API version "<ocs_api_version>"
     And user "Brian" has been created with default attributes and without skeleton files
@@ -377,7 +383,8 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
- 
+
+  @T93a3a974
   Scenario Outline: user shares a folder with folder name longer than 64 chars to a group
     Given using OCS API version "<ocs_api_version>"
     And group "grp1" has been created
@@ -396,7 +403,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @issue-ocis-reva-11
+  @issue-ocis-reva-11 @T661f5715
   Scenario: share with user when username contains capital letters
     Given these users have been created without skeleton files:
       | username |
@@ -418,7 +425,7 @@ Feature: sharing
      | /Shares/randomfile.txt |
     And the content of file "Shares/randomfile.txt" for user "brian" should be "Random data"
 
-  @skipOnLDAP
+  @skipOnLDAP @T4461c062
   Scenario: creating a new share with user of a group when username contains capital letters
     Given these users have been created without skeleton files:
       | username |
@@ -434,7 +441,7 @@ Feature: sharing
       | /Shares/randomfile.txt |
     And the content of file "/Shares/randomfile.txt" for user "Brian" should be "Random data"
 
-  @issue-ocis-reva-34
+  @issue-ocis-reva-34 @T508afb50
   Scenario Outline: Share of folder to a group with emoji in the name
     Given using OCS API version "<ocs_api_version>"
     And these users have been created with default attributes and without skeleton files:
@@ -466,7 +473,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @skipOnEncryptionType:user-keys @encryption-issue-132 @skipOnLDAP @skipOnGraph
+  @skipOnEncryptionType:user-keys @encryption-issue-132 @skipOnLDAP @skipOnGraph @T4fa1ed6a
   Scenario Outline: share with a group and then add a user to that group
     Given using OCS API version "<ocs_api_version>"
     And these users have been created with default attributes and without skeleton files:
@@ -491,7 +498,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @skipOnLDAP
+  @skipOnLDAP @T6cf48495
   # deleting an LDAP group is not relevant or possible using the provisioning API
   Scenario Outline: shares shared to deleted group should not be available
     Given using OCS API version "<ocs_api_version>"
@@ -534,7 +541,7 @@ Feature: sharing
       | 1               | 100             | /textfile0.txt |
       | 2               | 200             | /textfile0.txt |
 
-  @skipOnFilesClassifier @issue-files-classifier-291 @issue-ocis-2146
+  @skipOnFilesClassifier @issue-files-classifier-291 @issue-ocis-2146 @T54eff0d0
   Scenario: Share a file by multiple channels and download from sub-folder and direct file share
     Given these users have been created with default attributes and without skeleton files:
       | username |
@@ -563,7 +570,7 @@ Feature: sharing
     And the content of file "/Shares/common/sub/textfile0.txt" for user "Brian" should be "BLABLABLA" plus end-of-line
     And the content of file "/common/sub/textfile0.txt" for user "Alice" should be "BLABLABLA" plus end-of-line
 
-  @issue-enterprise-3896 @issue-ocis-2201
+  @issue-enterprise-3896 @issue-ocis-2201 @Tc4aa70e3
   Scenario Outline: sharing back to resharer is allowed
     Given these users have been created with default attributes and without skeleton files:
       | username |
@@ -584,7 +591,7 @@ Feature: sharing
       | pending_share_path |
       | /userOneFolder     |
 
-  @issue-enterprise-3896 @issue-ocis-2201
+  @issue-enterprise-3896 @issue-ocis-2201 @Tbd7a0f43
   Scenario Outline: sharing back to original sharer is allowed
     Given these users have been created with default attributes and without skeleton files:
       | username |
@@ -605,7 +612,7 @@ Feature: sharing
       | pending_share_path |
       | /userOneFolder     |
 
-  @issue-enterprise-3896 @issue-ocis-2201
+  @issue-enterprise-3896 @issue-ocis-2201 @T90296e44
   Scenario Outline: sharing a subfolder to a user that already received parent folder share
     Given these users have been created with default attributes and without skeleton files:
       | username |
@@ -629,7 +636,7 @@ Feature: sharing
       | pending_share_path |
       | /userOneFolder     |
 
-  @smokeTest
+  @smokeTest @Ta7c13ff0
   Scenario Outline: Creating a share of a renamed file
     Given using OCS API version "<ocs_api_version>"
     And user "Brian" has been created with default attributes and without skeleton files
@@ -659,7 +666,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @issue-ocis-903
+  @issue-ocis-903 @T47cb856a
   Scenario Outline: shares to a deleted user should not be listed as shares for the sharer
     Given using OCS API version "<ocs_api_version>"
     And these users have been created with default attributes and without skeleton files:
@@ -682,7 +689,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @issue-ocis-719
+  @issue-ocis-719 @T3aa4864c
   Scenario Outline: Creating a share of a renamed file when another share exists
     Given using OCS API version "<ocs_api_version>"
     And user "Brian" has been created with default attributes and without skeleton files
@@ -715,7 +722,7 @@ Feature: sharing
       | 1               | 100             |
       | 2               | 200             |
 
-  @issue-ocis-1710
+  @issue-ocis-1710 @Tfd8f170f
   Scenario Outline: Sharing a same file twice to the same group is not possible
     Given using OCS API version "<ocs-api-version>"
     And group "grp1" has been created
@@ -730,7 +737,7 @@ Feature: sharing
       | 1               | 200         |
       | 2               | 403         |
 
-  @issue-ocis-2215
+  @issue-ocis-2215 @Tbcf56e9d
   Scenario Outline: Sharing the shares folder to users is not possible
     Given using OCS API version "<ocs-api-version>"
     And user "Brian" has been created with default attributes and without skeleton files
@@ -747,7 +754,7 @@ Feature: sharing
       | 1               | 200         |
       | 2               | 403         |
 
-  @issue-ocis-2215
+  @issue-ocis-2215 @Td0fcbc3d
   Scenario Outline: Sharing the shares folder to groups is not possible
     Given using OCS API version "<ocs-api-version>"
     And user "Brian" has been created with default attributes and without skeleton files
@@ -766,7 +773,7 @@ Feature: sharing
       | 1               | 200         |
       | 2               | 403         |
 
-  @issue-ocis-2215
+  @issue-ocis-2215 @Tdb33fba2
   Scenario Outline: Sharing the shares folder as public link is not possible
     Given using OCS API version "<ocs-api-version>"
     And user "Brian" has been created with default attributes and without skeleton files

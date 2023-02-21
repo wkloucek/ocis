@@ -1,4 +1,4 @@
-@api @skipOnOcV10
+@api @skipOnOcV10 @S094c997d
 Feature: Copy test
   check that the Copy response contains all the relevant values
 
@@ -11,6 +11,7 @@ Feature: Copy test
     And user "Alice" has created a space "new-space" with the default quota using the GraphApi
 
 
+  @T9e23a730
   Scenario: check the COPY response headers
     Given user "Alice" has uploaded a file inside space "new-space" with content "some content" to "testfile.txt"
     And user "Alice" has created a folder "new" in space "new-space"
