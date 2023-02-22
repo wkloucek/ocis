@@ -180,7 +180,7 @@ function run_behat_tests() {
 	fi
 
 	echo "Using behat config '${BEHAT_YML}'"
-	${BEHAT} --colors --strict ${STEP_THROUGH_OPTION} -c ${BEHAT_YML} -f pretty ${BEHAT_SUITE_OPTION} --tags ${BEHAT_FILTER_TAGS} ${BEHAT_FEATURE} -v 2>&1 | tee -a ${TEST_LOG_FILE}
+	${BEHAT} --colors --strict ${STEP_THROUGH_OPTION} -c ${BEHAT_YML} -f pretty -o std -f junit -o tests/acceptance/output/ ${BEHAT_SUITE_OPTION} --tags ${BEHAT_FILTER_TAGS} ${BEHAT_FEATURE} -v 2>&1 | tee -a ${TEST_LOG_FILE}
 
 	BEHAT_EXIT_STATUS=${PIPESTATUS[0]}
 
@@ -516,7 +516,8 @@ then
 	export UPLOAD_DELETE_WAIT_TIME=1
 fi
 
-TEST_LOG_FILE=$(mktemp)
+TEST_LOG_FILE=$(mktemp) 
+echo $TEST_LOG_FILE
 SCENARIOS_THAT_PASSED=0
 SCENARIOS_THAT_FAILED=0
 
