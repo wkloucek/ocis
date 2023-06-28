@@ -7,7 +7,8 @@ Feature: search
   Background:
     Given user "Alice" has been created with default attributes and without skeleton files
 
-  Scenario Outline: search a file using tag
+
+  Scenario Outline: search files using a tag
     Given using <dev-path-version> DAV path
     And user "Alice" has uploaded file with content "hello world" to "file1.txt"
     And user "Alice" has uploaded file with content "Namaste nepal" to "file2.txt"
