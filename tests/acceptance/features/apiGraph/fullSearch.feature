@@ -95,3 +95,38 @@ Feature: full text search
       | old              |
       | new              |
       | spaces           |
+
+
+  Scenario Outline: search restored files through a tag
+    Given using <dav-path-version> DAV path
+    And user "Alice" has uploaded file with content "hello world" to "file1.txt"
+    And user "Alice" has uploaded file with content "Namaste nepal" to "file2.txt"
+    And user "Alice" has created the following tags for file "file1.txt" of the space "Personal":
+      | tag1 |
+    And user "Alice" has deleted file "/file1.txt"
+    And user "Alice" restores the file with original path "/file1.txt" using the trashbin API
+    And user "Alice" searches for "Tags:tag1" using the WebDAV API
+    And the HTTP status code should be "207"
+    And the search result of user "Brian" should contain only these files:
+      | file1.txt |
+    Examples:
+      | dav-path-version |
+      | old              |
+      | new              |
+
+
+  Scenario: search restored files through a tag using spaces dav endpoint
+    Given using spaces DAV path
+    And user "Alice" has uploaded file with content "hello world" to "file1.txt"
+    And user "Alice" has uploaded file with content "Namaste nepal" to "file2.txt"
+    And user "Alice" has created the following tags for file "file1.txt" of the space "Personal":
+      | tag1 |
+    And user "Alice" has deleted file "/file1.txt"
+    And user "Alice" restores the file with original path "/file1.txt" using the trashbin API
+    And user "Alice" searches for "Tags:tag1" using the WebDAV API
+    And the HTTP status code should be "207"
+    And the search result should contain "1" entries
+    And the search result of user "Alice" should contain these entries:
+      | /file1.txt |
+    But the search result of user "Alice" should not contain these entries:
+      | /file2.txt |
