@@ -27,3 +27,47 @@ Feature: search
       | old              |
       | new              |
       | spaces           |
+
+
+  Scenario Outline: search a file using tag by sharee
+    Given using <dav-path-version> DAV path
+    And user "Brian" has been created with default attributes and without skeleton files
+    And user "Alice" has created folder "uploadFolder"
+    And user "Alice" has uploaded file with content "hello world" to "uploadFolder/file1.txt"
+    And user "Alice" has uploaded file with content "Namaste nepal" to "uploadFolder/file2.txt"
+    And user "Alice" has uploaded file with content "hello nepal" to "uploadFolder/file3.txt"
+    And user "Alice" has created the following tags for file "uploadFolder/file1.txt" of the space "Personal":
+      | tag1 |
+    And user "Alice" has created the following tags for file "uploadFolder/file2.txt" of the space "Personal":
+      | tag1 |
+    And user "Alice" has shared folder "/uploadFolder" with user "Brian"
+    And user "Brian" has accepted share "/uploadFolder" offered by user "Alice"
+    When user "Brian" searches for "Tags:tag1" using the WebDAV API
+    Then the HTTP status code should be "207"
+    And the search result of user "Brian" should contain only these files:
+      | file1.txt |
+      | file2.txt |
+    Examples:
+      | dav-path-version |
+      | old              |
+      | new              |
+
+
+  Scenario: search a file using tag by sharee
+    Given using spaces DAV path
+    And user "Brian" has been created with default attributes and without skeleton files
+    And user "Alice" has created folder "uploadFolder"
+    And user "Alice" has uploaded file with content "hello world" to "uploadFolder/file1.txt"
+    And user "Alice" has uploaded file with content "Namaste nepal" to "uploadFolder/file2.txt"
+    And user "Alice" has uploaded file with content "hello nepal" to "uploadFolder/file3.txt"
+    And user "Alice" has created the following tags for file "uploadFolder/file1.txt" of the space "Personal":
+      | tag1 |
+    And user "Alice" has created the following tags for file "uploadFolder/file2.txt" of the space "Personal":
+      | tag1 |
+    And user "Alice" has shared folder "/uploadFolder" with user "Brian"
+    And user "Brian" has accepted share "/uploadFolder" offered by user "Alice"
+    When user "Brian" searches for "Tags:tag1" using the WebDAV API
+    Then the HTTP status code should be "207"
+    And the search result of user "Brian" should contain only these files:
+      | file1.txt |
+      | file2.txt |
