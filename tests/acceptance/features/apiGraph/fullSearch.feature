@@ -9,7 +9,7 @@ Feature: search
 
 
   Scenario Outline: search files using a tag
-    Given using <dev-path-version> DAV path
+    Given using <dav-path-version> DAV path
     And user "Alice" has uploaded file with content "hello world" to "file1.txt"
     And user "Alice" has uploaded file with content "Namaste nepal" to "file2.txt"
     And user "Alice" has uploaded file with content "hello nepal" to "file3.txt"
@@ -23,7 +23,7 @@ Feature: search
       | file1.txt |
       | file2.txt |
     Examples:
-      | dev-path-version |
+      | dav-path-version |
       | old              |
       | new              |
       | spaces           |
