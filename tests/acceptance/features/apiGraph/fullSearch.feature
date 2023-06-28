@@ -7,8 +7,8 @@ Feature: search
   Background:
     Given user "Alice" has been created with default attributes and without skeleton files
 
-  Scenario: search a file using tag
-    Given using spaces DAV path
+  Scenario Outline: search a file using tag
+    Given using <dev-path-version> DAV path
     And user "Alice" has uploaded file with content "hello world" to "file1.txt"
     And user "Alice" has uploaded file with content "Namaste nepal" to "file2.txt"
     And user "Alice" has uploaded file with content "hello nepal" to "file3.txt"
@@ -21,3 +21,8 @@ Feature: search
     And the search result of user "Alice" should contain only these files:
       | file1.txt |
       | file2.txt |
+    Examples:
+      | dev-path-version |
+      | old              |
+      | new              |
+      | spaces           |
