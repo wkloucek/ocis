@@ -104,9 +104,9 @@ Feature: full text search
     And user "Alice" has created the following tags for file "file1.txt" of the space "Personal":
       | tag1 |
     And user "Alice" has deleted file "/file1.txt"
-    And user "Alice" restores the file with original path "/file1.txt" using the trashbin API
+    When user "Alice" restores the file with original path "/file1.txt" using the trashbin API
     And user "Alice" searches for "Tags:tag1" using the WebDAV API
-    And the HTTP status code should be "207"
+    Then the HTTP status code should be "207"
     And the search result of user "Brian" should contain only these files:
       | file1.txt |
     Examples:
@@ -122,9 +122,9 @@ Feature: full text search
     And user "Alice" has created the following tags for file "file1.txt" of the space "Personal":
       | tag1 |
     And user "Alice" has deleted file "/file1.txt"
-    And user "Alice" restores the file with original path "/file1.txt" using the trashbin API
+    When user "Alice" restores the file with original path "/file1.txt" using the trashbin API
     And user "Alice" searches for "Tags:tag1" using the WebDAV API
-    And the HTTP status code should be "207"
+    Then the HTTP status code should be "207"
     And the search result should contain "1" entries
     And the search result of user "Alice" should contain these entries:
       | /file1.txt |
