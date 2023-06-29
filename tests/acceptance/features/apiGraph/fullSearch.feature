@@ -130,3 +130,9 @@ Feature: full text search
       | /file1.txt |
     But the search result of user "Alice" should not contain these entries:
       | /file2.txt |
+
+
+  Scenario: search restored files through a tag using spaces dav endpoint
+    Given using spaces DAV path
+    And user "Alice" has uploaded file with content "hello world" to "file1.txt"
+    And user "Alice" has uploaded file with content "Namaste nepal" to "file2.txt"
