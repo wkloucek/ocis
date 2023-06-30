@@ -132,7 +132,15 @@ Feature: full text search
       | /file2.txt |
 
 
-  Scenario: search restored files through a tag using spaces dav endpoint
-    Given using spaces DAV path
+  Scenario Outline: search files using a tag
+    Given using <dav-path-version> DAV path
     And user "Alice" has uploaded file with content "hello world" to "file1.txt"
     And user "Alice" has uploaded file with content "Namaste nepal" to "file2.txt"
+    And user "Alice" has uploaded file with content "hello nepal" to "file3.txt"
+    And user "Alice" searches for "hello" using the WebDAV API
+    Then the HTTP status code should be "207"
+    Examples:
+      | dav-path-version |
+      | old              |
+      | new              |
+      | spaces           |
