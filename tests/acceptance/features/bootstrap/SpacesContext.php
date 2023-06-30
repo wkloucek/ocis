@@ -33,6 +33,8 @@ use TestHelpers\WebDavHelper;
 use TestHelpers\SetupHelper;
 use TestHelpers\GraphHelper;
 use PHPUnit\Framework\Assert;
+use wapmorgan\UnifiedArchive\UnifiedArchive;
+use ArchiverContext;
 
 require_once 'bootstrap.php';
 
@@ -3197,5 +3199,64 @@ class SpacesContext implements Context {
 			}
 		}
 		Assert::assertTrue($foundRoleInResponse, "the response does not contain the $recipientType $recipient");
+	}
+
+	/**
+	 * @When user :user downloads the space :spaceName using the WebDAV API
+	 *
+	 * @param string $user
+	 * @param string $spaceName
+	 *
+	 * @return void
+	 *
+	 * @throws Exception
+	 * @throws GuzzleException
+	 */
+	public function userDownloadsTheSpaceUsingTheWebdavApi(string $user, string $spaceName):void {
+		$space = $this->getSpaceByName($user, $spaceName);
+		$url = $this->featureContext->getBaseUrl() . '/archiver?id=' . $space["id"];
+		$this->featureContext->setResponse(
+			HttpRequestHelper::get(
+				$url,
+				'',
+				$user,
+				$this->featureContext->getPasswordForUser($user),
+			)
+		);
+	}
+
+	/**
+	 * @Then the downloaded :type space archive should contain these files:
+	 *
+	 * @param string $type
+	 * @param TableNode $expectedFiles
+	 *
+	 * @return void
+	 *
+	 * @throws NonExistentArchiveFileException
+	 * @throws Exception
+	 */
+	public function theDownloadedSpaceArchiveShouldContainTheseFiles(string $type, TableNode $expectedFiles):void {
+		$dataVal = $this->featureContext->getResponse()->getBody()->getContents();
+		$placeValue = [];
+		$filePos = '';
+
+		//      Storing position of expected file from response data in the array
+		foreach ($expectedFiles->getHash() as $file) {
+			$place = stripos($dataVal, $file['name']);
+			$placeValue[] = $place;
+		}
+
+		//      Traversing through response data to get the file name which first occurred
+		foreach ($expectedFiles->getHash() as $file) {
+			$place = stripos($dataVal, $file['name']);
+			if ($place == min($placeValue)) {
+				$filePos = $file['name'];
+			}
+		}
+
+		//      Data before first occurred expected file is removed to exclude the data of . folder
+		$fileData = strstr($dataVal, $filePos);
+		ArchiverContext::theDownloadedArchiveShouldContainTheseFiles($type, $expectedFiles, $fileData);
 	}
 }

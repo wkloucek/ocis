@@ -212,17 +212,24 @@ class ArchiverContext implements Context {
 	 *
 	 * @param string $type
 	 * @param TableNode $expectedFiles
+	 * @param string $responseData
 	 *
 	 * @return void
 	 *
+	 * @throws NonExistentArchiveFileException
 	 * @throws Exception
 	 */
-	public function theDownloadedArchiveShouldContainTheseFiles(string $type, TableNode $expectedFiles):void {
-		$this->featureContext->verifyTableNodeColumns($expectedFiles, ['name', 'content']);
+	public function theDownloadedArchiveShouldContainTheseFiles(string $type, TableNode $expectedFiles, string $responseData=""):void {
+		if ($responseData == "") {
+			$this->featureContext->verifyTableNodeColumns($expectedFiles, ['name', 'content']);
+			$contents = $this->featureContext->getResponse()->getBody()->getContents();
+		} else {
+			$contents = $responseData;
+		}
 		$tempFile = \tempnam(\sys_get_temp_dir(), 'OcAcceptanceTests_');
 		\unlink($tempFile); // we only need the name
 		$tempFile = $tempFile . '.' . $type; // it needs the extension
-		\file_put_contents($tempFile, $this->featureContext->getResponse()->getBody()->getContents());
+		\file_put_contents($tempFile, $contents);
 		$archive = UnifiedArchive::open($tempFile);
 		foreach ($expectedFiles->getHash() as $expectedFile) {
 			Assert::assertEquals(
