@@ -137,8 +137,11 @@ Feature: full text search
     And user "Alice" has uploaded file with content "hello world" to "file1.txt"
     And user "Alice" has uploaded file with content "Namaste nepal" to "file2.txt"
     And user "Alice" has uploaded file with content "hello nepal" to "file3.txt"
-    And user "Alice" searches for "hello" using the WebDAV API
+    And user "Alice" searches for "Content:hello" using the WebDAV API
     Then the HTTP status code should be "207"
+    And the search result of user "Alice" should contain only these files:
+      | file1.txt |
+      | file3.txt |
     Examples:
       | dav-path-version |
       | old              |
