@@ -212,6 +212,35 @@ class NotificationContext implements Context {
 	}
 
 	/**
+	 * @Then user :user should get last notification with subject :subject and message:
+	 *
+	 * @param string $user
+	 * @param string $subject
+	 * @param TableNode $table
+	 *
+	 * @return void
+	 */
+	public function userShouldGetLastNotificationWithMessage(string $user, string $subject, TableNode $table):void {
+		$this->userListAllNotifications($user);
+		$this->featureContext->theHTTPStatusCodeShouldBe(200);
+		// user checks the last notifiction message only
+		$responseBody = $this->featureContext->getJsonDecodedResponseBodyContent()->ocs->data;
+		$lastNotification = $responseBody[\sizeof($responseBody) - 1];
+		$actualMessage = str_replace(["\r", "\n"], " ", $lastNotification->message);
+		$expectedMessage = $table->getColumnsHash()[0]['message'];
+		Assert::assertSame(
+			$subject,
+			$lastNotification->subject,
+			__METHOD__ . "expected subject to be '$subject' but found'$lastNotification->subject'"
+		);
+		Assert::assertSame(
+			$expectedMessage,
+			$actualMessage,
+			__METHOD__ . "expected message to be '$expectedMessage' but found'$actualMessage'"
+		);
+	}
+
+	/**
 	 * @Then user :user should have received the following email from user :sender about the share of project space :spaceName
 	 *
 	 * @param string $user
