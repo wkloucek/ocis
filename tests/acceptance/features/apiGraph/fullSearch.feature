@@ -186,3 +186,23 @@ Feature: full text search
       | old              |
       | new              |
       | spaces           |
+
+
+  Scenario Outline: search restored files using context
+    Given using <dav-path-version> DAV path
+    And user "Alice" has uploaded file with content "hello world" to "file1.txt"
+    And user "Alice" has uploaded file with content "Namaste nepal" to "file2.txt"
+    And user "Alice" has deleted file "file1.txt"
+    And user "Alice" has restored the file with original path "file1.txt"
+    And user "Alice" searches for "Content:hello" using the WebDAV API
+    Then the HTTP status code should be "207"
+    And the search result should contain "1" entries
+    And the search result of user "Alice" should contain these entries:
+      | file1.txt |
+    And the search result of user "Alice" should not contain these entries:
+      | file2.txt |
+    Examples:
+      | dav-path-version |
+      | old              |
+      | new              |
+      | spaces           |
