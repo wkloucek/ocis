@@ -231,12 +231,12 @@ class NotificationContext implements Context {
 		Assert::assertSame(
 			$subject,
 			$lastNotification->subject,
-			__METHOD__ . "expected subject to be '$subject' but found'$lastNotification->subject'"
+			__METHOD__ . "expected subject to be '$subject' but found '$lastNotification->subject'"
 		);
 		Assert::assertSame(
 			$expectedMessage,
 			$actualMessage,
-			__METHOD__ . "expected message to be '$expectedMessage' but found'$actualMessage'"
+			__METHOD__ . "expected message to be '$expectedMessage' but found '$actualMessage'"
 		);
 	}
 
