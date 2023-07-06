@@ -190,6 +190,28 @@ class NotificationContext implements Context {
 		return $responseBody;
 	}
 
+    /**
+     * @param string $subject
+     * @param string $resource
+     *
+     * @return array
+     */
+    public function filterResponseByNotificationSubjectAndResource(string $subject, string $resource): array {
+        $responseBodyArray = [];
+        if (isset($this->featureContext->getJsonDecodedResponseBodyContent()->ocs->data)) {
+            $responseBody = $this->featureContext->getJsonDecodedResponseBodyContent()->ocs->data;
+            foreach ($responseBody as $value) {
+                if (isset($value->subject) && $value->subject === $subject && isset($value->messageRichParameters->resource->name) && $value->messageRichParameters->resource->name === $resource) {
+                    $responseBodyArray[] = $value;
+                    $this->notificationIds[] = $value->notification_id;
+                }
+            }
+        } else {
+            $responseBodyArray[] = $this->featureContext->getJsonDecodedResponseBodyContent();
+        }
+        return $responseBodyArray;
+    }
+
 	/**
 	 * @Then user :user should get a notification with subject :subject and message:
 	 *
@@ -211,34 +233,35 @@ class NotificationContext implements Context {
 		);
 	}
 
-	/**
-	 * @Then user :user should get last notification with subject :subject and message:
-	 *
-	 * @param string $user
-	 * @param string $subject
-	 * @param TableNode $table
-	 *
-	 * @return void
-	 */
-	public function userShouldGetLastNotificationWithMessage(string $user, string $subject, TableNode $table):void {
-		$this->userListAllNotifications($user);
-		$this->featureContext->theHTTPStatusCodeShouldBe(200);
-		// user checks the last notifiction message only
-		$responseBody = $this->featureContext->getJsonDecodedResponseBodyContent()->ocs->data;
-		$lastNotification = $responseBody[\sizeof($responseBody) - 1];
-		$actualMessage = str_replace(["\r", "\n"], " ", $lastNotification->message);
-		$expectedMessage = $table->getColumnsHash()[0]['message'];
-		Assert::assertSame(
-			$subject,
-			$lastNotification->subject,
-			__METHOD__ . "expected subject to be '$subject' but found '$lastNotification->subject'"
-		);
-		Assert::assertSame(
-			$expectedMessage,
-			$actualMessage,
-			__METHOD__ . "expected message to be '$expectedMessage' but found '$actualMessage'"
-		);
-	}
+    /**
+     * @Then user :user should get a notification for resource :resource with subject :subject and message:
+     *
+     * @param string $user
+     * @param string $resource
+     * @param string $subject
+     * @param TableNode $table
+     *
+     * @return void
+     * @throws Exception
+     */
+    public function userShouldGetNotificationForResourceWithMessage(string $user, string $resource, string $subject, TableNode $table):void {
+        $this->userListAllNotifications($user);
+        $this->featureContext->theHTTPStatusCodeShouldBe(200);
+        $notification=$this->filterResponseByNotificationSubjectAndResource($subject, $resource);
+        if (count($notification)===1){
+            $actualMessage=str_replace(["\r", "\r"], " ", $notification[0]->message);
+            $expectedMessage = $table->getColumnsHash()[0]['message'];
+            Assert::assertSame(
+                $expectedMessage,
+                $actualMessage,
+                __METHOD__ . "expected message to be '$expectedMessage' but found'$actualMessage'"
+            );
+            $this->deleteNotification($notification[0]->notification_id);
+        }
+        else{
+            throw new Exception("More than one notification with resource '$resource' and subject '$subject'");
+        }
+    }
 
 	/**
 	 * @Then user :user should have received the following email from user :sender about the share of project space :spaceName

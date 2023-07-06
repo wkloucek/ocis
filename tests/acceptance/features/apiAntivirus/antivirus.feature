@@ -422,7 +422,7 @@ Feature: antivirus
     And user "Brian" has accepted share "/test2.txt" offered by user "Alice"
     When user "Brian" uploads file with content "X5O!P%@AP[4\PZX54(P^)7CC)7}$EICAR-STANDARD-ANTIVIRUS-TEST-FILE!$H+H*" to "Shares/uploadFolder/test1.txt" using the WebDAV API
     Then the HTTP status code should be "204"
-    And user "Brian" should get last notification with subject "Virus found" and message:
+    And user "Brian" should get a last notification with subject "Virus found" and message:
       | message                                                                   |
       | Virus found in test1.txt. Upload not possible. Virus: Win.Test.EICAR_HDB-1 |
     And the content of file "Shares/uploadFolder/test1.txt" for user "Brian" should be "this is a test file1."
@@ -452,14 +452,14 @@ Feature: antivirus
     And user "Brian" has accepted share "/test2.txt" offered by user "Alice"
     When user "Brian" uploads a file "filesForUpload/filesWithVirus/eicar.com" to "/uploadFolder/test1.txt" in space "Shares" using the WebDAV API
     Then the HTTP status code should be "204"
-    And user "Brian" should get last notification with subject "Virus found" and message:
+    And user "Brian" should get a notification for resource "test1.txt" with subject "Virus found" and message:
       | message                                                                   |
       | Virus found in test1.txt. Upload not possible. Virus: Win.Test.EICAR_HDB-1 |
     And for user "Brian" the content of the file "/uploadFolder/test1.txt" of the space "Shares" should be "this is a test file1."
     And the content of file "uploadFolder/test1.txt" for user "Alice" should be "this is a test file1."
     When user "Brian" uploads a file "filesForUpload/filesWithVirus/eicar.com" to "/test2.txt" in space "Shares" using the WebDAV API
     Then the HTTP status code should be "204"
-    And user "Brian" should get last notification with subject "Virus found" and message:
+    And user "Brian" should get a notification for resource "test2.txt" with subject "Virus found" and message:
       | message                                                                   |
       | Virus found in test2.txt. Upload not possible. Virus: Win.Test.EICAR_HDB-1 |
     And for user "Brian" the content of the file "/test2.txt" of the space "Shares" should be "this is a test file2."
