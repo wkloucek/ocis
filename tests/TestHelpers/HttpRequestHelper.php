@@ -299,7 +299,7 @@ class HttpRequestHelper {
 	 */
 	private static function printBody(?StreamInterface $body):void {
 		print("Body:\n");
-		\print_r($body->getContents());
+		\var_dump($body->getContents());
 		// Rewind the stream so that later code can read from the start.
 		$body->rewind();
 	}

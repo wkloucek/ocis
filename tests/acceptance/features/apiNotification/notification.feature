@@ -14,16 +14,6 @@ Feature: Notification
     And user "Alice" has created folder "my_data"
 
 
-  Scenario: user gets a notification of resource sharing
-    Given user "Alice" has shared entry "my_data" with user "Brian"
-    And user "Alice" has shared entry "/textfile1.txt" with user "Brian"
-    When user "Brian" deletes notification of resource "my_data" with subject "Resource shared"
-    Then the HTTP status code should be "200"
-    And user "Brian" should have a notification with subject "Resource shared" and message:
-      | message                                    |
-      | Alice Hansen shared textfile1.txt with you |
-
-
   Scenario Outline: user gets a notification of resource sharing
     Given user "Alice" has shared entry "<resource>" with user "Brian"
     When user "Brian" lists all notifications
