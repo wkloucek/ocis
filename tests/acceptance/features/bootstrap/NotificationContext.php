@@ -104,6 +104,40 @@ class NotificationContext implements Context {
 		$this->featureContext->setResponse($response);
 	}
 
+    /**
+     * @When user :user deletes notification of resource :resource with subject :subject
+     */
+    public function userDeletesNotificationOfResourceAndSubject($user, $resource, $subject):void
+    {
+        $this->userListAllNotifications($user);
+        $this->filterResponseByNotificationSubjectAndResource($subject,$resource);
+        $notificationID = $this->getNotificationIds();
+        $this->userDeleteNotification($user,$notificationID);
+
+    }
+    /**
+     * delete notfication
+     */
+    public function userDeleteNotification($user, $notificationID):void{
+        $this->setUserRecipient($user);
+        $headers = ["accept-language" => $this->settingsContext->getSettingLanguageValue($user)];
+        $payload["ids"]=$notificationID;
+        var_dump($payload);
+        $response = OcsApiHelper::sendRequest(
+            $this->featureContext->getBaseUrl(),
+            $this->featureContext->getActualUsername($user),
+            $this->featureContext->getPasswordForUser($user),
+            'DELETE',
+            $this->notificationEndpointPath,
+            $this->featureContext->getStepLineRef(),
+            \json_encode($payload),
+            2,
+            $headers
+        );
+        $this->featureContext->setResponse($response);
+
+    }
+
 	/**
 	 * @Then the notifications should be empty
 	 *
@@ -190,8 +224,31 @@ class NotificationContext implements Context {
 		return $responseBody;
 	}
 
+    /**
+     * @param string $subject
+     * @param string $resource
+     *
+     * @return array
+     */
+    public function filterResponseByNotificationSubjectAndResource(string $subject, string $resource): array {
+        $responseBodyArray = [];
+        if (isset($this->featureContext->getJsonDecodedResponseBodyContent()->ocs->data)) {
+            $responseBody = $this->featureContext->getJsonDecodedResponseBodyContent()->ocs->data;
+            foreach ($responseBody as $value) {
+                if (isset($value->subject) && $value->subject === $subject && isset($value->messageRichParameters->resource->name) && $value->messageRichParameters->resource->name === $resource) {
+                    $responseBodyArray[] = $value;
+                    $this->notificationIds[] = $value->notification_id;
+                }
+            }
+        } else {
+            $responseBodyArray[] = $this->featureContext->getJsonDecodedResponseBodyContent();
+        }
+        return $responseBodyArray;
+    }
+
 	/**
 	 * @Then user :user should get a notification with subject :subject and message:
+	 * @Then user :user should have a notification with subject :subject and message:
 	 *
 	 * @param string $user
 	 * @param string $subject
