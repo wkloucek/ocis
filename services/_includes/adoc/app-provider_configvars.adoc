@@ -4,7 +4,7 @@
 
 ifeval::[{show-deprecation} == true]
 
-[#deprecation-note-2023-07-04-11-24-22]
+[#deprecation-note-2023-07-07-13-24-03]
 [caption=]
 .Deprecation notes for the app-provider service
 [width="100%",cols="~,~,~,~",options="header"]
@@ -30,6 +30,15 @@ endif::[]
 | Type
 | Default Value
 | Description
+
+a|`APP_PROVIDER_SERVICE_NAME` +
+
+a| [subs=-attributes]
+++string ++
+a| [subs=-attributes]
+++app-provider ++
+a| [subs=-attributes]
+The name of the service. This needs to be changed when using more than one app provider. Each of them needs be found by a unique service name. Possible examples are: "app-provider-collabora", "app-provider-onlyoffice", "app-provider-office365".
 
 a|`OCIS_TRACING_ENABLED` +
 `APP_PROVIDER_TRACING_ENABLED` +
@@ -177,11 +186,11 @@ The secret to mint and validate jwt tokens.
 
 a|`OCIS_REVA_GATEWAY` +
 `REVA_GATEWAY` +
-xref:deprecation-note-2023-07-04-11-24-22[Deprecation Note]
+xref:deprecation-note-2023-07-07-13-24-03[Deprecation Note]
 a| [subs=-attributes]
 ++string ++
 a| [subs=-attributes]
-++127.0.0.1:9142 ++
+++com.owncloud.api.gateway ++
 a| [subs=-attributes]
 The CS3 gateway endpoint.
 
@@ -274,6 +283,15 @@ a| [subs=-attributes]
 ++ ++
 a| [subs=-attributes]
 URL for end users to access the app.
+
+a|`APP_PROVIDER_WOPI_DISABLE_CHAT` +
+
+a| [subs=-attributes]
+++bool ++
+a| [subs=-attributes]
+++false ++
+a| [subs=-attributes]
+Disable the chat functionality of the office app.
 
 a|`APP_PROVIDER_WOPI_INSECURE` +
 
