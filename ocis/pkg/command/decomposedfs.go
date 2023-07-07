@@ -6,8 +6,12 @@ import (
 	"encoding/hex"
 	"errors"
 	"fmt"
+	"io"
+	"os"
 	"sort"
 	"strings"
+	"sync"
+	"time"
 
 	userpb "github.com/cs3org/go-cs3apis/cs3/identity/user/v1beta1"
 	provider "github.com/cs3org/go-cs3apis/cs3/storage/provider/v1beta1"
@@ -21,8 +25,10 @@ import (
 	"github.com/cs3org/reva/v2/pkg/storage/utils/decomposedfs/tree"
 	"github.com/cs3org/reva/v2/pkg/storagespace"
 	"github.com/cs3org/reva/v2/pkg/store"
+	"github.com/gofrs/uuid"
 	"github.com/owncloud/ocis/v2/ocis-pkg/config"
 	"github.com/owncloud/ocis/v2/ocis/pkg/register"
+	"github.com/shamaton/msgpack/v2"
 	"github.com/urfave/cli/v2"
 )
 
@@ -35,12 +41,171 @@ func DecomposedfsCommand(cfg *config.Config) *cli.Command {
 		Subcommands: []*cli.Command{
 			metadataCmd(cfg),
 			checkCmd(cfg),
+			appendCmd(cfg),
+			readCmd(cfg),
 		},
 	}
 }
 
 func init() {
 	register.AddCommand(DecomposedfsCommand)
+}
+
+func appendCmd(cfg *config.Config) *cli.Command {
+	return &cli.Command{
+		Name:  "append",
+		Usage: `append msgpack to a file`,
+		Flags: []cli.Flag{
+			&cli.StringFlag{
+				Name:     "path",
+				Aliases:  []string{"p"},
+				Required: true,
+				Usage:    "Path to the file",
+			},
+			&cli.IntFlag{
+				Name:     "iterations",
+				Value:    1,
+				Aliases:  []string{"i"},
+				Required: false,
+				Usage:    "How many messages to write",
+			},
+			&cli.IntFlag{
+				Name:     "jobs",
+				Value:    1,
+				Aliases:  []string{"j"},
+				Required: false,
+				Usage:    "How many jobs / coroutines to start",
+			},
+			&cli.BoolFlag{
+				Name:     "silent",
+				Required: false,
+				Usage:    "only log errors",
+			},
+		},
+		Action: appendfile,
+	}
+}
+
+type record struct {
+	TS   string
+	ID   string
+	Host string
+}
+
+func appendfile(c *cli.Context) error {
+	pathFlag := c.String("path")
+	silent := c.Bool("silent")
+	jobs := c.Int("jobs")
+
+	var wg sync.WaitGroup
+	wg.Add(jobs)
+	for j := 0; j < jobs; j++ {
+		go func(j int) {
+			for i := 0; i < c.Int("iterations"); i++ {
+				f, err := os.OpenFile(pathFlag, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+				if err != nil {
+					fmt.Printf("job %d, iteration %d errored: %v\n", j, i, err)
+					return
+				}
+				host, _ := os.Hostname()
+				r := record{
+					TS:   time.Now().String(),
+					ID:   uuid.Must(uuid.NewV4()).String(),
+					Host: host,
+				}
+				if !silent {
+					fmt.Printf("job %d, iteration %d record: %v\n", j, i, r)
+				}
+
+				var b []byte
+				b, err = msgpack.Marshal(r)
+				if err != nil {
+					fmt.Printf("job %d, iteration %d errored: %v\n", j, i, err)
+					closeerr := f.Close()
+					if closeerr != nil {
+						fmt.Printf("job %d, iteration %d close errored: %v\n", j, i, closeerr)
+					}
+					return
+				}
+				if !silent {
+					fmt.Printf("job %d, iteration %d marshaled %d bytes\n", j, i, len(b))
+				}
+				var w int
+				w, err = f.Write(b)
+				if err != nil {
+					fmt.Println(err.Error())
+					closeerr := f.Close()
+					if closeerr != nil {
+						fmt.Printf("job %d, iteration %d close errored: %v\n", j, i, closeerr)
+					}
+					return
+				}
+				if !silent {
+					fmt.Printf("job %d, iteration %d wrote %d bytes\n", j, i, w)
+				}
+				err = f.Sync()
+				if err != nil {
+					fmt.Println(err.Error())
+					closeerr := f.Close()
+					if closeerr != nil {
+						fmt.Printf("job %d, iteration %d close errored: %v\n", j, i, closeerr)
+					}
+					return
+				}
+
+				closeerr := f.Close()
+				if closeerr != nil {
+					fmt.Printf("job %d, iteration %d errored: %v\n", j, i, closeerr)
+				}
+			}
+			wg.Done()
+		}(j)
+	}
+	wg.Wait()
+	return nil
+}
+
+func readCmd(cfg *config.Config) *cli.Command {
+	return &cli.Command{
+		Name:  "read",
+		Usage: `read msgpack records from a file`,
+		Flags: []cli.Flag{
+			&cli.StringFlag{
+				Name:     "path",
+				Aliases:  []string{"p"},
+				Required: true,
+				Usage:    "Path to the file",
+			},
+		},
+		Action: readfile,
+	}
+}
+func readfile(c *cli.Context) error {
+	pathFlag := c.String("path")
+	f, err := os.Open(pathFlag)
+	if err != nil {
+		return err
+	}
+	d := msgpack.NewDecoder(f, false)
+	records := []record{}
+	for {
+		r := record{}
+		err := d.Decode(&r)
+		if err != nil {
+			if err != io.EOF {
+				fmt.Printf("%v\n", err)
+			}
+			break
+		}
+		records = append(records, r)
+	}
+	fmt.Printf("read %d records\n", len(records))
+
+	for _, r := range records {
+		fmt.Printf("record: %v\n", r)
+	}
+
+	return nil
 }
 
 func checkCmd(cfg *config.Config) *cli.Command {
