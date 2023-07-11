@@ -452,27 +452,46 @@ trait WebDav {
 	 * @return void
 	 */
 	public function downloadPreviews(string $user, ?string $path, ?string $doDavRequestAsUser, ?string $width, ?string $height):void {
+        $urlParameter = [];
 		$user = $this->getActualUsername($user);
-		$doDavRequestAsUser = $this->getActualUsername($doDavRequestAsUser);
-		$urlParameter = [
+
+        if ($this->getDavPathVersion() === WebDavHelper::DAV_VERSION_SPACES) {
+            $fileId = $this->getFileIdForPath($user, $path);
+
+            $fileId = urlencode(strstr($fileId, '!', true));
+            $eTag = str_replace("\"", "", $this->getFileEtagForPath($user, $path));
+            $fullUrl = $this->getBaseUrl() . '/remote.php/dav/spaces/'. $fileId .'/';
+            $urlParameter = [
+                'scalingup' => 0,
+                'preview' => '1',
+                'a' => '1',
+                'c' => $eTag,
+                'x' => $width,
+                'y' => $height
+            ];
+        } else {
+            $fullUrl = $this->getBaseUrl() . '/remote.php/';
+            		$urlParameter = [
 			'x' => $width,
 			'y' => $height,
 			'forceIcon' => '0',
 			'preview' => '1'
 		];
-		$this->response = $this->makeDavRequest(
-			$user,
-			"GET",
-			$path,
-			[],
-			null,
-			"files",
-			'2',
-			false,
-			null,
-			$urlParameter,
-			$doDavRequestAsUser
-		);
+        }
+
+        if (!empty($urlParameter)) {
+            $urlParameter = \http_build_query($urlParameter, '', '&');
+            $path .= '?' . $urlParameter;
+        }
+        $fullUrl = WebDavHelper::sanitizeUrl($fullUrl . $path);
+
+        $this->response = HttpRequestHelper::sendRequest(
+            $fullUrl,
+            '',
+            "GET",
+            $user,
+            $this->getPasswordForUser($user)
+        );
 	}
 
 	/**
@@ -4632,6 +4651,27 @@ trait WebDav {
 			return null;
 		}
 	}
+    /**
+     * @param string $user
+     * @param string $path
+     *
+     * @return string|null
+     */
+    public function getFileEtagForPath(string $user, string $path): ?string {
+        $user = $this->getActualUsername($user);
+        try {
+            return WebDavHelper::getFileEtagForPath(
+                $this->getBaseUrl(),
+                $user,
+                $this->getPasswordForUser($user),
+                $path,
+                $this->getStepLineRef(),
+                $this->getDavPathVersion()
+            );
+        } catch (Exception $e) {
+            return null;
+        }
+    }
 
 	/**
 	 * @Given /^user "([^"]*)" has stored id of (file|folder) "([^"]*)"$/

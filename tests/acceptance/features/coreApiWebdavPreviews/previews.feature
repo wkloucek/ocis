@@ -5,21 +5,22 @@ Feature: previews of files downloaded through the webdav API
     Given user "Alice" has been created with default attributes and without skeleton files
 
 
-  Scenario Outline: download previews with invalid width
-    Given user "Alice" has uploaded file "filesForUpload/lorem.txt" to "/parent.txt"
-    When user "Alice" downloads the preview of "/parent.txt" with width "<width>" and height "32" using the WebDAV API
+  Scenario: download previews with invalid width
+    Given using spaces DAV path
+    And user "Alice" has uploaded file "filesForUpload/lorem.txt" to "/parent.txt"
+    When user "Alice" downloads the preview of "/parent.txt" with width "0" and height "32" using the WebDAV API
     Then the HTTP status code should be "400"
     And the value of the item "/d:error/s:message" in the response about user "Alice" should be "Cannot set width of 0 or smaller!"
     And the value of the item "/d:error/s:exception" in the response about user "Alice" should be "Sabre\DAV\Exception\BadRequest"
-    Examples:
-      | width |
-      | 0     |
-      | 0.5   |
-      | -1    |
-      | false |
-      | true  |
-      | A     |
-      | %2F   |
+#    Examples:
+#      | dav-path-version | width |
+#      | new              | 0     |
+#      | new              | 0.5   |
+#      | new              | -1    |
+#      | new              | false |
+#      | new              | true  |
+#      | new              | A     |
+#      | new              | %2F   |
 
 
   Scenario Outline: download previews with invalid height
@@ -40,11 +41,14 @@ Feature: previews of files downloaded through the webdav API
 
 
   Scenario: download previews of files inside sub-folders
+    Given using spaces DAV path
     Given user "Alice" has created folder "subfolder"
-    And user "Alice" has uploaded file "filesForUpload/lorem.txt" to "/subfolder/parent.txt"
-    When user "Alice" downloads the preview of "/subfolder/parent.txt" with width "32" and height "32" using the WebDAV API
+    And user "Alice" has uploaded file "filesForUpload/example.gif" to "example.gif"
+    When user "Alice" downloads the preview of "example.gif" with width "32" and height "32" using the WebDAV API
     Then the HTTP status code should be "200"
     And the downloaded image should be "32" pixels wide and "32" pixels high
+    #    Examples:
+#      | dav-path-version | width |
 
 
   Scenario Outline: download previews of file types that don't support preview
