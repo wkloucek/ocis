@@ -15,6 +15,7 @@ use PHPUnit\Framework\Assert;
 use TestHelpers\GraphHelper;
 use Behat\Gherkin\Node\TableNode;
 use GuzzleHttp\Exception\GuzzleException;
+use Psr\Http\Message\ResponseInterface;
 
 require_once 'bootstrap.php';
 
@@ -106,7 +107,7 @@ class NotificationContext implements Context {
 	}
 
 	/**
-	 * @When user :user deletes all notification
+	 * @When user :user deletes all notifications
 	 *
 	 * @param string $user
 	 *
@@ -123,11 +124,11 @@ class NotificationContext implements Context {
 				$this->notificationIds[] = $value->notification_id;
 			}
 		}
-		$this->userDeleteNotification($user);
+		$this->featureContext->setResponse($this->userDeleteNotification($user));
 	}
 
 	/**
-	 * @When user :user deletes the notification related to resource :resource with subject :subject
+	 * @When user :user deletes a notification related to resource :resource with subject :subject
 	 *
 	 * @param string $user
 	 * @param string $resource
@@ -140,7 +141,7 @@ class NotificationContext implements Context {
 	public function userDeletesNotificationOfResourceAndSubject(string $user, string $resource, string $subject):void {
 		$this->userListAllNotifications($user);
 		$this->filterResponseByNotificationSubjectAndResource($subject, $resource);
-		$this->userDeleteNotification($user);
+		$this->featureContext->setResponse($this->userDeleteNotification($user));
 	}
 
 	/**
@@ -152,11 +153,11 @@ class NotificationContext implements Context {
 	 * @throws GuzzleException
 	 * @throws JsonException
 	 */
-	public function userDeleteNotification(string $user):void {
+	public function userDeleteNotification(string $user):ResponseInterface {
 		$this->setUserRecipient($user);
 		$headers = ["accept-language" => $this->settingsContext->getSettingLanguageValue($user)];
 		$payload["ids"] = $this->getNotificationIds();
-		$response = OcsApiHelper::sendRequest(
+		return OcsApiHelper::sendRequest(
 			$this->featureContext->getBaseUrl(),
 			$this->featureContext->getActualUsername($user),
 			$this->featureContext->getPasswordForUser($user),
@@ -167,7 +168,6 @@ class NotificationContext implements Context {
 			2,
 			$headers
 		);
-		$this->featureContext->setResponse($response);
 	}
 
 	/**
@@ -287,16 +287,16 @@ class NotificationContext implements Context {
 	 *
 	 * @return void
 	 */
-	public function userShouldGetANotificationWithMessage(string $user, string $subject, TableNode $table):void {
+	public function userShouldGetANotificationWithMessage(string $user,string $shouldOrNot, string $subject, TableNode $table):void {
 		$this->userListAllNotifications($user);
 		$this->featureContext->theHTTPStatusCodeShouldBe(200);
 		$actualMessage = str_replace(["\r", "\n"], " ", $this->filterResponseAccordingToNotificationSubject($subject)->message);
 		$expectedMessage = $table->getColumnsHash()[0]['message'];
-		Assert::assertSame(
-			$expectedMessage,
-			$actualMessage,
-			__METHOD__ . "expected message to be '$expectedMessage' but found'$actualMessage'"
-		);
+        Assert::assertSame(
+            $expectedMessage,
+            $actualMessage,
+            __METHOD__ . "expected message to be '$expectedMessage' but found'$actualMessage'"
+        );
 	}
 
 	/**
