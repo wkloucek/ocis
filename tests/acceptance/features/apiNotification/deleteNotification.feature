@@ -18,12 +18,13 @@ Feature: Delete notification
   Scenario: delete a notification
     When user "Brian" deletes a notification related to resource "my_data" with subject "Resource shared"
     Then the HTTP status code should be "200"
-    But user "Brian" should not have a notification related to resource "my_data" with subject "Resource shared"
     And user "Brian" should have a notification with subject "Resource shared" and message:
       | message                                    |
       | Alice Hansen shared textfile1.txt with you |
+    But user "Brian" should not have a notification related to resource "my_data" with subject "Resource shared"
 
 
   Scenario: delete all notifications
     When user "Brian" deletes all notifications
     Then the HTTP status code should be "200"
+    And the notification of user "Brian" should be empty
