@@ -27,6 +27,7 @@ use GuzzleHttp\Ring\Exception\ConnectException;
 use PHPUnit\Framework\Assert;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Stream\StreamInterface;
+use TestHelpers\SpaceNotFoundException;
 use TestHelpers\UploadHelper;
 use TestHelpers\WebDavHelper;
 use TestHelpers\HttpRequestHelper;
@@ -450,48 +451,51 @@ trait WebDav {
 	 * @param string|null $height
 	 *
 	 * @return void
+	 * @throws SpaceNotFoundException|GuzzleException
 	 */
 	public function downloadPreviews(string $user, ?string $path, ?string $doDavRequestAsUser, ?string $width, ?string $height):void {
-        $urlParameter = [];
-		$user = $this->getActualUsername($user);
-
-        if ($this->getDavPathVersion() === WebDavHelper::DAV_VERSION_SPACES) {
-            $fileId = $this->getFileIdForPath($user, $path);
-
-            $fileId = urlencode(strstr($fileId, '!', true));
-            $eTag = str_replace("\"", "", $this->getFileEtagForPath($user, $path));
-            $fullUrl = $this->getBaseUrl() . '/remote.php/dav/spaces/'. $fileId .'/';
-            $urlParameter = [
-                'scalingup' => 0,
-                'preview' => '1',
-                'a' => '1',
-                'c' => $eTag,
-                'x' => $width,
-                'y' => $height
-            ];
-        } else {
-            $fullUrl = $this->getBaseUrl() . '/remote.php/';
-            		$urlParameter = [
+		$urlParameter = [
 			'x' => $width,
 			'y' => $height,
 			'forceIcon' => '0',
 			'preview' => '1'
 		];
-        }
+		$davVersion =$this->getDavPathVersion();
+		if ($davVersion === WebDavHelper::DAV_VERSION_SPACES) {
+			$fileId = $this->getFileIdForPath($doDavRequestAsUser ?? $user, $path);
 
-        if (!empty($urlParameter)) {
-            $urlParameter = \http_build_query($urlParameter, '', '&');
-            $path .= '?' . $urlParameter;
-        }
-        $fullUrl = WebDavHelper::sanitizeUrl($fullUrl . $path);
+			$fileId = urlencode(strstr($fileId, '!', true));
 
-        $this->response = HttpRequestHelper::sendRequest(
-            $fullUrl,
-            '',
-            "GET",
-            $user,
-            $this->getPasswordForUser($user)
-        );
+			$eTag = str_replace("\"", "", $this->getFileEtagForPath($doDavRequestAsUser ?? $user, $path));
+			$fullUrl = $this->getBaseUrl() . '/remote.php/dav/spaces/' . $fileId . '/';
+
+			$urlParameter = [
+				'scalingup' => 0,
+				'preview' => '1',
+				'a' => '1',
+				'c' => $eTag,
+				'x' => $width,
+				'y' => $height
+			];
+		} elseif ($davVersion === WebDavHelper::DAV_VERSION_NEW) {
+			$fullUrl = $this->getBaseUrl() . '/remote.php/dav/files/'.$user .'/';
+		} else {
+			$fullUrl = $this->getBaseUrl() . '/remote.php/webdav/';
+		}
+
+		if (!empty($urlParameter)) {
+			$urlParameter = \http_build_query($urlParameter, '', '&');
+			$path .= '?' . $urlParameter;
+		}
+		$fullUrl = WebDavHelper::sanitizeUrl($fullUrl . $path);
+
+		$this->response = HttpRequestHelper::sendRequest(
+			$fullUrl,
+			'',
+			"GET",
+			$user,
+			$this->getPasswordForUser($user)
+		);
 	}
 
 	/**
@@ -4483,6 +4487,55 @@ trait WebDav {
 	}
 
 	/**
+	 * @When user :user tries to download the preview of nonexistent file :path with width :width and height :height using the WebDAV API
+	 */
+	public function userTriesToDownloadThePreviewOfNonexistentFileWithWidthAndHeightUsingTheWebdavApi(string $user, string $path, string $width, string $height) {
+		$urlParameter = [
+			'x' => $width,
+			'y' => $height,
+			'forceIcon' => '0',
+			'preview' => '1'
+		];
+
+		$user = $this->getActualUsername($user);
+		$davVersion =$this->getDavPathVersion();
+
+		if ($davVersion === WebDavHelper::DAV_VERSION_SPACES) {
+			$dummyID = WebDavHelper::generateUUIDv4();
+			$fileId = $dummyID."!".$dummyID;
+			$fileId = urlencode(strstr($fileId, '!', true));
+			$eTag = str_replace("\"", "", $this->getFileEtagForPath($user, $path));
+			$fullUrl = $this->getBaseUrl() . '/remote.php/dav/spaces/'. $fileId .'/';
+			$urlParameter = [
+				'scalingup' => 0,
+				'preview' => '1',
+				'a' => '1',
+				'c' => $eTag,
+				'x' => $width,
+				'y' => $height
+			];
+		} elseif ($davVersion === WebDavHelper::DAV_VERSION_NEW) {
+			$fullUrl = $this->getBaseUrl() . '/remote.php/dav/files/'.$user .'/';
+		} else {
+			$fullUrl = $this->getBaseUrl() . '/remote.php/webdav/';
+		}
+		//        var_dump($urlParameter);
+		if (!empty($urlParameter)) {
+			$urlParameter = \http_build_query($urlParameter, '', '&');
+			$path .= '?' . $urlParameter;
+		}
+		$fullUrl = WebDavHelper::sanitizeUrl($fullUrl . $path);
+		var_dump($fullUrl);
+		$this->response = HttpRequestHelper::sendRequest(
+			$fullUrl,
+			'',
+			"GET",
+			$user,
+			$this->getPasswordForUser($user)
+		);
+	}
+
+	/**
 	 * @When user :user downloads the preview of :path with width :width and height :height using the WebDAV API
 	 *
 	 * @param string $user
@@ -4651,27 +4704,6 @@ trait WebDav {
 			return null;
 		}
 	}
-    /**
-     * @param string $user
-     * @param string $path
-     *
-     * @return string|null
-     */
-    public function getFileEtagForPath(string $user, string $path): ?string {
-        $user = $this->getActualUsername($user);
-        try {
-            return WebDavHelper::getFileEtagForPath(
-                $this->getBaseUrl(),
-                $user,
-                $this->getPasswordForUser($user),
-                $path,
-                $this->getStepLineRef(),
-                $this->getDavPathVersion()
-            );
-        } catch (Exception $e) {
-            return null;
-        }
-    }
 
 	/**
 	 * @Given /^user "([^"]*)" has stored id of (file|folder) "([^"]*)"$/

@@ -1128,6 +1128,8 @@ trait Sharing {
 				$this->lastShareDataByUser[$user] = $shareData;
 				$shareId = (string) $shareData->data[0]->id;
 				$this->setLastShareIdOf($user, $shareId);
+				var_dump("---------------");
+				var_dump($this->lastShareIdByUser);
 			}
 		}
 		$this->localLastShareTime = \microtime(true);

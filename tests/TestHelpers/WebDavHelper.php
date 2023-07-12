@@ -42,7 +42,6 @@ class WebDavHelper {
 	public const DAV_VERSION_SPACES = 3;
 	public static string $SPACE_ID_FROM_OCIS = '';
 
-    public static $virtualSharesId = null;
 	/**
 	 * @var array of users with their different space ids
 	 */
@@ -114,58 +113,6 @@ class WebDavHelper {
 
 		return $matches[1];
 	}
-
-    /**
-     * returns the id of a file
-     *
-     * @param string|null $baseUrl
-     * @param string|null $user
-     * @param string|null $password
-     * @param string|null $path
-     * @param string|null $xRequestId
-     * @param int|null $davPathVersionToUse
-     *
-     * @return string
-     * @throws Exception|GuzzleException
-     */
-    public static function getFileEtagForPath(
-        ?string $baseUrl,
-        ?string $user,
-        ?string $password,
-        ?string $path,
-        ?string $xRequestId = '',
-        ?int $davPathVersionToUse = self::DAV_VERSION_NEW
-    ): string {
-        $body
-            = '<?xml version="1.0"?>
-				<d:propfind  xmlns:d="DAV:" xmlns:oc="http://owncloud.org/ns">
- 					<d:prop>
-    					<d:getetag />
-  					</d:prop>
-				</d:propfind>';
-        $response = self::makeDavRequest(
-            $baseUrl,
-            $user,
-            $password,
-            "PROPFIND",
-            $path,
-            null,
-            $xRequestId,
-            $body,
-            $davPathVersionToUse
-        );
-        \preg_match(
-            '/\<d:getetag\>([^\<]*)\<\/d:getetag\>/',
-            $response->getBody()->getContents(),
-            $matches
-        );
-
-        if (!isset($matches[1])) {
-            throw new Exception("could not find fileId of $path");
-        }
-
-        return $matches[1];
-    }
 
 	/**
 	 * returns body for propfind
@@ -578,9 +525,6 @@ class WebDavHelper {
 			$personalSpaceId = $ocIdParts[0];
 		} else {
 			foreach ($json->value as $spaces) {
-                if($spaces->driveType === "virtual"){
-                    self::$virtualSharesId = $spaces->id;
-                }
 				if ($spaces->driveType === "personal") {
 					$personalSpaceId = $spaces->id;
 					break;
@@ -695,8 +639,6 @@ class WebDavHelper {
 				$password,
 				$xRequestId
 			);
-//            $shareId = self::sanitizeVirtualSharesId();
-//            var_dump($shareId);
 		} else {
 			$spaceId = self::$SPACE_ID_FROM_OCIS;
 		}
@@ -839,18 +781,6 @@ class WebDavHelper {
 		}
 		return \preg_replace("/([^:]\/)\/+/", '$1', $url);
 	}
-
-//    /**
-//     * make sure there are no double-slashes in the URL
-//     *
-//     *
-//     * @return string
-//     */
-//    public static function sanitizeVirtualSharesId():string{
-//        if (self::$virtualSharesId){
-//            return strstr(self::$virtualSharesId, '$', true);
-//        }
-//    }
 
 	/**
 	 * Decides if the proposed dav version and chunking version are
