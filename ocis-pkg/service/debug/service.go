@@ -1,6 +1,8 @@
 package debug
 
 import (
+	"context"
+	"net"
 	"net/http"
 	"net/http/pprof"
 
@@ -46,8 +48,16 @@ func NewService(opts ...Option) *http.Server {
 		mux.Handle("/debug", h)
 	}
 
+	baseCtx := context.Background()
+	if dopts.Context != nil {
+		baseCtx = dopts.Context
+	}
+
 	return &http.Server{
 		Addr: dopts.Address,
+		BaseContext: func(_ net.Listener) context.Context {
+			return baseCtx
+		},
 		Handler: alice.New(
 			chimiddleware.RealIP,
 			chimiddleware.RequestID,
