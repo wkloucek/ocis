@@ -51,7 +51,7 @@ The NFS server setup can be optimized considering system administrative-, perfor
 
 The oCIS server can be instructed to set up the decomposed FS at a certain path by setting the environment variable `OCIS_BASE_DATA_PATH`.
 
-The test setup started an oCIS tech preview single binary release using this start command:
+The test setup started an oCIS single binary release using this start command:
 
 ```bash
 ./ocis init
